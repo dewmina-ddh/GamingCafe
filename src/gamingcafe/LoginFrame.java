@@ -17,40 +17,47 @@ public class LoginFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jLabel1 = new javax.swing.JLabel();
+        txtPass = new javax.swing.JPasswordField();
+        txtUname = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        Background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1200, 600));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField1.setBackground(new java.awt.Color(0, 0, 0));
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setBorder(null);
-        jTextField1.addActionListener(this::jTextField1ActionPerformed);
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 430, 150, -1));
+        txtPass.setBackground(new java.awt.Color(0, 0, 0));
+        txtPass.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtPass.setForeground(new java.awt.Color(255, 255, 255));
+        txtPass.setBorder(null);
+        getContentPane().add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 430, 150, -1));
 
-        jPasswordField1.setBackground(new java.awt.Color(0, 0, 0));
-        jPasswordField1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jPasswordField1.setForeground(new java.awt.Color(255, 255, 255));
-        jPasswordField1.setBorder(null);
-        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 430, 150, 30));
+        txtUname.setBackground(new java.awt.Color(0, 0, 0));
+        txtUname.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtUname.setForeground(new java.awt.Color(255, 255, 255));
+        txtUname.setBorder(null);
+        getContentPane().add(txtUname, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 430, 150, -1));
 
-        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/log.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jButton1.setBackground(new java.awt.Color(25, 170, 98));
+        jButton1.setFont(new java.awt.Font("Intel One Mono", 1, 24)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Enter");
+        jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(21, 244, 147), 2, true));
+        jButton1.addActionListener(this::jButton1ActionPerformed);
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 380, 130, 80));
+
+        Background.setBackground(new java.awt.Color(0, 0, 0));
+        Background.setForeground(new java.awt.Color(255, 255, 255));
+        Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/log.png"))); // NOI18N
+        getContentPane().add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -73,8 +80,9 @@ public class LoginFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel Background;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JPasswordField txtPass;
+    private javax.swing.JTextField txtUname;
     // End of variables declaration//GEN-END:variables
 }
