@@ -77,8 +77,8 @@ public class LoginFrame extends javax.swing.JFrame {
         String userName = txtUname.getText().trim();
         String password = txtUname.getText().trim();
 
-        if (!isUser() != null) {
-
+        if (isUser() != null) {
+            
         }
 
 
