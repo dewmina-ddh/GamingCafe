@@ -1,11 +1,16 @@
 package gamingcafe;
 
+import java.awt.event.KeyEvent;
+import javax.swing.UIManager;
+
 public class LoginFrame extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(LoginFrame.class.getName());
 
     public LoginFrame() {
         initComponents();
+        txtUname.requestFocus();
+
     }
 
     /**
@@ -19,7 +24,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
         txtPass = new javax.swing.JPasswordField();
         txtUname = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
         Background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -30,21 +35,33 @@ public class LoginFrame extends javax.swing.JFrame {
         txtPass.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtPass.setForeground(new java.awt.Color(255, 255, 255));
         txtPass.setBorder(null);
+        txtPass.setMaximumSize(new java.awt.Dimension(64, 25));
+        txtPass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPassKeyPressed(evt);
+            }
+        });
         getContentPane().add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 430, 150, -1));
 
         txtUname.setBackground(new java.awt.Color(0, 0, 0));
         txtUname.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtUname.setForeground(new java.awt.Color(255, 255, 255));
         txtUname.setBorder(null);
+        txtUname.setMaximumSize(new java.awt.Dimension(64, 25));
+        txtUname.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUnameKeyPressed(evt);
+            }
+        });
         getContentPane().add(txtUname, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 430, 150, -1));
 
-        jButton1.setBackground(new java.awt.Color(25, 170, 98));
-        jButton1.setFont(new java.awt.Font("Intel One Mono", 1, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Enter");
-        jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(21, 244, 147), 2, true));
-        jButton1.addActionListener(this::jButton1ActionPerformed);
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 380, 130, 80));
+        btnLogin.setBackground(new java.awt.Color(25, 170, 98));
+        btnLogin.setFont(new java.awt.Font("Intel One Mono", 1, 24)); // NOI18N
+        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogin.setText("Enter");
+        btnLogin.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(21, 244, 147), 2, true));
+        btnLogin.addActionListener(this::btnLoginActionPerformed);
+        getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 380, 130, 80));
 
         Background.setBackground(new java.awt.Color(0, 0, 0));
         Background.setForeground(new java.awt.Color(255, 255, 255));
@@ -55,14 +72,49 @@ public class LoginFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+
+        String userName = txtUname.getText().trim();
+        String password = txtUname.getText().trim();
+
+        if (!isUser() != null) {
+
+        }
+
+
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void txtUnameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUnameKeyPressed
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtPass.requestFocus();
+        }
+
+        if (evt.getKeyCode() == KeyEvent.VK_CONTROL) {
+            txtPass.requestFocus();
+        }
+    }//GEN-LAST:event_txtUnameKeyPressed
+
+    private void txtPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPassKeyPressed
+
+        if (evt.getKeyCode() == KeyEvent.VK_ALT) {
+            txtUname.requestFocus();
+        }
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnLogin.doClick();
+        }
+    }//GEN-LAST:event_txtPassKeyPressed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+
+        UIManager.put("Button.arc", 15);
+        UIManager.put("Component.arc", 15);
+
+        //-----load flat laf-----
         try {
             com.formdev.flatlaf.FlatLightLaf.setup();
 //            com.formdev.flatlaf.FlatDarkLaf.setup();
@@ -81,8 +133,12 @@ public class LoginFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Background;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnLogin;
     private javax.swing.JPasswordField txtPass;
     private javax.swing.JTextField txtUname;
     // End of variables declaration//GEN-END:variables
+
+    private Object isUser() {
+
+    }
 }
