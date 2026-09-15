@@ -77,7 +77,7 @@ public class LoginFrame extends javax.swing.JFrame {
         String userName = txtUname.getText().trim();
         String password = txtUname.getText().trim();
 
-        if (isUser() != null) {
+        if (checkUser() != null) {
             
         }
 
@@ -138,7 +138,7 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JTextField txtUname;
     // End of variables declaration//GEN-END:variables
 
-    private Object isUser() {
-
+    private Object checkUser() {
+        
     }
 }
