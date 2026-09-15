@@ -1,21 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package gamingcafe;
 
-/**
- *
- * @author Damsith Dewmina
- */
 public class Dash extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Dash.class.getName());
 
-    /**
-     * Creates new form Dash
-     */
-    public Dash() {
+    public Dash(User user) {
         initComponents();
     }
 
@@ -42,6 +32,7 @@ public class Dash extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -66,7 +57,7 @@ public class Dash extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Dash().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new Dash(null).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
