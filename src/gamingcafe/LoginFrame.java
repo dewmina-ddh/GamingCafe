@@ -126,8 +126,8 @@ public class LoginFrame extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
 
-        UIManager.put("Button.arc", 15);
-        UIManager.put("Component.arc", 15);
+//        UIManager.put("Button.arc", 15);
+//        UIManager.put("Component.arc", 15);
 
         //-----load flat laf-----
         try {

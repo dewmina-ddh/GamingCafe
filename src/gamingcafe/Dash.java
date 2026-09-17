@@ -1,12 +1,16 @@
-
 package gamingcafe;
 
 public class Dash extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Dash.class.getName());
+
+    boolean isSidebarOpen = false;
 
     public Dash(User user) {
         initComponents();
+        
+        btnDash.setBorderPainted(false);
+
     }
 
     /**
@@ -18,22 +22,190 @@ public class Dash extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        framePnl = new javax.swing.JPanel();
+        contentPnl = new javax.swing.JPanel();
+        sidebarPnl = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        btnDash = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        main = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        hamburger = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1280, 720));
+        setResizable(false);
+
+        framePnl.setMaximumSize(new java.awt.Dimension(1280, 720));
+        framePnl.setMinimumSize(new java.awt.Dimension(1280, 720));
+        framePnl.setLayout(new java.awt.BorderLayout());
+
+        contentPnl.setLayout(new java.awt.BorderLayout());
+
+        sidebarPnl.setBackground(new java.awt.Color(0, 204, 255));
+        sidebarPnl.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 1));
+        sidebarPnl.setMaximumSize(new java.awt.Dimension(140, 720));
+        sidebarPnl.setMinimumSize(new java.awt.Dimension(140, 720));
+        sidebarPnl.setPreferredSize(new java.awt.Dimension(140, 720));
+        sidebarPnl.setRequestFocusEnabled(false);
+        sidebarPnl.setLayout(new java.awt.BorderLayout());
+
+        jPanel3.setBackground(new java.awt.Color(11, 19, 43));
+        jPanel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(100, 0, 100, 0));
+        jPanel3.setMaximumSize(new java.awt.Dimension(140, 392));
+        jPanel3.setMinimumSize(new java.awt.Dimension(140, 392));
+        jPanel3.setPreferredSize(new java.awt.Dimension(140, 392));
+        jPanel3.setLayout(new java.awt.GridLayout(8, 1, 5, 0));
+
+        btnDash.setBackground(new java.awt.Color(11, 19, 43));
+        btnDash.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnDash.setForeground(new java.awt.Color(255, 255, 255));
+        btnDash.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/dash.png"))); // NOI18N
+        btnDash.setText("Dashboard");
+        btnDash.setToolTipText("Dashboard");
+        btnDash.setBorder(null);
+        btnDash.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel3.add(btnDash);
+
+        jButton2.setBackground(new java.awt.Color(11, 19, 43));
+        jButton2.setBorder(null);
+        jButton2.setContentAreaFilled(false);
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel3.add(jButton2);
+
+        jButton3.setBackground(new java.awt.Color(11, 19, 43));
+        jButton3.setBorder(null);
+        jButton3.setContentAreaFilled(false);
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel3.add(jButton3);
+
+        jButton4.setBackground(new java.awt.Color(11, 19, 43));
+        jButton4.setBorder(null);
+        jButton4.setContentAreaFilled(false);
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel3.add(jButton4);
+
+        jButton5.setBackground(new java.awt.Color(11, 19, 43));
+        jButton5.setBorder(null);
+        jButton5.setContentAreaFilled(false);
+        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel3.add(jButton5);
+
+        jButton6.setBackground(new java.awt.Color(11, 19, 43));
+        jButton6.setBorder(null);
+        jButton6.setContentAreaFilled(false);
+        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel3.add(jButton6);
+
+        sidebarPnl.add(jPanel3, java.awt.BorderLayout.CENTER);
+
+        contentPnl.add(sidebarPnl, java.awt.BorderLayout.LINE_START);
+
+        main.setBackground(new java.awt.Color(11, 19, 43));
+        main.setLayout(new java.awt.BorderLayout());
+
+        jPanel1.setBackground(new java.awt.Color(0, 51, 102));
+        jPanel1.setMaximumSize(new java.awt.Dimension(1180, 60));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1180, 60));
+        jPanel1.setName(""); // NOI18N
+        jPanel1.setPreferredSize(new java.awt.Dimension(1180, 60));
+
+        hamburger.setText("heh");
+        hamburger.addActionListener(this::hamburgerActionPerformed);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(hamburger)
+                .addContainerGap(1088, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(hamburger)
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
+        main.add(jPanel1, java.awt.BorderLayout.PAGE_START);
+
+        jPanel2.setBackground(new java.awt.Color(11, 19, 43));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1140, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 660, Short.MAX_VALUE)
+        );
+
+        main.add(jPanel2, java.awt.BorderLayout.CENTER);
+
+        contentPnl.add(main, java.awt.BorderLayout.CENTER);
+
+        framePnl.add(contentPnl, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(framePnl, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(framePnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void hamburgerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hamburgerActionPerformed
+
+        Thread th = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    if (isSidebarOpen) { 
+                        
+                        
+                        for (int i = 140; i >= 70; i -= 10) {
+                            Thread.sleep(15);
+                            btnDash.setText("");
+                            sidebarPnl.setPreferredSize(new java.awt.Dimension(i, sidebarPnl.getHeight()));
+                            javax.swing.SwingUtilities.updateComponentTreeUI(sidebarPnl);  
+                        }
+                        isSidebarOpen = false;
+
+                    } else {
+                        for (int i = 70; i <= 140; i += 10) {
+                            Thread.sleep(15);
+                            sidebarPnl.setPreferredSize(new java.awt.Dimension(i, sidebarPnl.getHeight()));
+                            javax.swing.SwingUtilities.updateComponentTreeUI(sidebarPnl);  
+                            
+                            btnDash.setText("Dashobord");
+                        }
+                       
+                        isSidebarOpen = true;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        th.start();
+    }//GEN-LAST:event_hamburgerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -61,5 +233,19 @@ public class Dash extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDash;
+    private javax.swing.JPanel contentPnl;
+    private javax.swing.JPanel framePnl;
+    private javax.swing.JButton hamburger;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel main;
+    private javax.swing.JPanel sidebarPnl;
     // End of variables declaration//GEN-END:variables
 }
