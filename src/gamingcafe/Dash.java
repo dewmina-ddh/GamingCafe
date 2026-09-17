@@ -115,7 +115,10 @@ public class Dash extends javax.swing.JFrame {
         jPanel1.setName(""); // NOI18N
         jPanel1.setPreferredSize(new java.awt.Dimension(1180, 60));
 
-        hamburger.setText("heh");
+        hamburger.setBackground(new java.awt.Color(0, 51, 102));
+        hamburger.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        hamburger.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/ci--hamburger-md.png"))); // NOI18N
+        hamburger.setBorder(null);
         hamburger.addActionListener(this::hamburgerActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -123,16 +126,16 @@ public class Dash extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap()
                 .addComponent(hamburger)
-                .addContainerGap(1088, Short.MAX_VALUE))
+                .addContainerGap(1142, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(15, 15, 15)
                 .addComponent(hamburger)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         main.add(jPanel1, java.awt.BorderLayout.PAGE_START);
