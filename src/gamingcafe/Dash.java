@@ -27,11 +27,11 @@ public class Dash extends javax.swing.JFrame {
         sidebarPnl = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         btnDash = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnLive = new javax.swing.JButton();
+        btnPc = new javax.swing.JButton();
+        btnReports = new javax.swing.JButton();
+        btnLogOut = new javax.swing.JButton();
+        btnAdmin = new javax.swing.JButton();
         main = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         hamburger = new javax.swing.JButton();
@@ -57,50 +57,76 @@ public class Dash extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(11, 19, 43));
         jPanel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(100, 0, 100, 0));
-        jPanel3.setMaximumSize(new java.awt.Dimension(140, 392));
-        jPanel3.setMinimumSize(new java.awt.Dimension(140, 392));
-        jPanel3.setPreferredSize(new java.awt.Dimension(140, 392));
+        jPanel3.setMaximumSize(new java.awt.Dimension(145, 392));
+        jPanel3.setMinimumSize(new java.awt.Dimension(145, 392));
+        jPanel3.setPreferredSize(new java.awt.Dimension(145, 392));
         jPanel3.setLayout(new java.awt.GridLayout(8, 1, 5, 0));
 
         btnDash.setBackground(new java.awt.Color(11, 19, 43));
-        btnDash.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnDash.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnDash.setForeground(new java.awt.Color(255, 255, 255));
         btnDash.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/dash.png"))); // NOI18N
         btnDash.setText("Dashboard");
         btnDash.setToolTipText("Dashboard");
-        btnDash.setBorder(null);
+        btnDash.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 15, 1, 1));
         btnDash.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDash.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jPanel3.add(btnDash);
 
-        jButton2.setBackground(new java.awt.Color(11, 19, 43));
-        jButton2.setBorder(null);
-        jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel3.add(jButton2);
+        btnLive.setBackground(new java.awt.Color(11, 19, 43));
+        btnLive.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnLive.setForeground(new java.awt.Color(255, 255, 255));
+        btnLive.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/live.png"))); // NOI18N
+        btnLive.setText("Live ");
+        btnLive.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 15, 1, 1));
+        btnLive.setContentAreaFilled(false);
+        btnLive.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLive.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jPanel3.add(btnLive);
 
-        jButton3.setBackground(new java.awt.Color(11, 19, 43));
-        jButton3.setBorder(null);
-        jButton3.setContentAreaFilled(false);
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel3.add(jButton3);
+        btnPc.setBackground(new java.awt.Color(11, 19, 43));
+        btnPc.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnPc.setForeground(new java.awt.Color(255, 255, 255));
+        btnPc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pc.png"))); // NOI18N
+        btnPc.setText("Pc");
+        btnPc.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 15, 1, 1));
+        btnPc.setContentAreaFilled(false);
+        btnPc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPc.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jPanel3.add(btnPc);
 
-        jButton4.setBackground(new java.awt.Color(11, 19, 43));
-        jButton4.setBorder(null);
-        jButton4.setContentAreaFilled(false);
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel3.add(jButton4);
+        btnReports.setBackground(new java.awt.Color(11, 19, 43));
+        btnReports.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnReports.setForeground(new java.awt.Color(255, 255, 255));
+        btnReports.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/reports.png"))); // NOI18N
+        btnReports.setText("Reports");
+        btnReports.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 15, 1, 1));
+        btnReports.setContentAreaFilled(false);
+        btnReports.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnReports.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jPanel3.add(btnReports);
 
-        jButton5.setBackground(new java.awt.Color(11, 19, 43));
-        jButton5.setBorder(null);
-        jButton5.setContentAreaFilled(false);
-        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel3.add(jButton5);
+        btnLogOut.setBackground(new java.awt.Color(11, 19, 43));
+        btnLogOut.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnLogOut.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logOut.png"))); // NOI18N
+        btnLogOut.setText("Log Out");
+        btnLogOut.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 15, 1, 1));
+        btnLogOut.setContentAreaFilled(false);
+        btnLogOut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogOut.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jPanel3.add(btnLogOut);
 
-        jButton6.setBackground(new java.awt.Color(11, 19, 43));
-        jButton6.setBorder(null);
-        jButton6.setContentAreaFilled(false);
-        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel3.add(jButton6);
+        btnAdmin.setBackground(new java.awt.Color(11, 19, 43));
+        btnAdmin.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnAdmin.setForeground(new java.awt.Color(255, 255, 255));
+        btnAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/admin.png"))); // NOI18N
+        btnAdmin.setText("Admin");
+        btnAdmin.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 15, 1, 1));
+        btnAdmin.setContentAreaFilled(false);
+        btnAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAdmin.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jPanel3.add(btnAdmin);
 
         sidebarPnl.add(jPanel3, java.awt.BorderLayout.CENTER);
 
@@ -183,16 +209,22 @@ public class Dash extends javax.swing.JFrame {
                     if (isSidebarOpen) { 
                         
                         
-                        for (int i = 140; i >= 70; i -= 10) {
+                        for (int i = 145; i >= 70; i -= 10) {
                             Thread.sleep(15);
                             btnDash.setText("");
+                            btnLive.setText("");
+                            btnPc.setText("");
+                            btnReports.setText("");
+                            btnLogOut.setText("");
+                            btnAdmin.setText("");
+                            
                             sidebarPnl.setPreferredSize(new java.awt.Dimension(i, sidebarPnl.getHeight()));
                             javax.swing.SwingUtilities.updateComponentTreeUI(sidebarPnl);  
                         }
                         isSidebarOpen = false;
 
                     } else {
-                        for (int i = 70; i <= 140; i += 10) {
+                        for (int i = 70; i <= 145; i += 10) {
                             Thread.sleep(15);
                             sidebarPnl.setPreferredSize(new java.awt.Dimension(i, sidebarPnl.getHeight()));
                             javax.swing.SwingUtilities.updateComponentTreeUI(sidebarPnl);  
@@ -236,15 +268,15 @@ public class Dash extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdmin;
     private javax.swing.JButton btnDash;
+    private javax.swing.JButton btnLive;
+    private javax.swing.JButton btnLogOut;
+    private javax.swing.JButton btnPc;
+    private javax.swing.JButton btnReports;
     private javax.swing.JPanel contentPnl;
     private javax.swing.JPanel framePnl;
     private javax.swing.JButton hamburger;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
