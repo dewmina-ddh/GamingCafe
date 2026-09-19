@@ -5,12 +5,18 @@ public class Dash extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Dash.class.getName());
 
     boolean isSidebarOpen = false;
+    User user;
 
     public Dash(User user) {
         initComponents();
-        
-        btnDash.setBorderPainted(false);
+        this.user = user;
 
+//        btnDash.setBorderPainted(false);
+//        btnLive.setBorderPainted(false);
+//        btnPc.setBorderPainted(false);
+//        btnReports.setBorderPainted(false);
+//        btnLogOut.setBorderPainted(false);
+//        btnAdmin.setBorderPainted(false);
     }
 
     /**
@@ -32,10 +38,26 @@ public class Dash extends javax.swing.JFrame {
         btnReports = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
         btnAdmin = new javax.swing.JButton();
-        main = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        hamburger = new javax.swing.JButton();
+        btnAcc = new javax.swing.JButton();
+        main = new javax.swing.JPanel();
+        Header = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        btnHam = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        DateTime = new javax.swing.JLabel();
+        holder = new javax.swing.JPanel();
+        pnlDash = new javax.swing.JPanel();
+        liveGrid = new javax.swing.JPanel();
+        summery = new javax.swing.JPanel();
+        details = new javax.swing.JPanel();
+        pnlLive = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        pnlPc = new javax.swing.JPanel();
+        pnlReports = new javax.swing.JPanel();
+        pnlAdmin = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -56,77 +78,106 @@ public class Dash extends javax.swing.JFrame {
         sidebarPnl.setLayout(new java.awt.BorderLayout());
 
         jPanel3.setBackground(new java.awt.Color(11, 19, 43));
-        jPanel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(100, 0, 100, 0));
+        jPanel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(100, 0, 20, 0));
         jPanel3.setMaximumSize(new java.awt.Dimension(145, 392));
         jPanel3.setMinimumSize(new java.awt.Dimension(145, 392));
         jPanel3.setPreferredSize(new java.awt.Dimension(145, 392));
         jPanel3.setLayout(new java.awt.GridLayout(8, 1, 5, 0));
 
         btnDash.setBackground(new java.awt.Color(11, 19, 43));
-        btnDash.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnDash.setFont(new java.awt.Font("Leelawadee", 0, 16)); // NOI18N
         btnDash.setForeground(new java.awt.Color(255, 255, 255));
         btnDash.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/dash.png"))); // NOI18N
         btnDash.setText("Dashboard");
         btnDash.setToolTipText("Dashboard");
-        btnDash.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 15, 1, 1));
+        btnDash.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 1));
         btnDash.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDash.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnDash.addActionListener(this::btnDashActionPerformed);
         jPanel3.add(btnDash);
 
         btnLive.setBackground(new java.awt.Color(11, 19, 43));
-        btnLive.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnLive.setFont(new java.awt.Font("Leelawadee", 0, 16)); // NOI18N
         btnLive.setForeground(new java.awt.Color(255, 255, 255));
         btnLive.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/live.png"))); // NOI18N
-        btnLive.setText("Live ");
-        btnLive.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 15, 1, 1));
-        btnLive.setContentAreaFilled(false);
+        btnLive.setText("Live");
+        btnLive.setToolTipText("");
+        btnLive.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 1));
         btnLive.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLive.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnLive.addActionListener(this::btnLiveActionPerformed);
         jPanel3.add(btnLive);
 
         btnPc.setBackground(new java.awt.Color(11, 19, 43));
-        btnPc.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnPc.setFont(new java.awt.Font("Leelawadee", 0, 16)); // NOI18N
         btnPc.setForeground(new java.awt.Color(255, 255, 255));
         btnPc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pc.png"))); // NOI18N
         btnPc.setText("Pc");
-        btnPc.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 15, 1, 1));
-        btnPc.setContentAreaFilled(false);
+        btnPc.setToolTipText("");
+        btnPc.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 16, 1, 1));
         btnPc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPc.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnPc.addActionListener(this::btnPcActionPerformed);
         jPanel3.add(btnPc);
 
         btnReports.setBackground(new java.awt.Color(11, 19, 43));
-        btnReports.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnReports.setFont(new java.awt.Font("Leelawadee", 0, 16)); // NOI18N
         btnReports.setForeground(new java.awt.Color(255, 255, 255));
         btnReports.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/reports.png"))); // NOI18N
         btnReports.setText("Reports");
-        btnReports.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 15, 1, 1));
-        btnReports.setContentAreaFilled(false);
+        btnReports.setToolTipText("");
+        btnReports.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 16, 1, 1));
         btnReports.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnReports.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnReports.addActionListener(this::btnReportsActionPerformed);
         jPanel3.add(btnReports);
 
-        btnLogOut.setBackground(new java.awt.Color(11, 19, 43));
-        btnLogOut.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnLogOut.setBackground(new java.awt.Color(153, 0, 0));
+        btnLogOut.setFont(new java.awt.Font("Leelawadee", 0, 16)); // NOI18N
         btnLogOut.setForeground(new java.awt.Color(255, 255, 255));
         btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logOut.png"))); // NOI18N
-        btnLogOut.setText("Log Out");
-        btnLogOut.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 15, 1, 1));
-        btnLogOut.setContentAreaFilled(false);
+        btnLogOut.setText("LogOut");
+        btnLogOut.setToolTipText("");
+        btnLogOut.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 1));
         btnLogOut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLogOut.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jPanel3.add(btnLogOut);
 
         btnAdmin.setBackground(new java.awt.Color(11, 19, 43));
-        btnAdmin.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnAdmin.setFont(new java.awt.Font("Leelawadee", 0, 16)); // NOI18N
         btnAdmin.setForeground(new java.awt.Color(255, 255, 255));
         btnAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/admin.png"))); // NOI18N
         btnAdmin.setText("Admin");
-        btnAdmin.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 15, 1, 1));
-        btnAdmin.setContentAreaFilled(false);
+        btnAdmin.setToolTipText("");
+        btnAdmin.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 1));
         btnAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAdmin.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnAdmin.addActionListener(this::btnAdminActionPerformed);
         jPanel3.add(btnAdmin);
+
+        jPanel1.setBackground(new java.awt.Color(11, 19, 43));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 139, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 75, Short.MAX_VALUE)
+        );
+
+        jPanel3.add(jPanel1);
+
+        btnAcc.setBackground(new java.awt.Color(11, 19, 43));
+        btnAcc.setFont(new java.awt.Font("Leelawadee", 0, 16)); // NOI18N
+        btnAcc.setForeground(new java.awt.Color(255, 255, 255));
+        btnAcc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/setting.png"))); // NOI18N
+        btnAcc.setText("Account");
+        btnAcc.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 1));
+        btnAcc.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jPanel3.add(btnAcc);
 
         sidebarPnl.add(jPanel3, java.awt.BorderLayout.CENTER);
 
@@ -135,51 +186,248 @@ public class Dash extends javax.swing.JFrame {
         main.setBackground(new java.awt.Color(11, 19, 43));
         main.setLayout(new java.awt.BorderLayout());
 
-        jPanel1.setBackground(new java.awt.Color(0, 51, 102));
-        jPanel1.setMaximumSize(new java.awt.Dimension(1180, 60));
-        jPanel1.setMinimumSize(new java.awt.Dimension(1180, 60));
-        jPanel1.setName(""); // NOI18N
-        jPanel1.setPreferredSize(new java.awt.Dimension(1180, 60));
+        Header.setBackground(new java.awt.Color(0, 51, 102));
+        Header.setMaximumSize(new java.awt.Dimension(1180, 60));
+        Header.setMinimumSize(new java.awt.Dimension(1180, 60));
+        Header.setName(""); // NOI18N
+        Header.setPreferredSize(new java.awt.Dimension(1180, 60));
+        Header.setLayout(new java.awt.BorderLayout());
 
-        hamburger.setBackground(new java.awt.Color(0, 51, 102));
-        hamburger.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        hamburger.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/ci--hamburger-md.png"))); // NOI18N
-        hamburger.setBorder(null);
-        hamburger.addActionListener(this::hamburgerActionPerformed);
+        jPanel2.setBackground(new java.awt.Color(0, 51, 102));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(hamburger)
-                .addContainerGap(1142, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(hamburger)
-                .addContainerGap(13, Short.MAX_VALUE))
-        );
-
-        main.add(jPanel1, java.awt.BorderLayout.PAGE_START);
-
-        jPanel2.setBackground(new java.awt.Color(11, 19, 43));
+        btnHam.setBackground(new java.awt.Color(0, 51, 102));
+        btnHam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/ci--hamburger-md.png"))); // NOI18N
+        btnHam.setBorder(null);
+        btnHam.addActionListener(this::btnHamActionPerformed);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1140, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnHam)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnHam, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        Header.add(jPanel2, java.awt.BorderLayout.LINE_START);
+
+        jPanel5.setBackground(new java.awt.Color(0, 51, 102));
+        jPanel5.setMaximumSize(new java.awt.Dimension(300, 60));
+        jPanel5.setMinimumSize(new java.awt.Dimension(300, 60));
+        jPanel5.setPreferredSize(new java.awt.Dimension(300, 60));
+
+        DateTime.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        DateTime.setForeground(new java.awt.Color(255, 255, 255));
+        DateTime.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        DateTime.setText("dsfdghtrhtr");
+        DateTime.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                    .addContainerGap(60, Short.MAX_VALUE)
+                    .addComponent(DateTime, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 60, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(DateTime)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
+        Header.add(jPanel5, java.awt.BorderLayout.LINE_END);
+
+        main.add(Header, java.awt.BorderLayout.PAGE_START);
+
+        holder.setBackground(new java.awt.Color(11, 19, 43));
+        holder.setLayout(new java.awt.CardLayout());
+
+        pnlDash.setBackground(new java.awt.Color(11, 19, 43));
+
+        liveGrid.setBackground(new java.awt.Color(11, 19, 43));
+        liveGrid.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255)));
+
+        javax.swing.GroupLayout liveGridLayout = new javax.swing.GroupLayout(liveGrid);
+        liveGrid.setLayout(liveGridLayout);
+        liveGridLayout.setHorizontalGroup(
+            liveGridLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 822, Short.MAX_VALUE)
+        );
+        liveGridLayout.setVerticalGroup(
+            liveGridLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 540, Short.MAX_VALUE)
+        );
+
+        summery.setBackground(new java.awt.Color(11, 19, 43));
+        summery.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 255), 1, true));
+
+        javax.swing.GroupLayout summeryLayout = new javax.swing.GroupLayout(summery);
+        summery.setLayout(summeryLayout);
+        summeryLayout.setHorizontalGroup(
+            summeryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        summeryLayout.setVerticalGroup(
+            summeryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 98, Short.MAX_VALUE)
+        );
+
+        details.setBackground(new java.awt.Color(11, 19, 43));
+        details.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255)));
+
+        javax.swing.GroupLayout detailsLayout = new javax.swing.GroupLayout(details);
+        details.setLayout(detailsLayout);
+        detailsLayout.setHorizontalGroup(
+            detailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 296, Short.MAX_VALUE)
+        );
+        detailsLayout.setVerticalGroup(
+            detailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout pnlDashLayout = new javax.swing.GroupLayout(pnlDash);
+        pnlDash.setLayout(pnlDashLayout);
+        pnlDashLayout.setHorizontalGroup(
+            pnlDashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDashLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlDashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(summery, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnlDashLayout.createSequentialGroup()
+                        .addComponent(liveGrid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(details, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        pnlDashLayout.setVerticalGroup(
+            pnlDashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDashLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlDashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(liveGrid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(details, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(summery, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        holder.add(pnlDash, "card7");
+
+        pnlLive.setBackground(new java.awt.Color(11, 19, 43));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout pnlLiveLayout = new javax.swing.GroupLayout(pnlLive);
+        pnlLive.setLayout(pnlLiveLayout);
+        pnlLiveLayout.setHorizontalGroup(
+            pnlLiveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlLiveLayout.createSequentialGroup()
+                .addGap(435, 435, 435)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(605, Short.MAX_VALUE))
+        );
+        pnlLiveLayout.setVerticalGroup(
+            pnlLiveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlLiveLayout.createSequentialGroup()
+                .addGap(164, 164, 164)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(396, Short.MAX_VALUE))
+        );
+
+        holder.add(pnlLive, "card6");
+
+        pnlPc.setBackground(new java.awt.Color(11, 19, 43));
+
+        javax.swing.GroupLayout pnlPcLayout = new javax.swing.GroupLayout(pnlPc);
+        pnlPc.setLayout(pnlPcLayout);
+        pnlPcLayout.setHorizontalGroup(
+            pnlPcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1140, Short.MAX_VALUE)
+        );
+        pnlPcLayout.setVerticalGroup(
+            pnlPcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 660, Short.MAX_VALUE)
         );
 
-        main.add(jPanel2, java.awt.BorderLayout.CENTER);
+        holder.add(pnlPc, "card5");
+
+        pnlReports.setBackground(new java.awt.Color(11, 19, 43));
+
+        javax.swing.GroupLayout pnlReportsLayout = new javax.swing.GroupLayout(pnlReports);
+        pnlReports.setLayout(pnlReportsLayout);
+        pnlReportsLayout.setHorizontalGroup(
+            pnlReportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1140, Short.MAX_VALUE)
+        );
+        pnlReportsLayout.setVerticalGroup(
+            pnlReportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 660, Short.MAX_VALUE)
+        );
+
+        holder.add(pnlReports, "card4");
+
+        pnlAdmin.setLayout(new java.awt.BorderLayout());
+
+        jPanel7.setBackground(new java.awt.Color(11, 19, 43));
+        jPanel7.setMaximumSize(new java.awt.Dimension(150, 660));
+        jPanel7.setMinimumSize(new java.awt.Dimension(150, 660));
+        jPanel7.setPreferredSize(new java.awt.Dimension(150, 660));
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 150, Short.MAX_VALUE)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 660, Short.MAX_VALUE)
+        );
+
+        pnlAdmin.add(jPanel7, java.awt.BorderLayout.LINE_END);
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 990, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 660, Short.MAX_VALUE)
+        );
+
+        pnlAdmin.add(jPanel8, java.awt.BorderLayout.CENTER);
+
+        holder.add(pnlAdmin, "card3");
+
+        main.add(holder, java.awt.BorderLayout.CENTER);
 
         contentPnl.add(main, java.awt.BorderLayout.CENTER);
 
@@ -200,38 +448,85 @@ public class Dash extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void hamburgerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hamburgerActionPerformed
+    private void btnDashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashActionPerformed
+        pnlDash.setVisible(true);
+        pnlLive.setVisible(false);
+        pnlPc.setVisible(false);
+        pnlReports.setVisible(false);
+        pnlAdmin.setVisible(false);
 
+    }//GEN-LAST:event_btnDashActionPerformed
+
+    private void btnLiveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLiveActionPerformed
+        pnlLive.setVisible(true);
+        pnlDash.setVisible(false);
+        pnlPc.setVisible(false);
+        pnlReports.setVisible(false);
+        pnlAdmin.setVisible(false);
+    }//GEN-LAST:event_btnLiveActionPerformed
+
+    private void btnPcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPcActionPerformed
+        pnlPc.setVisible(true);
+        pnlDash.setVisible(false);
+        pnlLive.setVisible(false);
+        pnlReports.setVisible(false);
+        pnlAdmin.setVisible(false);
+    }//GEN-LAST:event_btnPcActionPerformed
+
+    private void btnReportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportsActionPerformed
+        pnlPc.setVisible(false);
+        pnlDash.setVisible(false);
+        pnlLive.setVisible(false);
+        pnlReports.setVisible(true);
+        pnlAdmin.setVisible(false);
+    }//GEN-LAST:event_btnReportsActionPerformed
+
+    private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
+        pnlPc.setVisible(false);
+        pnlDash.setVisible(false);
+        pnlLive.setVisible(false);
+        pnlReports.setVisible(false);
+        pnlAdmin.setVisible(true);
+    }//GEN-LAST:event_btnAdminActionPerformed
+
+    private void btnHamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHamActionPerformed
         Thread th = new Thread() {
             @Override
             public void run() {
                 try {
-                    if (isSidebarOpen) { 
-                        
-                        
-                        for (int i = 145; i >= 70; i -= 10) {
+
+                    if (isSidebarOpen) {
+                        btnDash.setText("");
+                        btnReports.setText("");
+                        btnLive.setText("");
+                        btnPc.setText("");
+                        btnAdmin.setText("");
+                        btnLogOut.setText("");
+                        btnAcc.setText("");
+
+                        for (int i = 145; i >= 60; i -= 10) {
                             Thread.sleep(15);
-                            btnDash.setText("");
-                            btnLive.setText("");
-                            btnPc.setText("");
-                            btnReports.setText("");
-                            btnLogOut.setText("");
-                            btnAdmin.setText("");
-                            
                             sidebarPnl.setPreferredSize(new java.awt.Dimension(i, sidebarPnl.getHeight()));
-                            javax.swing.SwingUtilities.updateComponentTreeUI(sidebarPnl);  
+                            javax.swing.SwingUtilities.updateComponentTreeUI(sidebarPnl);
                         }
                         isSidebarOpen = false;
 
                     } else {
-                        for (int i = 70; i <= 145; i += 10) {
+
+                        for (int i = 60; i <= 145; i += 10) {
                             Thread.sleep(15);
                             sidebarPnl.setPreferredSize(new java.awt.Dimension(i, sidebarPnl.getHeight()));
-                            javax.swing.SwingUtilities.updateComponentTreeUI(sidebarPnl);  
-                            
-                            btnDash.setText("Dashobord");
+                            javax.swing.SwingUtilities.updateComponentTreeUI(sidebarPnl);
+
+                            btnDash.setText("Dashboard");
+                            btnReports.setText("Reports");
+                            btnLive.setText("Live");
+                            btnPc.setText("Pc");
+                            btnAdmin.setText("Admin");
+                            btnLogOut.setText("LogOut");
+                            btnAcc.setText("Settings");
+
                         }
-                       
                         isSidebarOpen = true;
                     }
                 } catch (Exception e) {
@@ -240,7 +535,7 @@ public class Dash extends javax.swing.JFrame {
             }
         };
         th.start();
-    }//GEN-LAST:event_hamburgerActionPerformed
+    }//GEN-LAST:event_btnHamActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,19 +563,35 @@ public class Dash extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel DateTime;
+    private javax.swing.JPanel Header;
+    private javax.swing.JButton btnAcc;
     private javax.swing.JButton btnAdmin;
     private javax.swing.JButton btnDash;
+    private javax.swing.JButton btnHam;
     private javax.swing.JButton btnLive;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnPc;
     private javax.swing.JButton btnReports;
     private javax.swing.JPanel contentPnl;
+    private javax.swing.JPanel details;
     private javax.swing.JPanel framePnl;
-    private javax.swing.JButton hamburger;
+    private javax.swing.JPanel holder;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel liveGrid;
     private javax.swing.JPanel main;
+    private javax.swing.JPanel pnlAdmin;
+    private javax.swing.JPanel pnlDash;
+    private javax.swing.JPanel pnlLive;
+    private javax.swing.JPanel pnlPc;
+    private javax.swing.JPanel pnlReports;
     private javax.swing.JPanel sidebarPnl;
+    private javax.swing.JPanel summery;
     // End of variables declaration//GEN-END:variables
 }
