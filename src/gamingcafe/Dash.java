@@ -1,5 +1,8 @@
 package gamingcafe;
 
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+
 public class Dash extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Dash.class.getName());
@@ -9,6 +12,8 @@ public class Dash extends javax.swing.JFrame {
 
     public Dash(User user) {
         initComponents();
+        connerRoud();
+        tableStyle(tableUser, jScrollPane1);
         this.user = user;
 
 //        btnDash.setBorderPainted(false);
@@ -31,7 +36,7 @@ public class Dash extends javax.swing.JFrame {
         framePnl = new javax.swing.JPanel();
         contentPnl = new javax.swing.JPanel();
         sidebarPnl = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        pnlButton = new javax.swing.JPanel();
         btnDash = new javax.swing.JButton();
         btnLive = new javax.swing.JButton();
         btnPc = new javax.swing.JButton();
@@ -46,6 +51,7 @@ public class Dash extends javax.swing.JFrame {
         btnHam = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         DateTime = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
         holder = new javax.swing.JPanel();
         pnlDash = new javax.swing.JPanel();
         liveGrid = new javax.swing.JPanel();
@@ -56,8 +62,25 @@ public class Dash extends javax.swing.JFrame {
         pnlPc = new javax.swing.JPanel();
         pnlReports = new javax.swing.JPanel();
         pnlAdmin = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
-        jPanel8 = new javax.swing.JPanel();
+        adminLeft = new javax.swing.JPanel();
+        pnlUserM = new javax.swing.JPanel();
+        pnlUTable = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableUser = new javax.swing.JTable();
+        pnlPcM = new javax.swing.JPanel();
+        pnlHistory = new javax.swing.JPanel();
+        adminRigh = new javax.swing.JPanel();
+        adminRightCard = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        pnlSet = new javax.swing.JPanel();
+        pnlAcc = new javax.swing.JPanel();
+        Settings = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        setting1 = new javax.swing.JPanel();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -77,12 +100,12 @@ public class Dash extends javax.swing.JFrame {
         sidebarPnl.setRequestFocusEnabled(false);
         sidebarPnl.setLayout(new java.awt.BorderLayout());
 
-        jPanel3.setBackground(new java.awt.Color(11, 19, 43));
-        jPanel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(100, 0, 20, 0));
-        jPanel3.setMaximumSize(new java.awt.Dimension(145, 392));
-        jPanel3.setMinimumSize(new java.awt.Dimension(145, 392));
-        jPanel3.setPreferredSize(new java.awt.Dimension(145, 392));
-        jPanel3.setLayout(new java.awt.GridLayout(8, 1, 5, 0));
+        pnlButton.setBackground(new java.awt.Color(11, 19, 43));
+        pnlButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(100, 0, 20, 0));
+        pnlButton.setMaximumSize(new java.awt.Dimension(145, 392));
+        pnlButton.setMinimumSize(new java.awt.Dimension(145, 392));
+        pnlButton.setPreferredSize(new java.awt.Dimension(145, 392));
+        pnlButton.setLayout(new java.awt.GridLayout(8, 1, 5, 0));
 
         btnDash.setBackground(new java.awt.Color(11, 19, 43));
         btnDash.setFont(new java.awt.Font("Leelawadee", 0, 16)); // NOI18N
@@ -94,7 +117,7 @@ public class Dash extends javax.swing.JFrame {
         btnDash.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDash.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnDash.addActionListener(this::btnDashActionPerformed);
-        jPanel3.add(btnDash);
+        pnlButton.add(btnDash);
 
         btnLive.setBackground(new java.awt.Color(11, 19, 43));
         btnLive.setFont(new java.awt.Font("Leelawadee", 0, 16)); // NOI18N
@@ -106,7 +129,7 @@ public class Dash extends javax.swing.JFrame {
         btnLive.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLive.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnLive.addActionListener(this::btnLiveActionPerformed);
-        jPanel3.add(btnLive);
+        pnlButton.add(btnLive);
 
         btnPc.setBackground(new java.awt.Color(11, 19, 43));
         btnPc.setFont(new java.awt.Font("Leelawadee", 0, 16)); // NOI18N
@@ -114,11 +137,11 @@ public class Dash extends javax.swing.JFrame {
         btnPc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pc.png"))); // NOI18N
         btnPc.setText("Pc");
         btnPc.setToolTipText("");
-        btnPc.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 16, 1, 1));
+        btnPc.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 1));
         btnPc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPc.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnPc.addActionListener(this::btnPcActionPerformed);
-        jPanel3.add(btnPc);
+        pnlButton.add(btnPc);
 
         btnReports.setBackground(new java.awt.Color(11, 19, 43));
         btnReports.setFont(new java.awt.Font("Leelawadee", 0, 16)); // NOI18N
@@ -126,11 +149,11 @@ public class Dash extends javax.swing.JFrame {
         btnReports.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/reports.png"))); // NOI18N
         btnReports.setText("Reports");
         btnReports.setToolTipText("");
-        btnReports.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 16, 1, 1));
+        btnReports.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 1));
         btnReports.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnReports.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnReports.addActionListener(this::btnReportsActionPerformed);
-        jPanel3.add(btnReports);
+        pnlButton.add(btnReports);
 
         btnLogOut.setBackground(new java.awt.Color(153, 0, 0));
         btnLogOut.setFont(new java.awt.Font("Leelawadee", 0, 16)); // NOI18N
@@ -141,7 +164,7 @@ public class Dash extends javax.swing.JFrame {
         btnLogOut.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 1));
         btnLogOut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLogOut.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jPanel3.add(btnLogOut);
+        pnlButton.add(btnLogOut);
 
         btnAdmin.setBackground(new java.awt.Color(11, 19, 43));
         btnAdmin.setFont(new java.awt.Font("Leelawadee", 0, 16)); // NOI18N
@@ -153,7 +176,7 @@ public class Dash extends javax.swing.JFrame {
         btnAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAdmin.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnAdmin.addActionListener(this::btnAdminActionPerformed);
-        jPanel3.add(btnAdmin);
+        pnlButton.add(btnAdmin);
 
         jPanel1.setBackground(new java.awt.Color(11, 19, 43));
 
@@ -168,25 +191,27 @@ public class Dash extends javax.swing.JFrame {
             .addGap(0, 75, Short.MAX_VALUE)
         );
 
-        jPanel3.add(jPanel1);
+        pnlButton.add(jPanel1);
 
         btnAcc.setBackground(new java.awt.Color(11, 19, 43));
         btnAcc.setFont(new java.awt.Font("Leelawadee", 0, 16)); // NOI18N
         btnAcc.setForeground(new java.awt.Color(255, 255, 255));
         btnAcc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/setting.png"))); // NOI18N
-        btnAcc.setText("Account");
+        btnAcc.setText("Settings");
         btnAcc.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 1));
         btnAcc.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jPanel3.add(btnAcc);
+        btnAcc.addActionListener(this::btnAccActionPerformed);
+        pnlButton.add(btnAcc);
 
-        sidebarPnl.add(jPanel3, java.awt.BorderLayout.CENTER);
+        sidebarPnl.add(pnlButton, java.awt.BorderLayout.CENTER);
 
         contentPnl.add(sidebarPnl, java.awt.BorderLayout.LINE_START);
 
         main.setBackground(new java.awt.Color(11, 19, 43));
         main.setLayout(new java.awt.BorderLayout());
 
-        Header.setBackground(new java.awt.Color(0, 51, 102));
+        Header.setBackground(new java.awt.Color(0, 153, 255));
+        Header.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 1, 0));
         Header.setMaximumSize(new java.awt.Dimension(1180, 60));
         Header.setMinimumSize(new java.awt.Dimension(1180, 60));
         Header.setName(""); // NOI18N
@@ -213,7 +238,7 @@ public class Dash extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnHam, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                .addComponent(btnHam, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -252,6 +277,21 @@ public class Dash extends javax.swing.JFrame {
         );
 
         Header.add(jPanel5, java.awt.BorderLayout.LINE_END);
+
+        jPanel6.setBackground(new java.awt.Color(0, 51, 102));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 796, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 59, Short.MAX_VALUE)
+        );
+
+        Header.add(jPanel6, java.awt.BorderLayout.CENTER);
 
         main.add(Header, java.awt.BorderLayout.PAGE_START);
 
@@ -394,38 +434,225 @@ public class Dash extends javax.swing.JFrame {
 
         pnlAdmin.setLayout(new java.awt.BorderLayout());
 
-        jPanel7.setBackground(new java.awt.Color(11, 19, 43));
-        jPanel7.setMaximumSize(new java.awt.Dimension(150, 660));
-        jPanel7.setMinimumSize(new java.awt.Dimension(150, 660));
-        jPanel7.setPreferredSize(new java.awt.Dimension(150, 660));
+        adminLeft.setBackground(new java.awt.Color(255, 255, 255));
+        adminLeft.setLayout(new java.awt.CardLayout());
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
+        pnlUserM.setBackground(new java.awt.Color(255, 255, 255));
+
+        pnlUTable.setBackground(new java.awt.Color(255, 255, 255));
+        pnlUTable.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 255), 2, true), "Users", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Intel One Mono SemiBold", 0, 14), new java.awt.Color(102, 102, 102))); // NOI18N
+
+        tableUser.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tableUser);
+
+        javax.swing.GroupLayout pnlUTableLayout = new javax.swing.GroupLayout(pnlUTable);
+        pnlUTable.setLayout(pnlUTableLayout);
+        pnlUTableLayout.setHorizontalGroup(
+            pnlUTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlUTableLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 944, Short.MAX_VALUE)
+                .addContainerGap())
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pnlUTableLayout.setVerticalGroup(
+            pnlUTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlUTableLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(363, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout pnlUserMLayout = new javax.swing.GroupLayout(pnlUserM);
+        pnlUserM.setLayout(pnlUserMLayout);
+        pnlUserMLayout.setHorizontalGroup(
+            pnlUserMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlUserMLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlUTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnlUserMLayout.setVerticalGroup(
+            pnlUserMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlUserMLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlUTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        adminLeft.add(pnlUserM, "card4");
+
+        pnlPcM.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout pnlPcMLayout = new javax.swing.GroupLayout(pnlPcM);
+        pnlPcM.setLayout(pnlPcMLayout);
+        pnlPcMLayout.setHorizontalGroup(
+            pnlPcMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 980, Short.MAX_VALUE)
+        );
+        pnlPcMLayout.setVerticalGroup(
+            pnlPcMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 660, Short.MAX_VALUE)
         );
 
-        pnlAdmin.add(jPanel7, java.awt.BorderLayout.LINE_END);
+        adminLeft.add(pnlPcM, "card3");
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 990, Short.MAX_VALUE)
+        pnlHistory.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout pnlHistoryLayout = new javax.swing.GroupLayout(pnlHistory);
+        pnlHistory.setLayout(pnlHistoryLayout);
+        pnlHistoryLayout.setHorizontalGroup(
+            pnlHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 980, Short.MAX_VALUE)
         );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pnlHistoryLayout.setVerticalGroup(
+            pnlHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 660, Short.MAX_VALUE)
         );
 
-        pnlAdmin.add(jPanel8, java.awt.BorderLayout.CENTER);
+        adminLeft.add(pnlHistory, "card2");
+
+        pnlAdmin.add(adminLeft, java.awt.BorderLayout.CENTER);
+
+        adminRigh.setBackground(new java.awt.Color(0, 153, 255));
+        adminRigh.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 1, 0, 0));
+        adminRigh.setMaximumSize(new java.awt.Dimension(160, 660));
+        adminRigh.setMinimumSize(new java.awt.Dimension(160, 660));
+        adminRigh.setPreferredSize(new java.awt.Dimension(160, 660));
+        adminRigh.setLayout(new java.awt.CardLayout());
+
+        adminRightCard.setBackground(new java.awt.Color(11, 19, 43));
+        adminRightCard.setBorder(javax.swing.BorderFactory.createEmptyBorder(100, 0, 0, 0));
+        adminRightCard.setLayout(new java.awt.GridLayout(8, 1, 0, 10));
+
+        jButton1.setBackground(new java.awt.Color(11, 19, 43));
+        jButton1.setFont(new java.awt.Font("Leelawadee", 1, 16)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user Mange.png"))); // NOI18N
+        jButton1.setText("User Mange");
+        jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 14));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        adminRightCard.add(jButton1);
+
+        jButton4.setBackground(new java.awt.Color(11, 19, 43));
+        jButton4.setFont(new java.awt.Font("Leelawadee", 1, 16)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/addUser.png"))); // NOI18N
+        jButton4.setText("Add User");
+        jButton4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 1));
+        jButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton4.addActionListener(this::jButton4ActionPerformed);
+        adminRightCard.add(jButton4);
+
+        jButton2.setBackground(new java.awt.Color(11, 19, 43));
+        jButton2.setFont(new java.awt.Font("Leelawadee", 1, 16)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Pc Manage.png"))); // NOI18N
+        jButton2.setText("Pc Manage");
+        jButton2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 14));
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        adminRightCard.add(jButton2);
+
+        jButton3.setBackground(new java.awt.Color(11, 19, 43));
+        jButton3.setFont(new java.awt.Font("Leelawadee", 1, 16)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/history.png"))); // NOI18N
+        jButton3.setText("History");
+        jButton3.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 14, 0, 0));
+        jButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        adminRightCard.add(jButton3);
+
+        adminRigh.add(adminRightCard, "card2");
+
+        pnlAdmin.add(adminRigh, java.awt.BorderLayout.LINE_END);
 
         holder.add(pnlAdmin, "card3");
+
+        pnlSet.setBackground(new java.awt.Color(11, 19, 43));
+        pnlSet.setLayout(new java.awt.BorderLayout());
+
+        pnlAcc.setBackground(new java.awt.Color(11, 19, 43));
+        pnlAcc.setMaximumSize(new java.awt.Dimension(700, 660));
+        pnlAcc.setMinimumSize(new java.awt.Dimension(700, 660));
+        pnlAcc.setPreferredSize(new java.awt.Dimension(700, 660));
+
+        javax.swing.GroupLayout pnlAccLayout = new javax.swing.GroupLayout(pnlAcc);
+        pnlAcc.setLayout(pnlAccLayout);
+        pnlAccLayout.setHorizontalGroup(
+            pnlAccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 700, Short.MAX_VALUE)
+        );
+        pnlAccLayout.setVerticalGroup(
+            pnlAccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 660, Short.MAX_VALUE)
+        );
+
+        pnlSet.add(pnlAcc, java.awt.BorderLayout.LINE_START);
+
+        Settings.setBackground(new java.awt.Color(0, 153, 255));
+        Settings.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 1, 0, 0));
+        Settings.setLayout(new java.awt.CardLayout());
+
+        jPanel10.setBackground(new java.awt.Color(11, 19, 43));
+
+        setting1.setBackground(new java.awt.Color(11, 19, 43));
+        setting1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Settings", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Intel One Mono SemiBold", 0, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+
+        jCheckBox1.setFont(new java.awt.Font("Intel One Mono SemiBold", 0, 14)); // NOI18N
+        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox1.setText("Toggle Button off");
+        jCheckBox1.addActionListener(this::jCheckBox1ActionPerformed);
+
+        javax.swing.GroupLayout setting1Layout = new javax.swing.GroupLayout(setting1);
+        setting1.setLayout(setting1Layout);
+        setting1Layout.setHorizontalGroup(
+            setting1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(setting1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jCheckBox1)
+                .addContainerGap(235, Short.MAX_VALUE))
+        );
+        setting1Layout.setVerticalGroup(
+            setting1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(setting1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jCheckBox1)
+                .addContainerGap(581, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(setting1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(setting1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        Settings.add(jPanel10, "card2");
+
+        pnlSet.add(Settings, java.awt.BorderLayout.CENTER);
+
+        holder.add(pnlSet, "card7");
 
         main.add(holder, java.awt.BorderLayout.CENTER);
 
@@ -454,6 +681,7 @@ public class Dash extends javax.swing.JFrame {
         pnlPc.setVisible(false);
         pnlReports.setVisible(false);
         pnlAdmin.setVisible(false);
+        pnlSet.setVisible(false);
 
     }//GEN-LAST:event_btnDashActionPerformed
 
@@ -463,6 +691,7 @@ public class Dash extends javax.swing.JFrame {
         pnlPc.setVisible(false);
         pnlReports.setVisible(false);
         pnlAdmin.setVisible(false);
+        pnlSet.setVisible(false);
     }//GEN-LAST:event_btnLiveActionPerformed
 
     private void btnPcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPcActionPerformed
@@ -471,6 +700,7 @@ public class Dash extends javax.swing.JFrame {
         pnlLive.setVisible(false);
         pnlReports.setVisible(false);
         pnlAdmin.setVisible(false);
+        pnlSet.setVisible(false);
     }//GEN-LAST:event_btnPcActionPerformed
 
     private void btnReportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportsActionPerformed
@@ -479,6 +709,7 @@ public class Dash extends javax.swing.JFrame {
         pnlLive.setVisible(false);
         pnlReports.setVisible(true);
         pnlAdmin.setVisible(false);
+        pnlSet.setVisible(false);
     }//GEN-LAST:event_btnReportsActionPerformed
 
     private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
@@ -486,6 +717,7 @@ public class Dash extends javax.swing.JFrame {
         pnlDash.setVisible(false);
         pnlLive.setVisible(false);
         pnlReports.setVisible(false);
+        pnlSet.setVisible(false);
         pnlAdmin.setVisible(true);
     }//GEN-LAST:event_btnAdminActionPerformed
 
@@ -537,6 +769,24 @@ public class Dash extends javax.swing.JFrame {
         th.start();
     }//GEN-LAST:event_btnHamActionPerformed
 
+    private void btnAccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccActionPerformed
+        pnlPc.setVisible(false);
+        pnlDash.setVisible(false);
+        pnlLive.setVisible(false);
+        pnlReports.setVisible(false);
+        pnlAdmin.setVisible(false);
+        pnlSet.setVisible(true);
+    }//GEN-LAST:event_btnAccActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        UserReg reg = new UserReg();
+        reg.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -565,6 +815,10 @@ public class Dash extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel DateTime;
     private javax.swing.JPanel Header;
+    private javax.swing.JPanel Settings;
+    private javax.swing.JPanel adminLeft;
+    private javax.swing.JPanel adminRigh;
+    private javax.swing.JPanel adminRightCard;
     private javax.swing.JButton btnAcc;
     private javax.swing.JButton btnAdmin;
     private javax.swing.JButton btnDash;
@@ -577,21 +831,66 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JPanel details;
     private javax.swing.JPanel framePnl;
     private javax.swing.JPanel holder;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel liveGrid;
     private javax.swing.JPanel main;
+    private javax.swing.JPanel pnlAcc;
     private javax.swing.JPanel pnlAdmin;
+    private javax.swing.JPanel pnlButton;
     private javax.swing.JPanel pnlDash;
+    private javax.swing.JPanel pnlHistory;
     private javax.swing.JPanel pnlLive;
     private javax.swing.JPanel pnlPc;
+    private javax.swing.JPanel pnlPcM;
     private javax.swing.JPanel pnlReports;
+    private javax.swing.JPanel pnlSet;
+    private javax.swing.JPanel pnlUTable;
+    private javax.swing.JPanel pnlUserM;
+    private javax.swing.JPanel setting1;
     private javax.swing.JPanel sidebarPnl;
     private javax.swing.JPanel summery;
+    private javax.swing.JTable tableUser;
     // End of variables declaration//GEN-END:variables
+
+    private void connerRoud() {
+        setting1.putClientProperty("FlatLaf.style", "arc: 20");
+    }
+
+    private void tableStyle(JTable table, JScrollPane scrollPane) {
+        // 1. Table Main Colors
+        table.setBackground(java.awt.Color.decode("#162244"));
+        table.setForeground(java.awt.Color.WHITE);
+        table.setSelectionBackground(java.awt.Color.decode("#0466c8")); // Active row color
+        table.setSelectionForeground(java.awt.Color.WHITE);
+
+        // 2. Grid & Layout
+        table.setRowHeight(35);
+        table.setShowVerticalLines(false);
+        table.setGridColor(java.awt.Color.decode("#2A3B69"));
+
+        // 3. Table Header
+        javax.swing.table.JTableHeader header = table.getTableHeader();
+        header.setBackground(java.awt.Color.decode("#0B132B"));
+        header.setForeground(java.awt.Color.WHITE);
+        header.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 14));
+        header.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, java.awt.Color.decode("#0466c8")));
+
+        // 4. ScrollPane
+        if (scrollPane != null) {
+            scrollPane.setBackground(java.awt.Color.decode("#162244"));
+            scrollPane.getViewport().setBackground(java.awt.Color.decode("#162244"));
+            scrollPane.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+        }
+    }
 }
