@@ -1,7 +1,17 @@
 package gamingcafe;
 
+import java.awt.Font;
+import java.awt.Image;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableCellRenderer;
 
 public class Dash extends javax.swing.JFrame {
 
@@ -9,10 +19,14 @@ public class Dash extends javax.swing.JFrame {
 
     boolean isSidebarOpen = false;
     User user;
+    DBConnection db = new DBConnection();
+    PreparedStatement pst;
+    ResultSet rs;
 
     public Dash(User user) {
         initComponents();
         connerRoud();
+        loadUserTable();
         tableStyle(tableUser, jScrollPane1);
         this.user = user;
 
@@ -63,18 +77,41 @@ public class Dash extends javax.swing.JFrame {
         pnlReports = new javax.swing.JPanel();
         pnlAdmin = new javax.swing.JPanel();
         adminLeft = new javax.swing.JPanel();
-        pnlUserM = new javax.swing.JPanel();
+        UserEdite = new javax.swing.JPanel();
         pnlUTable = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableUser = new javax.swing.JTable();
+        userEdit = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        txtUserNo = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        lblImage = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        txtFullName = new javax.swing.JTextField();
+        txtUserName = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        cmbRole = new javax.swing.JComboBox<>();
+        jButton6 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jToggleButton2 = new javax.swing.JToggleButton();
+        btnClean = new javax.swing.JButton();
         pnlPcM = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablePc = new javax.swing.JTable();
+        jPanel7 = new javax.swing.JPanel();
         pnlHistory = new javax.swing.JPanel();
         adminRigh = new javax.swing.JPanel();
         adminRightCard = new javax.swing.JPanel();
+        btnUserManage = new javax.swing.JButton();
+        btnUserAdd = new javax.swing.JButton();
+        btnPcManage = new javax.swing.JButton();
+        btnHistory = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         pnlSet = new javax.swing.JPanel();
         pnlAcc = new javax.swing.JPanel();
         Settings = new javax.swing.JPanel();
@@ -83,6 +120,7 @@ public class Dash extends javax.swing.JFrame {
         jCheckBox1 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
 
@@ -437,12 +475,243 @@ public class Dash extends javax.swing.JFrame {
         adminLeft.setBackground(new java.awt.Color(255, 255, 255));
         adminLeft.setLayout(new java.awt.CardLayout());
 
-        pnlUserM.setBackground(new java.awt.Color(255, 255, 255));
+        UserEdite.setBackground(new java.awt.Color(255, 255, 255));
 
         pnlUTable.setBackground(new java.awt.Color(255, 255, 255));
-        pnlUTable.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 255), 2, true), "Users", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Intel One Mono SemiBold", 0, 14), new java.awt.Color(102, 102, 102))); // NOI18N
+        pnlUTable.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 255), 1, true), "Users", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Intel One Mono SemiBold", 0, 14), new java.awt.Color(102, 102, 102))); // NOI18N
+        pnlUTable.setMaximumSize(new java.awt.Dimension(968, 354));
+        pnlUTable.setMinimumSize(new java.awt.Dimension(968, 354));
 
+        tableUser.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tableUser.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Emp ID", "Full Name", "User Name", "NIC", "Email", "Phone", "Role"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tableUser.setMaximumSize(new java.awt.Dimension(450, 80));
+        tableUser.setMinimumSize(new java.awt.Dimension(450, 80));
+        tableUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableUserMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tableUser);
+
+        javax.swing.GroupLayout pnlUTableLayout = new javax.swing.GroupLayout(pnlUTable);
+        pnlUTable.setLayout(pnlUTableLayout);
+        pnlUTableLayout.setHorizontalGroup(
+            pnlUTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlUTableLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 946, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnlUTableLayout.setVerticalGroup(
+            pnlUTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlUTableLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        userEdit.setBackground(new java.awt.Color(255, 255, 255));
+        userEdit.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204)), "Edite Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14), new java.awt.Color(0, 102, 204))); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setText("Emp No");
+
+        txtUserNo.setEditable(false);
+        txtUserNo.setBackground(new java.awt.Color(255, 255, 255));
+        txtUserNo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setText("Full Name");
+
+        lblImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel3.setText("This action will reset users user name & password !");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setText("User Name");
+
+        jToggleButton1.setBackground(new java.awt.Color(255, 255, 102));
+        jToggleButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jToggleButton1.setText("Reset Username & Password");
+        jToggleButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 204, 0)));
+
+        txtFullName.setEditable(false);
+        txtFullName.setBackground(new java.awt.Color(255, 255, 255));
+        txtFullName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        txtUserName.setEditable(false);
+        txtUserName.setBackground(new java.awt.Color(255, 255, 255));
+        txtUserName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jButton5.setBackground(new java.awt.Color(204, 0, 0));
+        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setText("Delete");
+        jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 0)));
+        jButton5.addActionListener(this::jButton5ActionPerformed);
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setText("Role");
+
+        cmbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "User" }));
+        cmbRole.setToolTipText("");
+
+        jButton6.setBackground(new java.awt.Color(0, 204, 51));
+        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
+        jButton6.setText("Update User");
+        jButton6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 0)));
+        jButton6.addActionListener(this::jButton6ActionPerformed);
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(204, 0, 0));
+        jLabel6.setText("This action will detactivate this user!");
+
+        jToggleButton2.setBackground(new java.awt.Color(153, 153, 255));
+        jToggleButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jToggleButton2.setText("Deactivate User");
+        jToggleButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 51, 255)));
+
+        btnClean.setBackground(new java.awt.Color(0, 153, 153));
+        btnClean.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnClean.setForeground(new java.awt.Color(255, 255, 255));
+        btnClean.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/clean.png"))); // NOI18N
+        btnClean.setText("[F5]");
+        btnClean.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 102)));
+
+        javax.swing.GroupLayout userEditLayout = new javax.swing.GroupLayout(userEdit);
+        userEdit.setLayout(userEditLayout);
+        userEditLayout.setHorizontalGroup(
+            userEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(userEditLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addGroup(userEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(userEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(userEditLayout.createSequentialGroup()
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtUserNo, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
+                        .addGroup(userEditLayout.createSequentialGroup()
+                            .addGroup(userEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(userEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtFullName)
+                                .addComponent(txtUserName))))
+                    .addGroup(userEditLayout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cmbRole, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnClean, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(userEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(userEditLayout.createSequentialGroup()
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22))
+        );
+        userEditLayout.setVerticalGroup(
+            userEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(userEditLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(userEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(userEditLayout.createSequentialGroup()
+                        .addGroup(userEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(userEditLayout.createSequentialGroup()
+                                .addGroup(userEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(userEditLayout.createSequentialGroup()
+                                        .addGap(2, 2, 2)
+                                        .addComponent(txtUserNo, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(userEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(userEditLayout.createSequentialGroup()
+                                        .addGap(2, 2, 2)
+                                        .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(userEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(userEditLayout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(userEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(userEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(cmbRole, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnClean, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)))))
+                .addGap(26, 26, 26))
+        );
+
+        javax.swing.GroupLayout UserEditeLayout = new javax.swing.GroupLayout(UserEdite);
+        UserEdite.setLayout(UserEditeLayout);
+        UserEditeLayout.setHorizontalGroup(
+            UserEditeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(UserEditeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(UserEditeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlUTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(userEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        UserEditeLayout.setVerticalGroup(
+            UserEditeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(UserEditeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlUTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(userEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
+        );
+
+        adminLeft.add(UserEdite, "card4");
+
+        pnlPcM.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204)), "Pc's", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 102, 204))); // NOI18N
+
+        tablePc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -453,55 +722,59 @@ public class Dash extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tableUser);
+        jScrollPane2.setViewportView(tablePc);
 
-        javax.swing.GroupLayout pnlUTableLayout = new javax.swing.GroupLayout(pnlUTable);
-        pnlUTable.setLayout(pnlUTableLayout);
-        pnlUTableLayout.setHorizontalGroup(
-            pnlUTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlUTableLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 944, Short.MAX_VALUE)
+                .addComponent(jScrollPane2)
                 .addContainerGap())
         );
-        pnlUTableLayout.setVerticalGroup(
-            pnlUTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlUTableLayout.createSequentialGroup()
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(363, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout pnlUserMLayout = new javax.swing.GroupLayout(pnlUserM);
-        pnlUserM.setLayout(pnlUserMLayout);
-        pnlUserMLayout.setHorizontalGroup(
-            pnlUserMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlUserMLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlUTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        pnlUserMLayout.setVerticalGroup(
-            pnlUserMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlUserMLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlUTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        adminLeft.add(pnlUserM, "card4");
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204)), "Change Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 102, 204))); // NOI18N
+        jPanel7.setForeground(new java.awt.Color(0, 102, 204));
 
-        pnlPcM.setBackground(new java.awt.Color(255, 255, 255));
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 958, Short.MAX_VALUE)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 369, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout pnlPcMLayout = new javax.swing.GroupLayout(pnlPcM);
         pnlPcM.setLayout(pnlPcMLayout);
         pnlPcMLayout.setHorizontalGroup(
             pnlPcMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 980, Short.MAX_VALUE)
+            .addGroup(pnlPcMLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlPcMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         pnlPcMLayout.setVerticalGroup(
             pnlPcMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 660, Short.MAX_VALUE)
+            .addGroup(pnlPcMLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         adminLeft.add(pnlPcM, "card3");
@@ -531,47 +804,70 @@ public class Dash extends javax.swing.JFrame {
         adminRigh.setLayout(new java.awt.CardLayout());
 
         adminRightCard.setBackground(new java.awt.Color(11, 19, 43));
-        adminRightCard.setBorder(javax.swing.BorderFactory.createEmptyBorder(100, 0, 0, 0));
-        adminRightCard.setLayout(new java.awt.GridLayout(8, 1, 0, 10));
+        adminRightCard.setBorder(javax.swing.BorderFactory.createEmptyBorder(50, 0, 0, 0));
+        adminRightCard.setMaximumSize(new java.awt.Dimension(155, 392));
+        adminRightCard.setLayout(new java.awt.GridLayout(10, 1, 0, 10));
+
+        btnUserManage.setBackground(new java.awt.Color(11, 19, 43));
+        btnUserManage.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        btnUserManage.setForeground(new java.awt.Color(255, 255, 255));
+        btnUserManage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user Mange.png"))); // NOI18N
+        btnUserManage.setText("User Mange");
+        btnUserManage.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 14));
+        btnUserManage.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUserManage.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnUserManage.addActionListener(this::btnUserManageActionPerformed);
+        adminRightCard.add(btnUserManage);
+
+        btnUserAdd.setBackground(new java.awt.Color(0, 51, 153));
+        btnUserAdd.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        btnUserAdd.setForeground(new java.awt.Color(255, 255, 255));
+        btnUserAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/addUser.png"))); // NOI18N
+        btnUserAdd.setText("Add User");
+        btnUserAdd.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 1));
+        btnUserAdd.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnUserAdd.addActionListener(this::btnUserAddActionPerformed);
+        adminRightCard.add(btnUserAdd);
+
+        btnPcManage.setBackground(new java.awt.Color(11, 19, 43));
+        btnPcManage.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        btnPcManage.setForeground(new java.awt.Color(255, 255, 255));
+        btnPcManage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Pc Manage.png"))); // NOI18N
+        btnPcManage.setText("Pc Manage");
+        btnPcManage.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 14));
+        btnPcManage.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPcManage.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnPcManage.addActionListener(this::btnPcManageActionPerformed);
+        adminRightCard.add(btnPcManage);
+
+        btnHistory.setBackground(new java.awt.Color(11, 19, 43));
+        btnHistory.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        btnHistory.setForeground(new java.awt.Color(255, 255, 255));
+        btnHistory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/history.png"))); // NOI18N
+        btnHistory.setText("History");
+        btnHistory.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 14, 0, 0));
+        btnHistory.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnHistory.addActionListener(this::btnHistoryActionPerformed);
+        adminRightCard.add(btnHistory);
 
         jButton1.setBackground(new java.awt.Color(11, 19, 43));
-        jButton1.setFont(new java.awt.Font("Leelawadee", 1, 16)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user Mange.png"))); // NOI18N
-        jButton1.setText("User Mange");
-        jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 14));
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/repair.png"))); // NOI18N
+        jButton1.setText("To Repair");
+        jButton1.setToolTipText("");
+        jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 1));
         jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         adminRightCard.add(jButton1);
 
-        jButton4.setBackground(new java.awt.Color(11, 19, 43));
-        jButton4.setFont(new java.awt.Font("Leelawadee", 1, 16)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/addUser.png"))); // NOI18N
-        jButton4.setText("Add User");
-        jButton4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 1));
-        jButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton4.addActionListener(this::jButton4ActionPerformed);
-        adminRightCard.add(jButton4);
-
         jButton2.setBackground(new java.awt.Color(11, 19, 43));
-        jButton2.setFont(new java.awt.Font("Leelawadee", 1, 16)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Pc Manage.png"))); // NOI18N
-        jButton2.setText("Pc Manage");
-        jButton2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 14));
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/money.png"))); // NOI18N
+        jButton2.setText("Income");
+        jButton2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 1));
         jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         adminRightCard.add(jButton2);
-
-        jButton3.setBackground(new java.awt.Color(11, 19, 43));
-        jButton3.setFont(new java.awt.Font("Leelawadee", 1, 16)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/history.png"))); // NOI18N
-        jButton3.setText("History");
-        jButton3.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 14, 0, 0));
-        jButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        adminRightCard.add(jButton3);
 
         adminRigh.add(adminRightCard, "card2");
 
@@ -628,7 +924,7 @@ public class Dash extends javax.swing.JFrame {
             .addGroup(setting1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jCheckBox1)
-                .addContainerGap(581, Short.MAX_VALUE))
+                .addContainerGap(585, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
@@ -782,10 +1078,73 @@ public class Dash extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnUserAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserAddActionPerformed
         UserReg reg = new UserReg();
         reg.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnUserAddActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void tableUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUserMouseClicked
+        if (evt.getClickCount() == 2) {
+            int selectedRow = tableUser.getSelectedRow();
+            if (selectedRow != -1) {
+                String selectUID = tableUser.getValueAt(selectedRow, 0).toString();
+                try {
+                    pst = db.con.prepareStatement("SELECT * FROM user WHERE emp_no = ?");
+                    pst.setString(1, selectUID);
+                    rs = pst.executeQuery();
+                    
+                    if(rs.next()){
+                        txtUserNo.setText(rs.getString("emp_no"));
+                        txtFullName.setText(rs.getString("f_name")+ " " + rs.getString("l_name"));
+                        txtUserName.setText(rs.getString("username"));
+                        cmbRole.setSelectedItem(rs.getString("role"));
+                        
+                        //image load 
+                        byte[] imgByte = rs.getBytes("image");
+                        if(imgByte != null){
+                            ImageIcon img = new ImageIcon(imgByte);
+                            Image scalledImage = img.getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), Image.SCALE_SMOOTH);
+                            lblImage.setIcon(new ImageIcon(scalledImage));
+                            
+                        }else{
+                            lblImage.setIcon(null);
+                            lblImage.setText("No Iamge set yet...");
+                        }
+                        
+                        
+                    }
+                } catch (SQLException ex) {
+                    System.getLogger(Dash.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+                }
+            }
+        }
+    }//GEN-LAST:event_tableUserMouseClicked
+
+    private void btnPcManageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPcManageActionPerformed
+        UserEdite.setVisible(false);
+        pnlPcM.setVisible(true);
+        pnlHistory.setVisible(false);
+    }//GEN-LAST:event_btnPcManageActionPerformed
+
+    private void btnUserManageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserManageActionPerformed
+        UserEdite.setVisible(true);
+        pnlPcM.setVisible(false);
+        pnlHistory.setVisible(false);
+    }//GEN-LAST:event_btnUserManageActionPerformed
+
+    private void btnHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoryActionPerformed
+        UserEdite.setVisible(false);
+        pnlPcM.setVisible(false);
+        pnlHistory.setVisible(true);
+    }//GEN-LAST:event_btnHistoryActionPerformed
 
     /**
      * @param args the command line arguments
@@ -816,33 +1175,52 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JLabel DateTime;
     private javax.swing.JPanel Header;
     private javax.swing.JPanel Settings;
+    private javax.swing.JPanel UserEdite;
     private javax.swing.JPanel adminLeft;
     private javax.swing.JPanel adminRigh;
     private javax.swing.JPanel adminRightCard;
     private javax.swing.JButton btnAcc;
     private javax.swing.JButton btnAdmin;
+    private javax.swing.JButton btnClean;
     private javax.swing.JButton btnDash;
     private javax.swing.JButton btnHam;
+    private javax.swing.JButton btnHistory;
     private javax.swing.JButton btnLive;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnPc;
+    private javax.swing.JButton btnPcManage;
     private javax.swing.JButton btnReports;
+    private javax.swing.JButton btnUserAdd;
+    private javax.swing.JButton btnUserManage;
+    private javax.swing.JComboBox<String> cmbRole;
     private javax.swing.JPanel contentPnl;
     private javax.swing.JPanel details;
     private javax.swing.JPanel framePnl;
     private javax.swing.JPanel holder;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JLabel lblImage;
     private javax.swing.JPanel liveGrid;
     private javax.swing.JPanel main;
     private javax.swing.JPanel pnlAcc;
@@ -856,11 +1234,15 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JPanel pnlReports;
     private javax.swing.JPanel pnlSet;
     private javax.swing.JPanel pnlUTable;
-    private javax.swing.JPanel pnlUserM;
     private javax.swing.JPanel setting1;
     private javax.swing.JPanel sidebarPnl;
     private javax.swing.JPanel summery;
+    private javax.swing.JTable tablePc;
     private javax.swing.JTable tableUser;
+    private javax.swing.JTextField txtFullName;
+    private javax.swing.JTextField txtUserName;
+    private javax.swing.JTextField txtUserNo;
+    private javax.swing.JPanel userEdit;
     // End of variables declaration//GEN-END:variables
 
     private void connerRoud() {
@@ -891,6 +1273,45 @@ public class Dash extends javax.swing.JFrame {
             scrollPane.setBackground(java.awt.Color.decode("#162244"));
             scrollPane.getViewport().setBackground(java.awt.Color.decode("#162244"));
             scrollPane.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+        }
+        table.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        // 6. Text Alignment
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+
+        // Table columns 
+        for (int i = 0; i < table.getColumnModel().getColumnCount(); i++) {
+            table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+        }
+
+    }
+
+    private void loadUserTable() {
+
+        try {
+            DefaultTableModel dt = (DefaultTableModel) tableUser.getModel();
+            dt.setRowCount(0);
+
+            pst = db.con.prepareStatement("SELECT emp_no, f_name, l_name, nic, username, email, phone, role FROM user");
+            java.sql.ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                Vector v = new Vector();
+
+                v.add(rs.getString("emp_no"));
+                v.add(rs.getString("f_name") + " " + rs.getString("l_name"));
+                v.add(rs.getString("username"));
+                v.add(rs.getString("nic"));
+                v.add(rs.getString("email"));
+                v.add(rs.getString("phone"));
+                v.add(rs.getString("role"));
+
+                dt.addRow(v);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, "Table load error: " + e.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     }
 }
