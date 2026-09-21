@@ -28,6 +28,8 @@ public class Dash extends javax.swing.JFrame {
         connerRoud();
         loadUserTable();
         tableStyle(tableUser, jScrollPane1);
+        tableStyle(tablePc, jScrollPane2);
+        
         this.user = user;
 
 //        btnDash.setBorderPainted(false);
@@ -103,6 +105,30 @@ public class Dash extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tablePc = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
+        jTextField7 = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        jTextField8 = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jCheckBox2 = new javax.swing.JCheckBox();
+        jPanel8 = new javax.swing.JPanel();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
         pnlHistory = new javax.swing.JPanel();
         adminRigh = new javax.swing.JPanel();
         adminRightCard = new javax.swing.JPanel();
@@ -110,8 +136,8 @@ public class Dash extends javax.swing.JFrame {
         btnUserAdd = new javax.swing.JButton();
         btnPcManage = new javax.swing.JButton();
         btnHistory = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnToRepair = new javax.swing.JButton();
+        btnIncome = new javax.swing.JButton();
         pnlSet = new javax.swing.JPanel();
         pnlAcc = new javax.swing.JPanel();
         Settings = new javax.swing.JPanel();
@@ -713,15 +739,23 @@ public class Dash extends javax.swing.JFrame {
 
         tablePc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "PC ID", "Name", "Category", "Hourly Rate", "Status"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(tablePc);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -730,31 +764,124 @@ public class Dash extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 946, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204)), "Change Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 102, 204))); // NOI18N
         jPanel7.setForeground(new java.awt.Color(0, 102, 204));
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 958, Short.MAX_VALUE)
+        jLabel7.setText("PC ID");
+        jPanel7.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 136, 40));
+        jPanel7.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 190, 40));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel7.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 190, 40));
+
+        jLabel8.setText("Category");
+        jPanel7.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 130, 40));
+
+        jLabel9.setText("PC Name");
+        jPanel7.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 136, 40));
+        jPanel7.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 190, 40));
+
+        jButton1.setText("Delete Data");
+        jButton1.addActionListener(this::jButton1ActionPerformed);
+        jPanel7.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 290, 127, 41));
+
+        jButton2.setText("Update PC");
+        jPanel7.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 290, 120, 41));
+
+        jLabel14.setText("IP Address");
+        jPanel7.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 136, 40));
+        jPanel7.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 190, 40));
+
+        jLabel15.setText("Hourly Rate");
+        jPanel7.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 136, 40));
+        jPanel7.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 190, 40));
+
+        jButton3.setBackground(new java.awt.Color(0, 204, 51));
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Add PC");
+        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 51)));
+        jPanel7.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, 127, 41));
+
+        jButton4.setText("Clear Feilds");
+        jPanel7.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 290, 127, 41));
+
+        jCheckBox2.setText("Block IP address");
+        jPanel7.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, 130, -1));
+
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+
+        jLabel10.setText("CPU");
+
+        jLabel11.setText("MotherBoard");
+
+        jLabel12.setText("Ram Capasity");
+
+        jLabel13.setText("VGA card");
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel8Layout.createSequentialGroup()
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(20, 20, 20)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel8Layout.createSequentialGroup()
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(20, 20, 20)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(16, 16, 16))
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 369, Short.MAX_VALUE)
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15))
         );
+
+        jPanel7.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, 440, 210));
 
         javax.swing.GroupLayout pnlPcMLayout = new javax.swing.GroupLayout(pnlPcM);
         pnlPcM.setLayout(pnlPcMLayout);
@@ -771,9 +898,9 @@ public class Dash extends javax.swing.JFrame {
             pnlPcMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPcMLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -811,7 +938,7 @@ public class Dash extends javax.swing.JFrame {
         btnUserManage.setBackground(new java.awt.Color(11, 19, 43));
         btnUserManage.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         btnUserManage.setForeground(new java.awt.Color(255, 255, 255));
-        btnUserManage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user Mange.png"))); // NOI18N
+        btnUserManage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/icons/userManege.png"))); // NOI18N
         btnUserManage.setText("User Mange");
         btnUserManage.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 14));
         btnUserManage.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -822,7 +949,7 @@ public class Dash extends javax.swing.JFrame {
         btnUserAdd.setBackground(new java.awt.Color(0, 51, 153));
         btnUserAdd.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         btnUserAdd.setForeground(new java.awt.Color(255, 255, 255));
-        btnUserAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/addUser.png"))); // NOI18N
+        btnUserAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user Add.png"))); // NOI18N
         btnUserAdd.setText("Add User");
         btnUserAdd.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 1));
         btnUserAdd.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -832,7 +959,7 @@ public class Dash extends javax.swing.JFrame {
         btnPcManage.setBackground(new java.awt.Color(11, 19, 43));
         btnPcManage.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         btnPcManage.setForeground(new java.awt.Color(255, 255, 255));
-        btnPcManage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Pc Manage.png"))); // NOI18N
+        btnPcManage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/icons/pcMange.png"))); // NOI18N
         btnPcManage.setText("Pc Manage");
         btnPcManage.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 14));
         btnPcManage.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -843,31 +970,31 @@ public class Dash extends javax.swing.JFrame {
         btnHistory.setBackground(new java.awt.Color(11, 19, 43));
         btnHistory.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         btnHistory.setForeground(new java.awt.Color(255, 255, 255));
-        btnHistory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/history.png"))); // NOI18N
+        btnHistory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/icons/history.png"))); // NOI18N
         btnHistory.setText("History");
         btnHistory.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 14, 0, 0));
         btnHistory.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnHistory.addActionListener(this::btnHistoryActionPerformed);
         adminRightCard.add(btnHistory);
 
-        jButton1.setBackground(new java.awt.Color(11, 19, 43));
-        jButton1.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/repair.png"))); // NOI18N
-        jButton1.setText("To Repair");
-        jButton1.setToolTipText("");
-        jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 1));
-        jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        adminRightCard.add(jButton1);
+        btnToRepair.setBackground(new java.awt.Color(11, 19, 43));
+        btnToRepair.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        btnToRepair.setForeground(new java.awt.Color(255, 255, 255));
+        btnToRepair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/icons/repair.png"))); // NOI18N
+        btnToRepair.setText("To Repair");
+        btnToRepair.setToolTipText("");
+        btnToRepair.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 1));
+        btnToRepair.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        adminRightCard.add(btnToRepair);
 
-        jButton2.setBackground(new java.awt.Color(11, 19, 43));
-        jButton2.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/money.png"))); // NOI18N
-        jButton2.setText("Income");
-        jButton2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 1));
-        jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        adminRightCard.add(jButton2);
+        btnIncome.setBackground(new java.awt.Color(11, 19, 43));
+        btnIncome.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        btnIncome.setForeground(new java.awt.Color(255, 255, 255));
+        btnIncome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/icons/income.png"))); // NOI18N
+        btnIncome.setText("Income");
+        btnIncome.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 1));
+        btnIncome.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        adminRightCard.add(btnIncome);
 
         adminRigh.add(adminRightCard, "card2");
 
@@ -1146,6 +1273,10 @@ public class Dash extends javax.swing.JFrame {
         pnlHistory.setVisible(true);
     }//GEN-LAST:event_btnHistoryActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1185,11 +1316,13 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JButton btnDash;
     private javax.swing.JButton btnHam;
     private javax.swing.JButton btnHistory;
+    private javax.swing.JButton btnIncome;
     private javax.swing.JButton btnLive;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnPc;
     private javax.swing.JButton btnPcManage;
     private javax.swing.JButton btnReports;
+    private javax.swing.JButton btnToRepair;
     private javax.swing.JButton btnUserAdd;
     private javax.swing.JButton btnUserManage;
     private javax.swing.JComboBox<String> cmbRole;
@@ -1199,15 +1332,28 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JPanel holder;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
@@ -1216,8 +1362,17 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JLabel lblImage;
