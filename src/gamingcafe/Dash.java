@@ -8,9 +8,12 @@ import javax.swing.table.DefaultTableModel;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashSet;
+import java.util.Random;
 import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 
 public class Dash extends javax.swing.JFrame {
@@ -18,20 +21,24 @@ public class Dash extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Dash.class.getName());
 
     boolean isSidebarOpen = false;
+    boolean isTableClick = false;
     User user;
     DBConnection db = new DBConnection();
     PreparedStatement pst;
     ResultSet rs;
 
+
     public Dash(User user) {
         initComponents();
         connerRoud();
         loadUserTable();
+        loadPcTable();
         tableStyle(tableUser, jScrollPane1);
         tableStyle(tablePc, jScrollPane2);
-        
-        this.user = user;
 
+        this.user = user;
+        
+        
 //        btnDash.setBorderPainted(false);
 //        btnLive.setBorderPainted(false);
 //        btnPc.setBorderPainted(false);
@@ -104,39 +111,47 @@ public class Dash extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablePc = new javax.swing.JTable();
+        jLabel17 = new javax.swing.JLabel();
+        jTextField9 = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        txtPcId = new javax.swing.JTextField();
+        cmbPcCategory = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        txtName = new javax.swing.JTextField();
+        btnPcDel = new javax.swing.JButton();
+        btnPcAdd = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        txtIP = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jCheckBox2 = new javax.swing.JCheckBox();
+        txtHrate = new javax.swing.JTextField();
+        btnPcUpdate = new javax.swing.JButton();
+        btnPcClear = new javax.swing.JButton();
+        chkblockIP = new javax.swing.JCheckBox();
         jPanel8 = new javax.swing.JPanel();
-        jTextField3 = new javax.swing.JTextField();
+        txtCPU = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtMBoard = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txtRAM = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        txtVGA = new javax.swing.JTextField();
+        jPanel9 = new javax.swing.JPanel();
+        radioOccu = new javax.swing.JRadioButton();
+        radioAwailable = new javax.swing.JRadioButton();
+        jLabel16 = new javax.swing.JLabel();
+        radioRepair = new javax.swing.JRadioButton();
+        pnlRepair = new javax.swing.JPanel();
         pnlHistory = new javax.swing.JPanel();
         adminRigh = new javax.swing.JPanel();
         adminRightCard = new javax.swing.JPanel();
-        btnUserManage = new javax.swing.JButton();
         btnUserAdd = new javax.swing.JButton();
+        btnUserManage = new javax.swing.JButton();
         btnPcManage = new javax.swing.JButton();
-        btnHistory = new javax.swing.JButton();
         btnToRepair = new javax.swing.JButton();
+        btnHistory = new javax.swing.JButton();
         btnIncome = new javax.swing.JButton();
         pnlSet = new javax.swing.JPanel();
         pnlAcc = new javax.swing.JPanel();
@@ -146,7 +161,6 @@ public class Dash extends javax.swing.JFrame {
         jCheckBox1 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
 
@@ -735,7 +749,7 @@ public class Dash extends javax.swing.JFrame {
         pnlPcM.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204)), "Pc's", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 102, 204))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204)), "Pc's", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 102, 204))); // NOI18N
 
         tablePc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -756,82 +770,144 @@ public class Dash extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tablePc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablePcMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tablePc);
+
+        jLabel17.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        jLabel17.setText("Search");
+
+        jTextField9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 946, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204)), "Change Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 102, 204))); // NOI18N
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204)), "Change Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 102, 204))); // NOI18N
         jPanel7.setForeground(new java.awt.Color(0, 102, 204));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel7.setText("PC ID");
-        jPanel7.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 136, 40));
-        jPanel7.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 190, 40));
+        jLabel7.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        jLabel7.setText("PC ID *");
+        jPanel7.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 136, 30));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel7.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 190, 40));
+        txtPcId.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel7.add(txtPcId, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, 190, 30));
 
-        jLabel8.setText("Category");
-        jPanel7.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 130, 40));
+        cmbPcCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PC", "PS5" }));
+        cmbPcCategory.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        cmbPcCategory.addActionListener(this::cmbPcCategoryActionPerformed);
+        jPanel7.add(cmbPcCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 190, 30));
 
-        jLabel9.setText("PC Name");
-        jPanel7.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 136, 40));
-        jPanel7.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 190, 40));
+        jLabel8.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        jLabel8.setText("Category *");
+        jPanel7.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 130, 30));
 
-        jButton1.setText("Delete Data");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
-        jPanel7.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 290, 127, 41));
+        jLabel9.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        jLabel9.setText("PC Name *");
+        jPanel7.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 136, 30));
 
-        jButton2.setText("Update PC");
-        jPanel7.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 290, 120, 41));
+        txtName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel7.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 190, 30));
 
+        btnPcDel.setBackground(new java.awt.Color(204, 51, 0));
+        btnPcDel.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        btnPcDel.setForeground(new java.awt.Color(255, 255, 255));
+        btnPcDel.setText("Delete Data");
+        btnPcDel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 0, 0)));
+        btnPcDel.addActionListener(this::btnPcDelActionPerformed);
+        jPanel7.add(btnPcDel, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 240, 140, 30));
+
+        btnPcAdd.setBackground(new java.awt.Color(51, 153, 255));
+        btnPcAdd.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        btnPcAdd.setForeground(new java.awt.Color(255, 255, 255));
+        btnPcAdd.setText("Add PC");
+        btnPcAdd.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204)));
+        btnPcAdd.addActionListener(this::btnPcAddActionPerformed);
+        jPanel7.add(btnPcAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 140, 30));
+
+        jLabel14.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
         jLabel14.setText("IP Address");
-        jPanel7.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 136, 40));
-        jPanel7.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 190, 40));
+        jPanel7.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 136, 30));
 
-        jLabel15.setText("Hourly Rate");
-        jPanel7.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 136, 40));
-        jPanel7.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 190, 40));
+        txtIP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel7.add(txtIP, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, 190, 30));
 
-        jButton3.setBackground(new java.awt.Color(0, 204, 51));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Add PC");
-        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 51)));
-        jPanel7.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, 127, 41));
+        jLabel15.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        jLabel15.setText("Hourly Rate *");
+        jPanel7.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 136, 30));
 
-        jButton4.setText("Clear Feilds");
-        jPanel7.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 290, 127, 41));
+        txtHrate.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel7.add(txtHrate, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 190, 30));
 
-        jCheckBox2.setText("Block IP address");
-        jPanel7.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, 130, -1));
+        btnPcUpdate.setBackground(new java.awt.Color(0, 204, 51));
+        btnPcUpdate.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnPcUpdate.setForeground(new java.awt.Color(255, 255, 255));
+        btnPcUpdate.setText("Update PC");
+        btnPcUpdate.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 51)));
+        btnPcUpdate.addActionListener(this::btnPcUpdateActionPerformed);
+        jPanel7.add(btnPcUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 140, 30));
+
+        btnPcClear.setBackground(new java.awt.Color(255, 193, 7));
+        btnPcClear.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        btnPcClear.setForeground(new java.awt.Color(255, 255, 255));
+        btnPcClear.setText("Clear Feilds");
+        btnPcClear.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 204, 0)));
+        btnPcClear.addActionListener(this::btnPcClearActionPerformed);
+        jPanel7.add(btnPcClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 240, 140, 30));
+
+        chkblockIP.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
+        chkblockIP.setText("Block IP address");
+        jPanel7.add(chkblockIP, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 210, 130, -1));
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
+        txtCPU.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+
+        jLabel10.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
         jLabel10.setText("CPU");
 
+        jLabel11.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
         jLabel11.setText("MotherBoard");
 
+        txtMBoard.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+
+        jLabel12.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
         jLabel12.setText("Ram Capasity");
 
+        txtRAM.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+
+        jLabel13.setFont(new java.awt.Font("Leelawadee", 0, 12)); // NOI18N
         jLabel13.setText("VGA card");
+
+        txtVGA.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -843,20 +919,20 @@ public class Dash extends javax.swing.JFrame {
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtVGA, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtRAM, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel8Layout.createSequentialGroup()
                             .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(20, 20, 20)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtMBoard, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel8Layout.createSequentialGroup()
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(20, 20, 20)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtCPU, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(16, 16, 16))
         );
         jPanel8Layout.setVerticalGroup(
@@ -864,24 +940,68 @@ public class Dash extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCPU, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMBoard, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtRAM, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtVGA, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15))
         );
 
-        jPanel7.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, 440, 210));
+        jPanel7.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, 440, 170));
+
+        jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+
+        radioOccu.setText("Occupied");
+        radioOccu.addActionListener(this::radioOccuActionPerformed);
+
+        radioAwailable.setText("Awailable");
+        radioAwailable.addActionListener(this::radioAwailableActionPerformed);
+
+        jLabel16.setText("Status");
+
+        radioRepair.setText("Repair");
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(radioAwailable)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(radioOccu)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(radioRepair))
+                    .addComponent(jLabel16))
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(radioOccu)
+                    .addComponent(radioRepair)
+                    .addComponent(radioAwailable))
+                .addContainerGap())
+        );
+
+        jPanel7.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 210, 270, 60));
 
         javax.swing.GroupLayout pnlPcMLayout = new javax.swing.GroupLayout(pnlPcM);
         pnlPcM.setLayout(pnlPcMLayout);
@@ -891,7 +1011,7 @@ public class Dash extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlPcMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 968, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnlPcMLayout.setVerticalGroup(
@@ -900,11 +1020,24 @@ public class Dash extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         adminLeft.add(pnlPcM, "card3");
+
+        javax.swing.GroupLayout pnlRepairLayout = new javax.swing.GroupLayout(pnlRepair);
+        pnlRepair.setLayout(pnlRepairLayout);
+        pnlRepairLayout.setHorizontalGroup(
+            pnlRepairLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 980, Short.MAX_VALUE)
+        );
+        pnlRepairLayout.setVerticalGroup(
+            pnlRepairLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 664, Short.MAX_VALUE)
+        );
+
+        adminLeft.add(pnlRepair, "card5");
 
         pnlHistory.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -916,7 +1049,7 @@ public class Dash extends javax.swing.JFrame {
         );
         pnlHistoryLayout.setVerticalGroup(
             pnlHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 660, Short.MAX_VALUE)
+            .addGap(0, 664, Short.MAX_VALUE)
         );
 
         adminLeft.add(pnlHistory, "card2");
@@ -935,17 +1068,6 @@ public class Dash extends javax.swing.JFrame {
         adminRightCard.setMaximumSize(new java.awt.Dimension(155, 392));
         adminRightCard.setLayout(new java.awt.GridLayout(10, 1, 0, 10));
 
-        btnUserManage.setBackground(new java.awt.Color(11, 19, 43));
-        btnUserManage.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
-        btnUserManage.setForeground(new java.awt.Color(255, 255, 255));
-        btnUserManage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/icons/userManege.png"))); // NOI18N
-        btnUserManage.setText("User Mange");
-        btnUserManage.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 14));
-        btnUserManage.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnUserManage.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnUserManage.addActionListener(this::btnUserManageActionPerformed);
-        adminRightCard.add(btnUserManage);
-
         btnUserAdd.setBackground(new java.awt.Color(0, 51, 153));
         btnUserAdd.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         btnUserAdd.setForeground(new java.awt.Color(255, 255, 255));
@@ -956,10 +1078,21 @@ public class Dash extends javax.swing.JFrame {
         btnUserAdd.addActionListener(this::btnUserAddActionPerformed);
         adminRightCard.add(btnUserAdd);
 
+        btnUserManage.setBackground(new java.awt.Color(11, 19, 43));
+        btnUserManage.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        btnUserManage.setForeground(new java.awt.Color(255, 255, 255));
+        btnUserManage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/userManege.png"))); // NOI18N
+        btnUserManage.setText("User Mange");
+        btnUserManage.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 14));
+        btnUserManage.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUserManage.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnUserManage.addActionListener(this::btnUserManageActionPerformed);
+        adminRightCard.add(btnUserManage);
+
         btnPcManage.setBackground(new java.awt.Color(11, 19, 43));
         btnPcManage.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         btnPcManage.setForeground(new java.awt.Color(255, 255, 255));
-        btnPcManage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/icons/pcMange.png"))); // NOI18N
+        btnPcManage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pcMange.png"))); // NOI18N
         btnPcManage.setText("Pc Manage");
         btnPcManage.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 14));
         btnPcManage.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -967,30 +1100,30 @@ public class Dash extends javax.swing.JFrame {
         btnPcManage.addActionListener(this::btnPcManageActionPerformed);
         adminRightCard.add(btnPcManage);
 
-        btnHistory.setBackground(new java.awt.Color(11, 19, 43));
-        btnHistory.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
-        btnHistory.setForeground(new java.awt.Color(255, 255, 255));
-        btnHistory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/icons/history.png"))); // NOI18N
-        btnHistory.setText("History");
-        btnHistory.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 14, 0, 0));
-        btnHistory.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnHistory.addActionListener(this::btnHistoryActionPerformed);
-        adminRightCard.add(btnHistory);
-
         btnToRepair.setBackground(new java.awt.Color(11, 19, 43));
         btnToRepair.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         btnToRepair.setForeground(new java.awt.Color(255, 255, 255));
-        btnToRepair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/icons/repair.png"))); // NOI18N
+        btnToRepair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/repair.png"))); // NOI18N
         btnToRepair.setText("To Repair");
         btnToRepair.setToolTipText("");
         btnToRepair.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 1));
         btnToRepair.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         adminRightCard.add(btnToRepair);
 
+        btnHistory.setBackground(new java.awt.Color(11, 19, 43));
+        btnHistory.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
+        btnHistory.setForeground(new java.awt.Color(255, 255, 255));
+        btnHistory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/history.png"))); // NOI18N
+        btnHistory.setText("History");
+        btnHistory.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 14, 0, 0));
+        btnHistory.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnHistory.addActionListener(this::btnHistoryActionPerformed);
+        adminRightCard.add(btnHistory);
+
         btnIncome.setBackground(new java.awt.Color(11, 19, 43));
         btnIncome.setFont(new java.awt.Font("Leelawadee", 1, 14)); // NOI18N
         btnIncome.setForeground(new java.awt.Color(255, 255, 255));
-        btnIncome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/icons/income.png"))); // NOI18N
+        btnIncome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/income.png"))); // NOI18N
         btnIncome.setText("Income");
         btnIncome.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 14, 1, 1));
         btnIncome.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -1227,26 +1360,25 @@ public class Dash extends javax.swing.JFrame {
                     pst = db.con.prepareStatement("SELECT * FROM user WHERE emp_no = ?");
                     pst.setString(1, selectUID);
                     rs = pst.executeQuery();
-                    
-                    if(rs.next()){
+
+                    if (rs.next()) {
                         txtUserNo.setText(rs.getString("emp_no"));
-                        txtFullName.setText(rs.getString("f_name")+ " " + rs.getString("l_name"));
+                        txtFullName.setText(rs.getString("f_name") + " " + rs.getString("l_name"));
                         txtUserName.setText(rs.getString("username"));
                         cmbRole.setSelectedItem(rs.getString("role"));
-                        
+
                         //image load 
                         byte[] imgByte = rs.getBytes("image");
-                        if(imgByte != null){
+                        if (imgByte != null) {
                             ImageIcon img = new ImageIcon(imgByte);
                             Image scalledImage = img.getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), Image.SCALE_SMOOTH);
                             lblImage.setIcon(new ImageIcon(scalledImage));
-                            
-                        }else{
+
+                        } else {
                             lblImage.setIcon(null);
                             lblImage.setText("No Iamge set yet...");
                         }
-                        
-                        
+
                     }
                 } catch (SQLException ex) {
                     System.getLogger(Dash.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
@@ -1273,9 +1405,241 @@ public class Dash extends javax.swing.JFrame {
         pnlHistory.setVisible(true);
     }//GEN-LAST:event_btnHistoryActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnPcDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPcDelActionPerformed
+        String id = txtPcId.getText().trim();
+        if (id.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please select a PC!");
+            return;
+        }
+        int confirm = JOptionPane.showConfirmDialog(this, id + " mema system eken sampurnayenma makala danna oona da?", "Delete Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        if (confirm == JOptionPane.YES_OPTION) {
+            try {
+                pst = db.con.prepareStatement("DELETE FROM pc_table WHERE pc_id=?");
+                pst.setString(1, id);
+
+                int success = pst.executeUpdate();
+
+                if (success > 0) {
+                    JOptionPane.showMessageDialog(this, "Record eka sarthakawa makala damana ladi!");
+                    loadPcTable();
+
+                    clear();
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "Delete kireemata haki wuye naha!");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Delete Error: " + e.getMessage());
+            }
+        }
+
+    }//GEN-LAST:event_btnPcDelActionPerformed
+
+    private void btnPcAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPcAddActionPerformed
+
+        String pcID = txtPcId.getText().trim();
+        String pcName = txtName.getText().trim();
+        String category = cmbPcCategory.getSelectedItem().toString();
+        String cpu = txtCPU.getText().trim();
+        String board = txtMBoard.getText().trim();
+        String ram = txtRAM.getText().trim();
+        String vga = txtVGA.getText().trim();
+        String ip = txtIP.getText().trim();
+        String rate = txtHrate.getText().trim();
+        String status = "";
+
+        if (radioAwailable.isSelected()) {
+            status = "Awailable";
+        } else if (radioOccu.isSelected()) {
+            status = "Occupied";
+        } else if (radioRepair.isSelected()) {
+            status = "Repiar";
+        }
+
+        if (pcID.isEmpty() || pcName.isEmpty() || rate.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "fill the reqired fields!");
+            return;
+        }
+
+        try {
+            pst = db.con.prepareStatement("INSERT INTO pc_table(pc_id, pc_name, category, cpu, motherboard, ram_capacity, vga, ip_address, hourly_rate, status) VALUES(?,?,?,?,?,?,?,?,?,?)");
+            pst.setString(1, pcID);
+            pst.setString(2, pcName);
+            pst.setString(3, category);
+            pst.setString(4, cpu);
+            pst.setString(5, board);
+            pst.setString(6, ram);
+            pst.setString(7, vga);
+            pst.setString(8, ip);
+            pst.setString(9, rate);
+            pst.setString(10, status);
+
+            int success = pst.executeUpdate();
+
+            if (success > 0) {
+                JOptionPane.showMessageDialog(this, "PC/Console eka sarthakawa athulath karana ladi!");
+
+                loadPcTable();
+                clear();
+            }
+
+        } catch (SQLException ex) {
+            System.getLogger(Dash.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+
+
+    }//GEN-LAST:event_btnPcAddActionPerformed
+
+    private void cmbPcCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPcCategoryActionPerformed
+
+        if (isTableClick) {
+            return;
+        }
+        try {
+            //random number genarate
+
+            String category = cmbPcCategory.getSelectedItem().toString().toUpperCase();
+            generatePcId(category);
+
+            //random name 
+            pst = db.con.prepareStatement("SELECT MAX(pc_name) FROM pc_table WHERE category = ?");
+            pst.setString(1, category);
+            rs = pst.executeQuery();
+
+            if (rs.next() && rs.getString(1) != null) {
+                String lastId = rs.getString(1);
+                String numberPart = lastId.replaceAll("[^0-9]", "");
+                int idNum = Integer.parseInt(numberPart);
+
+                idNum++;
+
+                txtName.setText(category + "-" + String.format("%02d", idNum));
+            } else {
+                txtName.setText(category + "-01");
+            }
+
+            radioAwailable.setSelected(true);
+
+        } catch (SQLException ex) {
+            System.getLogger(Dash.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+
+    }//GEN-LAST:event_cmbPcCategoryActionPerformed
+
+    private void radioOccuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioOccuActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_radioOccuActionPerformed
+
+    private void radioAwailableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAwailableActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioAwailableActionPerformed
+
+    private void tablePcMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablePcMouseClicked
+        isTableClick = true;
+        try {
+            if (evt.getClickCount() == 2) {
+                int selectedRow = tablePc.getSelectedRow();
+                if (selectedRow != -1) {
+                    String selectPcID = tablePc.getValueAt(selectedRow, 0).toString();
+
+                    pst = db.con.prepareStatement("SELECT * FROM pc_table WHERE pc_id = ?");
+                    pst.setString(1, selectPcID);
+                    rs = pst.executeQuery();
+
+                    if (rs.next()) {
+                        txtPcId.setText(rs.getString("pc_id"));
+                        txtName.setText(rs.getString("pc_name"));
+//                        cmbPcCategory.setSelectedItem(rs.getString("category"));
+
+                        String category = rs.getString("category");
+                        if (category != null) {
+                            cmbPcCategory.setSelectedItem(category);
+                        }
+
+                        txtCPU.setText(rs.getString("cpu") == null ? "" : rs.getString("cpu"));
+                        txtMBoard.setText(rs.getString("motherboard") == null ? "" : rs.getString("motherboard"));
+                        txtRAM.setText(rs.getString("ram_capacity") == null ? "" : rs.getString("ram_capacity"));
+                        txtVGA.setText(rs.getString("vga") == null ? "" : rs.getString("vga"));
+                        txtIP.setText(rs.getString("ip_address") == null ? "" : rs.getString("ip_address"));
+                        txtHrate.setText(rs.getString("hourly_rate"));
+
+                        String status = rs.getString("status");
+                        if (status != null) {
+                            if (status.equals("Available")) {
+                                radioAwailable.setSelected(true);
+                            } else if (status.equals("Occupied")) {
+                                radioOccu.setSelected(true);
+                            } else if (status.equals("Repair")) {
+                                radioRepair.setSelected(true);
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Data load error: " + ex.getMessage());
+        } finally {
+            isTableClick = false;
+        }
+    }//GEN-LAST:event_tablePcMouseClicked
+
+    private void btnPcUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPcUpdateActionPerformed
+
+        String id = txtPcId.getText();
+//        String name = txtName.getText();
+//        String category = cmbPcCategory.getSelectedItem().toString();
+        String ip = txtIP.getText();
+        String rate = txtHrate.getText();
+
+        String cpu = txtCPU.getText();
+        String mobo = txtMBoard.getText();
+        String ram = txtRAM.getText();
+        String vga = txtVGA.getText();
+
+        String status = "";
+        if (radioAwailable.isSelected()) {
+            status = "Available";
+        } else if (radioOccu.isSelected()) {
+            status = "Occupied";
+        } else if (radioRepair.isSelected()) {
+            status = "Repair";
+        }
+
+        if (id.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please select a pc!");
+            return;
+        }
+        try {
+            pst = db.con.prepareStatement("UPDATE pc_table SET ip_address=?, hourly_rate=?, cpu=?, motherboard=?, ram_capacity=?, vga=?, status=? WHERE pc_id=?");
+//            pst.setString(1, name);
+//            pst.setString(2, category);
+            pst.setString(1, ip);
+            pst.setString(2, rate);
+            pst.setString(3, cpu);
+            pst.setString(4, mobo);
+            pst.setString(5, ram);
+            pst.setString(6, vga);
+            pst.setString(7, status);
+            pst.setString(8, id);
+
+            int success = pst.executeUpdate();
+
+            if (success > 0) {
+                JOptionPane.showMessageDialog(this, "Updated Successfully!");
+                loadPcTable();
+                clear();
+            } else {
+                JOptionPane.showMessageDialog(this, "Update Failed!");
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Update Error: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_btnPcUpdateActionPerformed
+
+    private void btnPcClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPcClearActionPerformed
+        clear();
+    }//GEN-LAST:event_btnPcClearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1320,25 +1684,25 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JButton btnLive;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnPc;
+    private javax.swing.JButton btnPcAdd;
+    private javax.swing.JButton btnPcClear;
+    private javax.swing.JButton btnPcDel;
     private javax.swing.JButton btnPcManage;
+    private javax.swing.JButton btnPcUpdate;
     private javax.swing.JButton btnReports;
     private javax.swing.JButton btnToRepair;
     private javax.swing.JButton btnUserAdd;
     private javax.swing.JButton btnUserManage;
+    private javax.swing.JCheckBox chkblockIP;
+    private javax.swing.JComboBox<String> cmbPcCategory;
     private javax.swing.JComboBox<String> cmbRole;
     private javax.swing.JPanel contentPnl;
     private javax.swing.JPanel details;
     private javax.swing.JPanel framePnl;
     private javax.swing.JPanel holder;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1346,6 +1710,8 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1363,16 +1729,10 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField jTextField9;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JLabel lblImage;
@@ -1386,17 +1746,29 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JPanel pnlLive;
     private javax.swing.JPanel pnlPc;
     private javax.swing.JPanel pnlPcM;
+    private javax.swing.JPanel pnlRepair;
     private javax.swing.JPanel pnlReports;
     private javax.swing.JPanel pnlSet;
     private javax.swing.JPanel pnlUTable;
+    private javax.swing.JRadioButton radioAwailable;
+    private javax.swing.JRadioButton radioOccu;
+    private javax.swing.JRadioButton radioRepair;
     private javax.swing.JPanel setting1;
     private javax.swing.JPanel sidebarPnl;
     private javax.swing.JPanel summery;
     private javax.swing.JTable tablePc;
     private javax.swing.JTable tableUser;
+    private javax.swing.JTextField txtCPU;
     private javax.swing.JTextField txtFullName;
+    private javax.swing.JTextField txtHrate;
+    private javax.swing.JTextField txtIP;
+    private javax.swing.JTextField txtMBoard;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtPcId;
+    private javax.swing.JTextField txtRAM;
     private javax.swing.JTextField txtUserName;
     private javax.swing.JTextField txtUserNo;
+    private javax.swing.JTextField txtVGA;
     private javax.swing.JPanel userEdit;
     // End of variables declaration//GEN-END:variables
 
@@ -1448,7 +1820,7 @@ public class Dash extends javax.swing.JFrame {
             dt.setRowCount(0);
 
             pst = db.con.prepareStatement("SELECT emp_no, f_name, l_name, nic, username, email, phone, role FROM user");
-            java.sql.ResultSet rs = pst.executeQuery();
+            rs = pst.executeQuery();
 
             while (rs.next()) {
                 Vector v = new Vector();
@@ -1468,5 +1840,76 @@ public class Dash extends javax.swing.JFrame {
             e.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, "Table load error: " + e.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    private void generatePcId(String category) {
+        try {
+            Random randpc = new Random();
+            boolean isUnique = false;
+            String newPcId = "";
+
+            while (!isUnique) {
+
+                int randmNum = randpc.nextInt(9000) + 1000;
+                newPcId = category + "-GG-" + randmNum;
+
+                pst = db.con.prepareStatement("SELECT pc_id FROM pc_table WHERE pc_id = ?");
+                pst.setString(1, newPcId);
+                rs = pst.executeQuery();
+
+                if (!rs.next()) {
+                    isUnique = true;
+                }
+
+                txtPcId.setText(newPcId);
+            }
+        } catch (SQLException ex) {
+            System.getLogger(Dash.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+
+    }
+
+    private void loadPcTable() {
+        try {
+            DefaultTableModel dt = (DefaultTableModel) tablePc.getModel();
+            dt.setRowCount(0);
+
+            pst = db.con.prepareStatement("SELECT pc_id, pc_name, category, hourly_rate, status FROM pc_table");
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                Vector v2 = new Vector();
+
+                v2.add(rs.getString("pc_id"));
+                v2.add(rs.getString("pc_name"));
+                v2.add(rs.getString("category"));
+                v2.add(rs.getString("hourly_rate"));
+                v2.add(rs.getString("status"));
+
+                dt.addRow(v2);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, "Table load error: " + e.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void clear() {
+        txtName.setText("");
+        txtIP.setText("");
+        txtHrate.setText("");
+        txtCPU.setText("");
+        txtMBoard.setText("");
+        txtRAM.setText("");
+        txtVGA.setText("");
+
+        if (cmbPcCategory.getItemCount() > 0) {
+            cmbPcCategory.setToolTipText("-Select-");
+        }
+
+        radioAwailable.setSelected(false);
+        radioOccu.setSelected(false);
+        radioRepair.setSelected(false);
     }
 }

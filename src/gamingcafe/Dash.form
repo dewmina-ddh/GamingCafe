@@ -3,9 +3,6 @@
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[1280, 720]"/>
-    </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[1280, 720]"/>
     </Property>
@@ -1333,7 +1330,7 @@
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="jPanel3" max="32767" attributes="0"/>
-                                              <Component id="jPanel7" max="32767" attributes="0"/>
+                                              <Component id="jPanel7" pref="968" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                       </Group>
@@ -1345,7 +1342,7 @@
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jPanel3" max="32767" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jPanel7" min="-2" pref="347" max="-2" attributes="0"/>
+                                          <Component id="jPanel7" min="-2" pref="292" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -1365,6 +1362,7 @@
                                               <Color PropertyName="color" blue="cc" green="66" red="0" type="rgb"/>
                                             </LineBorder>
                                           </Border>
+                                          <Font PropertyName="font" name="Segoe UI" size="12" style="1"/>
                                           <Color PropertyName="color" blue="cc" green="66" red="0" type="rgb"/>
                                         </TitledBorder>
                                       </Border>
@@ -1374,18 +1372,30 @@
                                   <Layout>
                                     <DimensionLayout dim="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="1" attributes="0">
+                                          <Group type="102" attributes="0">
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="jScrollPane2" pref="946" max="32767" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jScrollPane2" max="32767" attributes="0"/>
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="jLabel17" min="-2" pref="53" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="jTextField9" min="-2" pref="190" max="-2" attributes="0"/>
+                                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                                  </Group>
+                                              </Group>
                                               <EmptySpace max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                     </DimensionLayout>
                                     <DimensionLayout dim="1">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="jLabel17" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                                  <Component id="jTextField9" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                              </Group>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="jScrollPane2" pref="260" max="32767" attributes="0"/>
+                                              <Component id="jScrollPane2" pref="289" max="32767" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
@@ -1443,9 +1453,31 @@
                                               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                                             </Property>
                                           </Properties>
+                                          <Events>
+                                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tablePcMouseClicked"/>
+                                          </Events>
                                         </Component>
                                       </SubComponents>
                                     </Container>
+                                    <Component class="javax.swing.JLabel" name="jLabel17">
+                                      <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Leelawadee" size="12" style="0"/>
+                                        </Property>
+                                        <Property name="text" type="java.lang.String" value="Search"/>
+                                      </Properties>
+                                    </Component>
+                                    <Component class="javax.swing.JTextField" name="jTextField9">
+                                      <Properties>
+                                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                                            <LineBorder>
+                                              <Color PropertyName="color" blue="cc" green="cc" red="cc" type="rgb"/>
+                                            </LineBorder>
+                                          </Border>
+                                        </Property>
+                                      </Properties>
+                                    </Component>
                                   </SubComponents>
                                 </Container>
                                 <Container class="javax.swing.JPanel" name="jPanel7">
@@ -1461,6 +1493,7 @@
                                               <Color PropertyName="color" blue="cc" green="66" red="0" type="rgb"/>
                                             </LineBorder>
                                           </Border>
+                                          <Font PropertyName="font" name="Segoe UI" size="12" style="1"/>
                                           <Color PropertyName="color" blue="cc" green="66" red="0" type="rgb"/>
                                         </TitledBorder>
                                       </Border>
@@ -1476,126 +1509,220 @@
                                   <SubComponents>
                                     <Component class="javax.swing.JLabel" name="jLabel7">
                                       <Properties>
-                                        <Property name="text" type="java.lang.String" value="PC ID"/>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Leelawadee" size="12" style="0"/>
+                                        </Property>
+                                        <Property name="text" type="java.lang.String" value="PC ID *"/>
                                       </Properties>
                                       <Constraints>
                                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                          <AbsoluteConstraints x="60" y="80" width="136" height="40"/>
+                                          <AbsoluteConstraints x="60" y="70" width="136" height="30"/>
                                         </Constraint>
                                       </Constraints>
                                     </Component>
-                                    <Component class="javax.swing.JTextField" name="jTextField1">
-                                      <Constraints>
-                                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                          <AbsoluteConstraints x="210" y="80" width="190" height="40"/>
-                                        </Constraint>
-                                      </Constraints>
-                                    </Component>
-                                    <Component class="javax.swing.JComboBox" name="jComboBox1">
+                                    <Component class="javax.swing.JTextField" name="txtPcId">
                                       <Properties>
-                                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                                          <StringArray count="4">
-                                            <StringItem index="0" value="Item 1"/>
-                                            <StringItem index="1" value="Item 2"/>
-                                            <StringItem index="2" value="Item 3"/>
-                                            <StringItem index="3" value="Item 4"/>
-                                          </StringArray>
+                                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                                            <LineBorder>
+                                              <Color PropertyName="color" blue="cc" green="cc" red="cc" type="rgb"/>
+                                            </LineBorder>
+                                          </Border>
                                         </Property>
                                       </Properties>
+                                      <Constraints>
+                                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                          <AbsoluteConstraints x="210" y="70" width="190" height="30"/>
+                                        </Constraint>
+                                      </Constraints>
+                                    </Component>
+                                    <Component class="javax.swing.JComboBox" name="cmbPcCategory">
+                                      <Properties>
+                                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                          <StringArray count="2">
+                                            <StringItem index="0" value="PC"/>
+                                            <StringItem index="1" value="PS5"/>
+                                          </StringArray>
+                                        </Property>
+                                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                                            <LineBorder>
+                                              <Color PropertyName="color" blue="cc" green="cc" red="cc" type="rgb"/>
+                                            </LineBorder>
+                                          </Border>
+                                        </Property>
+                                      </Properties>
+                                      <Events>
+                                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbPcCategoryActionPerformed"/>
+                                      </Events>
                                       <AuxValues>
                                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                                       </AuxValues>
                                       <Constraints>
                                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                          <AbsoluteConstraints x="210" y="30" width="190" height="40"/>
+                                          <AbsoluteConstraints x="210" y="30" width="190" height="30"/>
                                         </Constraint>
                                       </Constraints>
                                     </Component>
                                     <Component class="javax.swing.JLabel" name="jLabel8">
                                       <Properties>
-                                        <Property name="text" type="java.lang.String" value="Category"/>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Leelawadee" size="12" style="0"/>
+                                        </Property>
+                                        <Property name="text" type="java.lang.String" value="Category *"/>
                                       </Properties>
                                       <Constraints>
                                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                          <AbsoluteConstraints x="60" y="30" width="130" height="40"/>
+                                          <AbsoluteConstraints x="60" y="30" width="130" height="30"/>
                                         </Constraint>
                                       </Constraints>
                                     </Component>
                                     <Component class="javax.swing.JLabel" name="jLabel9">
                                       <Properties>
-                                        <Property name="text" type="java.lang.String" value="PC Name"/>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Leelawadee" size="12" style="0"/>
+                                        </Property>
+                                        <Property name="text" type="java.lang.String" value="PC Name *"/>
                                       </Properties>
                                       <Constraints>
                                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                          <AbsoluteConstraints x="60" y="130" width="136" height="40"/>
+                                          <AbsoluteConstraints x="60" y="110" width="136" height="30"/>
                                         </Constraint>
                                       </Constraints>
                                     </Component>
-                                    <Component class="javax.swing.JTextField" name="jTextField2">
+                                    <Component class="javax.swing.JTextField" name="txtName">
+                                      <Properties>
+                                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                                            <LineBorder>
+                                              <Color PropertyName="color" blue="cc" green="cc" red="cc" type="rgb"/>
+                                            </LineBorder>
+                                          </Border>
+                                        </Property>
+                                      </Properties>
                                       <Constraints>
                                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                          <AbsoluteConstraints x="210" y="130" width="190" height="40"/>
+                                          <AbsoluteConstraints x="210" y="110" width="190" height="30"/>
                                         </Constraint>
                                       </Constraints>
                                     </Component>
-                                    <Component class="javax.swing.JButton" name="jButton1">
+                                    <Component class="javax.swing.JButton" name="btnPcDel">
                                       <Properties>
+                                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                          <Color blue="0" green="33" red="cc" type="rgb"/>
+                                        </Property>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Inter" size="14" style="1"/>
+                                        </Property>
+                                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                        </Property>
                                         <Property name="text" type="java.lang.String" value="Delete Data"/>
+                                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                                            <LineBorder>
+                                              <Color PropertyName="color" blue="0" green="0" red="99" type="rgb"/>
+                                            </LineBorder>
+                                          </Border>
+                                        </Property>
                                       </Properties>
                                       <Events>
-                                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPcDelActionPerformed"/>
                                       </Events>
                                       <Constraints>
                                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                          <AbsoluteConstraints x="650" y="290" width="127" height="41"/>
+                                          <AbsoluteConstraints x="360" y="240" width="140" height="30"/>
                                         </Constraint>
                                       </Constraints>
                                     </Component>
-                                    <Component class="javax.swing.JButton" name="jButton2">
+                                    <Component class="javax.swing.JButton" name="btnPcAdd">
                                       <Properties>
-                                        <Property name="text" type="java.lang.String" value="Update PC"/>
+                                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                          <Color blue="ff" green="99" red="33" type="rgb"/>
+                                        </Property>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Inter" size="14" style="1"/>
+                                        </Property>
+                                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                        </Property>
+                                        <Property name="text" type="java.lang.String" value="Add PC"/>
+                                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                                            <LineBorder>
+                                              <Color PropertyName="color" blue="cc" green="66" red="0" type="rgb"/>
+                                            </LineBorder>
+                                          </Border>
+                                        </Property>
                                       </Properties>
+                                      <Events>
+                                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPcAddActionPerformed"/>
+                                      </Events>
                                       <Constraints>
                                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                          <AbsoluteConstraints x="510" y="290" width="120" height="41"/>
+                                          <AbsoluteConstraints x="60" y="240" width="140" height="30"/>
                                         </Constraint>
                                       </Constraints>
                                     </Component>
                                     <Component class="javax.swing.JLabel" name="jLabel14">
                                       <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Leelawadee" size="12" style="0"/>
+                                        </Property>
                                         <Property name="text" type="java.lang.String" value="IP Address"/>
                                       </Properties>
                                       <Constraints>
                                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                          <AbsoluteConstraints x="60" y="180" width="136" height="40"/>
+                                          <AbsoluteConstraints x="60" y="150" width="136" height="30"/>
                                         </Constraint>
                                       </Constraints>
                                     </Component>
-                                    <Component class="javax.swing.JTextField" name="jTextField7">
+                                    <Component class="javax.swing.JTextField" name="txtIP">
+                                      <Properties>
+                                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                                            <LineBorder>
+                                              <Color PropertyName="color" blue="cc" green="cc" red="cc" type="rgb"/>
+                                            </LineBorder>
+                                          </Border>
+                                        </Property>
+                                      </Properties>
                                       <Constraints>
                                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                          <AbsoluteConstraints x="210" y="180" width="190" height="40"/>
+                                          <AbsoluteConstraints x="210" y="150" width="190" height="30"/>
                                         </Constraint>
                                       </Constraints>
                                     </Component>
                                     <Component class="javax.swing.JLabel" name="jLabel15">
                                       <Properties>
-                                        <Property name="text" type="java.lang.String" value="Hourly Rate"/>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Leelawadee" size="12" style="0"/>
+                                        </Property>
+                                        <Property name="text" type="java.lang.String" value="Hourly Rate *"/>
                                       </Properties>
                                       <Constraints>
                                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                          <AbsoluteConstraints x="60" y="230" width="136" height="40"/>
+                                          <AbsoluteConstraints x="60" y="190" width="136" height="30"/>
                                         </Constraint>
                                       </Constraints>
                                     </Component>
-                                    <Component class="javax.swing.JTextField" name="jTextField8">
+                                    <Component class="javax.swing.JTextField" name="txtHrate">
+                                      <Properties>
+                                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                                            <LineBorder>
+                                              <Color PropertyName="color" blue="cc" green="cc" red="cc" type="rgb"/>
+                                            </LineBorder>
+                                          </Border>
+                                        </Property>
+                                      </Properties>
                                       <Constraints>
                                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                          <AbsoluteConstraints x="210" y="230" width="190" height="40"/>
+                                          <AbsoluteConstraints x="210" y="190" width="190" height="30"/>
                                         </Constraint>
                                       </Constraints>
                                     </Component>
-                                    <Component class="javax.swing.JButton" name="jButton3">
+                                    <Component class="javax.swing.JButton" name="btnPcUpdate">
                                       <Properties>
                                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                           <Color blue="33" green="cc" red="0" type="rgb"/>
@@ -1606,7 +1733,7 @@
                                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                         </Property>
-                                        <Property name="text" type="java.lang.String" value="Add PC"/>
+                                        <Property name="text" type="java.lang.String" value="Update PC"/>
                                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                                           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                             <LineBorder>
@@ -1615,29 +1742,54 @@
                                           </Border>
                                         </Property>
                                       </Properties>
+                                      <Events>
+                                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPcUpdateActionPerformed"/>
+                                      </Events>
                                       <Constraints>
                                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                          <AbsoluteConstraints x="360" y="290" width="127" height="41"/>
+                                          <AbsoluteConstraints x="210" y="240" width="140" height="30"/>
                                         </Constraint>
                                       </Constraints>
                                     </Component>
-                                    <Component class="javax.swing.JButton" name="jButton4">
+                                    <Component class="javax.swing.JButton" name="btnPcClear">
                                       <Properties>
+                                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                          <Color blue="7" green="c1" red="ff" type="rgb"/>
+                                        </Property>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Inter" size="14" style="1"/>
+                                        </Property>
+                                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                        </Property>
                                         <Property name="text" type="java.lang.String" value="Clear Feilds"/>
+                                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                                            <LineBorder>
+                                              <Color PropertyName="color" blue="0" green="cc" red="ff" type="rgb"/>
+                                            </LineBorder>
+                                          </Border>
+                                        </Property>
                                       </Properties>
+                                      <Events>
+                                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPcClearActionPerformed"/>
+                                      </Events>
                                       <Constraints>
                                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                          <AbsoluteConstraints x="800" y="290" width="127" height="41"/>
+                                          <AbsoluteConstraints x="510" y="240" width="140" height="30"/>
                                         </Constraint>
                                       </Constraints>
                                     </Component>
-                                    <Component class="javax.swing.JCheckBox" name="jCheckBox2">
+                                    <Component class="javax.swing.JCheckBox" name="chkblockIP">
                                       <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Leelawadee" size="12" style="0"/>
+                                        </Property>
                                         <Property name="text" type="java.lang.String" value="Block IP address"/>
                                       </Properties>
                                       <Constraints>
                                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                          <AbsoluteConstraints x="60" y="300" width="130" height="-1"/>
+                                          <AbsoluteConstraints x="510" y="210" width="130" height="-1"/>
                                         </Constraint>
                                       </Constraints>
                                     </Component>
@@ -1656,7 +1808,7 @@
                                       </Properties>
                                       <Constraints>
                                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                          <AbsoluteConstraints x="480" y="30" width="440" height="210"/>
+                                          <AbsoluteConstraints x="510" y="30" width="440" height="170"/>
                                         </Constraint>
                                       </Constraints>
 
@@ -1669,23 +1821,23 @@
                                                       <Group type="102" alignment="0" attributes="0">
                                                           <Component id="jLabel13" min="-2" pref="110" max="-2" attributes="0"/>
                                                           <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
-                                                          <Component id="jTextField6" min="-2" pref="270" max="-2" attributes="0"/>
+                                                          <Component id="txtVGA" min="-2" pref="270" max="-2" attributes="0"/>
                                                       </Group>
                                                       <Group type="102" alignment="0" attributes="0">
                                                           <Component id="jLabel12" min="-2" pref="110" max="-2" attributes="0"/>
                                                           <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
-                                                          <Component id="jTextField5" min="-2" pref="270" max="-2" attributes="0"/>
+                                                          <Component id="txtRAM" min="-2" pref="270" max="-2" attributes="0"/>
                                                       </Group>
                                                       <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                                                           <Group type="102" alignment="1" attributes="0">
                                                               <Component id="jLabel11" min="-2" pref="110" max="-2" attributes="0"/>
                                                               <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
-                                                              <Component id="jTextField4" min="-2" pref="270" max="-2" attributes="0"/>
+                                                              <Component id="txtMBoard" min="-2" pref="270" max="-2" attributes="0"/>
                                                           </Group>
                                                           <Group type="102" alignment="1" attributes="0">
                                                               <Component id="jLabel10" min="-2" pref="110" max="-2" attributes="0"/>
                                                               <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
-                                                              <Component id="jTextField3" min="-2" pref="270" max="-2" attributes="0"/>
+                                                              <Component id="txtCPU" min="-2" pref="270" max="-2" attributes="0"/>
                                                           </Group>
                                                       </Group>
                                                   </Group>
@@ -1698,23 +1850,23 @@
                                               <Group type="102" alignment="1" attributes="0">
                                                   <EmptySpace max="32767" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="jLabel10" min="-2" pref="40" max="-2" attributes="0"/>
-                                                      <Component id="jTextField3" min="-2" pref="40" max="-2" attributes="0"/>
+                                                      <Component id="jLabel10" min="-2" pref="30" max="-2" attributes="0"/>
+                                                      <Component id="txtCPU" min="-2" pref="30" max="-2" attributes="0"/>
                                                   </Group>
                                                   <EmptySpace max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="jLabel11" min="-2" pref="40" max="-2" attributes="0"/>
-                                                      <Component id="jTextField4" min="-2" pref="40" max="-2" attributes="0"/>
+                                                      <Component id="jLabel11" min="-2" pref="30" max="-2" attributes="0"/>
+                                                      <Component id="txtMBoard" min="-2" pref="30" max="-2" attributes="0"/>
                                                   </Group>
                                                   <EmptySpace max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="jLabel12" min="-2" pref="40" max="-2" attributes="0"/>
-                                                      <Component id="jTextField5" min="-2" pref="40" max="-2" attributes="0"/>
+                                                      <Component id="jLabel12" min="-2" pref="30" max="-2" attributes="0"/>
+                                                      <Component id="txtRAM" min="-2" pref="30" max="-2" attributes="0"/>
                                                   </Group>
                                                   <EmptySpace max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="jLabel13" min="-2" pref="40" max="-2" attributes="0"/>
-                                                      <Component id="jTextField6" min="-2" pref="40" max="-2" attributes="0"/>
+                                                      <Component id="jLabel13" min="-2" pref="30" max="-2" attributes="0"/>
+                                                      <Component id="txtVGA" min="-2" pref="30" max="-2" attributes="0"/>
                                                   </Group>
                                                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                                               </Group>
@@ -1722,39 +1874,188 @@
                                         </DimensionLayout>
                                       </Layout>
                                       <SubComponents>
-                                        <Component class="javax.swing.JTextField" name="jTextField3">
+                                        <Component class="javax.swing.JTextField" name="txtCPU">
+                                          <Properties>
+                                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                                                <LineBorder>
+                                                  <Color PropertyName="color" blue="cc" green="cc" red="cc" type="rgb"/>
+                                                </LineBorder>
+                                              </Border>
+                                            </Property>
+                                          </Properties>
                                         </Component>
                                         <Component class="javax.swing.JLabel" name="jLabel10">
                                           <Properties>
+                                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                              <Font name="Leelawadee" size="12" style="0"/>
+                                            </Property>
                                             <Property name="text" type="java.lang.String" value="CPU"/>
                                           </Properties>
                                         </Component>
                                         <Component class="javax.swing.JLabel" name="jLabel11">
                                           <Properties>
+                                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                              <Font name="Leelawadee" size="12" style="0"/>
+                                            </Property>
                                             <Property name="text" type="java.lang.String" value="MotherBoard"/>
                                           </Properties>
                                         </Component>
-                                        <Component class="javax.swing.JTextField" name="jTextField4">
+                                        <Component class="javax.swing.JTextField" name="txtMBoard">
+                                          <Properties>
+                                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                                                <LineBorder>
+                                                  <Color PropertyName="color" blue="cc" green="cc" red="cc" type="rgb"/>
+                                                </LineBorder>
+                                              </Border>
+                                            </Property>
+                                          </Properties>
                                         </Component>
                                         <Component class="javax.swing.JLabel" name="jLabel12">
                                           <Properties>
+                                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                              <Font name="Leelawadee" size="12" style="0"/>
+                                            </Property>
                                             <Property name="text" type="java.lang.String" value="Ram Capasity"/>
                                           </Properties>
                                         </Component>
-                                        <Component class="javax.swing.JTextField" name="jTextField5">
+                                        <Component class="javax.swing.JTextField" name="txtRAM">
+                                          <Properties>
+                                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                                                <LineBorder>
+                                                  <Color PropertyName="color" blue="cc" green="cc" red="cc" type="rgb"/>
+                                                </LineBorder>
+                                              </Border>
+                                            </Property>
+                                          </Properties>
                                         </Component>
                                         <Component class="javax.swing.JLabel" name="jLabel13">
                                           <Properties>
+                                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                              <Font name="Leelawadee" size="12" style="0"/>
+                                            </Property>
                                             <Property name="text" type="java.lang.String" value="VGA card"/>
                                           </Properties>
                                         </Component>
-                                        <Component class="javax.swing.JTextField" name="jTextField6">
+                                        <Component class="javax.swing.JTextField" name="txtVGA">
+                                          <Properties>
+                                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                                                <LineBorder>
+                                                  <Color PropertyName="color" blue="cc" green="cc" red="cc" type="rgb"/>
+                                                </LineBorder>
+                                              </Border>
+                                            </Property>
+                                          </Properties>
+                                        </Component>
+                                      </SubComponents>
+                                    </Container>
+                                    <Container class="javax.swing.JPanel" name="jPanel9">
+                                      <Properties>
+                                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                                            <LineBorder>
+                                              <Color PropertyName="color" blue="cc" green="cc" red="cc" type="rgb"/>
+                                            </LineBorder>
+                                          </Border>
+                                        </Property>
+                                      </Properties>
+                                      <Constraints>
+                                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                          <AbsoluteConstraints x="680" y="210" width="270" height="60"/>
+                                        </Constraint>
+                                      </Constraints>
+
+                                      <Layout>
+                                        <DimensionLayout dim="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                                                          <Component id="radioAwailable" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                          <Component id="radioOccu" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                          <Component id="radioRepair" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace pref="23" max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                        </DimensionLayout>
+                                        <DimensionLayout dim="1">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace pref="9" max="32767" attributes="0"/>
+                                                  <Group type="103" groupAlignment="3" attributes="0">
+                                                      <Component id="radioOccu" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="radioRepair" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="radioAwailable" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                        </DimensionLayout>
+                                      </Layout>
+                                      <SubComponents>
+                                        <Component class="javax.swing.JRadioButton" name="radioOccu">
+                                          <Properties>
+                                            <Property name="text" type="java.lang.String" value="Occupied"/>
+                                          </Properties>
+                                          <Events>
+                                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioOccuActionPerformed"/>
+                                          </Events>
+                                        </Component>
+                                        <Component class="javax.swing.JRadioButton" name="radioAwailable">
+                                          <Properties>
+                                            <Property name="text" type="java.lang.String" value="Awailable"/>
+                                          </Properties>
+                                          <Events>
+                                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioAwailableActionPerformed"/>
+                                          </Events>
+                                        </Component>
+                                        <Component class="javax.swing.JLabel" name="jLabel16">
+                                          <Properties>
+                                            <Property name="text" type="java.lang.String" value="Status"/>
+                                          </Properties>
+                                        </Component>
+                                        <Component class="javax.swing.JRadioButton" name="radioRepair">
+                                          <Properties>
+                                            <Property name="text" type="java.lang.String" value="Repair"/>
+                                          </Properties>
                                         </Component>
                                       </SubComponents>
                                     </Container>
                                   </SubComponents>
                                 </Container>
                               </SubComponents>
+                            </Container>
+                            <Container class="javax.swing.JPanel" name="pnlRepair">
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                                  <CardConstraints cardName="card5"/>
+                                </Constraint>
+                              </Constraints>
+
+                              <Layout>
+                                <DimensionLayout dim="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <EmptySpace min="0" pref="980" max="32767" attributes="0"/>
+                                  </Group>
+                                </DimensionLayout>
+                                <DimensionLayout dim="1">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <EmptySpace min="0" pref="664" max="32767" attributes="0"/>
+                                  </Group>
+                                </DimensionLayout>
+                              </Layout>
                             </Container>
                             <Container class="javax.swing.JPanel" name="pnlHistory">
                               <Properties>
@@ -1776,7 +2077,7 @@
                                 </DimensionLayout>
                                 <DimensionLayout dim="1">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <EmptySpace min="0" pref="660" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="664" max="32767" attributes="0"/>
                                   </Group>
                                 </DimensionLayout>
                               </Layout>
@@ -1837,35 +2138,6 @@
                                 <Property name="verticalGap" type="int" value="10"/>
                               </Layout>
                               <SubComponents>
-                                <Component class="javax.swing.JButton" name="btnUserManage">
-                                  <Properties>
-                                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                      <Color blue="2b" green="13" red="b" type="rgb"/>
-                                    </Property>
-                                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                      <Font name="Leelawadee" size="14" style="1"/>
-                                    </Property>
-                                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                                    </Property>
-                                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                                      <Image iconType="3" name="/src/icons/userManege.png"/>
-                                    </Property>
-                                    <Property name="text" type="java.lang.String" value="User Mange"/>
-                                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                                      <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
-                                        <EmptyBorder bottom="1" left="14" right="14" top="1"/>
-                                      </Border>
-                                    </Property>
-                                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                                      <Color id="Hand Cursor"/>
-                                    </Property>
-                                    <Property name="horizontalAlignment" type="int" value="2"/>
-                                  </Properties>
-                                  <Events>
-                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUserManageActionPerformed"/>
-                                  </Events>
-                                </Component>
                                 <Component class="javax.swing.JButton" name="btnUserAdd">
                                   <Properties>
                                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -1892,6 +2164,35 @@
                                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUserAddActionPerformed"/>
                                   </Events>
                                 </Component>
+                                <Component class="javax.swing.JButton" name="btnUserManage">
+                                  <Properties>
+                                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                      <Color blue="2b" green="13" red="b" type="rgb"/>
+                                    </Property>
+                                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                      <Font name="Leelawadee" size="14" style="1"/>
+                                    </Property>
+                                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                    </Property>
+                                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                      <Image iconType="3" name="/icons/userManege.png"/>
+                                    </Property>
+                                    <Property name="text" type="java.lang.String" value="User Mange"/>
+                                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                      <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
+                                        <EmptyBorder bottom="1" left="14" right="14" top="1"/>
+                                      </Border>
+                                    </Property>
+                                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                                      <Color id="Hand Cursor"/>
+                                    </Property>
+                                    <Property name="horizontalAlignment" type="int" value="2"/>
+                                  </Properties>
+                                  <Events>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUserManageActionPerformed"/>
+                                  </Events>
+                                </Component>
                                 <Component class="javax.swing.JButton" name="btnPcManage">
                                   <Properties>
                                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -1904,7 +2205,7 @@
                                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                     </Property>
                                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                                      <Image iconType="3" name="/src/icons/pcMange.png"/>
+                                      <Image iconType="3" name="/icons/pcMange.png"/>
                                     </Property>
                                     <Property name="text" type="java.lang.String" value="Pc Manage"/>
                                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -1921,6 +2222,30 @@
                                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPcManageActionPerformed"/>
                                   </Events>
                                 </Component>
+                                <Component class="javax.swing.JButton" name="btnToRepair">
+                                  <Properties>
+                                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                      <Color blue="2b" green="13" red="b" type="rgb"/>
+                                    </Property>
+                                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                      <Font name="Leelawadee" size="14" style="1"/>
+                                    </Property>
+                                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                    </Property>
+                                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                      <Image iconType="3" name="/icons/repair.png"/>
+                                    </Property>
+                                    <Property name="text" type="java.lang.String" value="To Repair"/>
+                                    <Property name="toolTipText" type="java.lang.String" value=""/>
+                                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                      <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
+                                        <EmptyBorder bottom="1" left="14" right="1" top="1"/>
+                                      </Border>
+                                    </Property>
+                                    <Property name="horizontalAlignment" type="int" value="2"/>
+                                  </Properties>
+                                </Component>
                                 <Component class="javax.swing.JButton" name="btnHistory">
                                   <Properties>
                                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -1933,7 +2258,7 @@
                                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                     </Property>
                                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                                      <Image iconType="3" name="/src/icons/history.png"/>
+                                      <Image iconType="3" name="/icons/history.png"/>
                                     </Property>
                                     <Property name="text" type="java.lang.String" value="History"/>
                                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -1947,30 +2272,6 @@
                                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHistoryActionPerformed"/>
                                   </Events>
                                 </Component>
-                                <Component class="javax.swing.JButton" name="btnToRepair">
-                                  <Properties>
-                                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                      <Color blue="2b" green="13" red="b" type="rgb"/>
-                                    </Property>
-                                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                      <Font name="Leelawadee" size="14" style="1"/>
-                                    </Property>
-                                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                                    </Property>
-                                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                                      <Image iconType="3" name="/src/icons/repair.png"/>
-                                    </Property>
-                                    <Property name="text" type="java.lang.String" value="To Repair"/>
-                                    <Property name="toolTipText" type="java.lang.String" value=""/>
-                                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                                      <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
-                                        <EmptyBorder bottom="1" left="14" right="1" top="1"/>
-                                      </Border>
-                                    </Property>
-                                    <Property name="horizontalAlignment" type="int" value="2"/>
-                                  </Properties>
-                                </Component>
                                 <Component class="javax.swing.JButton" name="btnIncome">
                                   <Properties>
                                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -1983,7 +2284,7 @@
                                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                     </Property>
                                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                                      <Image iconType="3" name="/src/icons/income.png"/>
+                                      <Image iconType="3" name="/icons/income.png"/>
                                     </Property>
                                     <Property name="text" type="java.lang.String" value="Income"/>
                                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
