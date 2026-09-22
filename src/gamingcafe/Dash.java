@@ -27,24 +27,24 @@ public class Dash extends javax.swing.JFrame {
     PreparedStatement pst;
     ResultSet rs;
 
-
     public Dash(User user) {
         initComponents();
         connerRoud();
         loadUserTable();
         loadPcTable();
+        loadPcRepairTable();
         tableStyle(tableUser, jScrollPane1);
         tableStyle(tablePc, jScrollPane2);
 
         this.user = user;
-        
+
         btnPcUpdate.setVisible(false);
         btnPcDel.setVisible(false);
         btnPcClear.setVisible(false);
-        
+
         btnUserUpdate.setVisible(false);
         btnUserDel.setVisible(false);
-        
+
 //        btnDash.setBorderPainted(false);
 //        btnLive.setBorderPainted(false);
 //        btnPc.setBorderPainted(false);
@@ -152,7 +152,7 @@ public class Dash extends javax.swing.JFrame {
         pnlRepair = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableRepairPc = new javax.swing.JTable();
         jPanel12 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -161,6 +161,12 @@ public class Dash extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel18 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
         pnlHistory = new javax.swing.JPanel();
         adminRigh = new javax.swing.JPanel();
         adminRightCard = new javax.swing.JPanel();
@@ -1050,7 +1056,7 @@ public class Dash extends javax.swing.JFrame {
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204)), "All PC", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Leelawadee", 1, 12), new java.awt.Color(0, 102, 204))); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableRepairPc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -1069,7 +1075,12 @@ public class Dash extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(jTable1);
+        tableRepairPc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableRepairPcMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tableRepairPc);
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -1089,7 +1100,7 @@ public class Dash extends javax.swing.JFrame {
         );
 
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)), "PC", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(153, 153, 153))); // NOI18N
+        jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)), "PC", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(153, 153, 153))); // NOI18N
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1130,46 +1141,79 @@ public class Dash extends javax.swing.JFrame {
         );
 
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)), "Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(153, 153, 153))); // NOI18N
+        jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)), "Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(153, 153, 153))); // NOI18N
 
-        jTextField1.setText("jTextField1");
+        jButton2.setText("To Repair");
 
-        jButton1.setText("jButton1");
+        jButton3.setText("Clear");
 
-        jButton2.setText("jButton2");
+        jLabel18.setText("PC-ID");
 
-        jButton3.setText("jButton3");
+        jLabel19.setText("Reason");
+
+        jLabel20.setText("Amount");
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButton1))
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 4, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(6, 6, 6)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout pnlRepairLayout = new javax.swing.GroupLayout(pnlRepair);
@@ -1589,6 +1633,7 @@ public class Dash extends javax.swing.JFrame {
                 if (success > 0) {
                     JOptionPane.showMessageDialog(this, "Record eka sarthakawa makala damana ladi!");
                     loadPcTable();
+                    loadPcRepairTable();
 
                     clear();
 
@@ -1647,8 +1692,10 @@ public class Dash extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "PC/Console eka sarthakawa athulath karana ladi!");
 
                 loadPcTable();
+                loadPcRepairTable();
                 clear();
             }
+            pst.close();
 
         } catch (SQLException ex) {
             System.getLogger(Dash.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
@@ -1684,6 +1731,9 @@ public class Dash extends javax.swing.JFrame {
             } else {
                 txtName.setText(category + "-01");
             }
+
+            pst.close();
+            rs.close();
 
             radioAwailable.setSelected(true);
 
@@ -1742,6 +1792,8 @@ public class Dash extends javax.swing.JFrame {
                             }
                         }
                     }
+                    pst.close();
+                    rs.close();
                 }
             }
         } catch (SQLException ex) {
@@ -1798,10 +1850,14 @@ public class Dash extends javax.swing.JFrame {
             if (success > 0) {
                 JOptionPane.showMessageDialog(this, "Updated Successfully!");
                 loadPcTable();
+                loadPcRepairTable();
                 clear();
             } else {
                 JOptionPane.showMessageDialog(this, "Update Failed!");
             }
+
+            pst.close();
+            rs.close();
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "Update Error: " + ex.getMessage());
@@ -1818,6 +1874,10 @@ public class Dash extends javax.swing.JFrame {
         pnlHistory.setVisible(false);
         pnlRepair.setVisible(true);
     }//GEN-LAST:event_btnToRepairActionPerformed
+
+    private void tableRepairPcMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableRepairPcMouseClicked
+
+    }//GEN-LAST:event_tableRepairPcMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1893,7 +1953,10 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1918,9 +1981,11 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
@@ -1946,6 +2011,7 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JPanel sidebarPnl;
     private javax.swing.JPanel summery;
     private javax.swing.JTable tablePc;
+    private javax.swing.JTable tableRepairPc;
     private javax.swing.JTable tableUser;
     private javax.swing.JTextField txtCPU;
     private javax.swing.JTextField txtFullName;
@@ -2024,6 +2090,8 @@ public class Dash extends javax.swing.JFrame {
 
                 dt.addRow(v);
             }
+            pst.close();
+            rs.close();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -2049,6 +2117,9 @@ public class Dash extends javax.swing.JFrame {
                 if (!rs.next()) {
                     isUnique = true;
                 }
+
+                pst.close();
+                rs.close();
 
                 txtPcId.setText(newPcId);
             }
@@ -2078,6 +2149,9 @@ public class Dash extends javax.swing.JFrame {
                 dt.addRow(v2);
             }
 
+            pst.close();
+            rs.close();
+
         } catch (Exception e) {
             e.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, "Table load error: " + e.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -2100,5 +2174,34 @@ public class Dash extends javax.swing.JFrame {
         radioAwailable.setSelected(false);
         radioOccu.setSelected(false);
         radioRepair.setSelected(false);
+
+        loadPcTable();
+        loadPcRepairTable();
+    }
+
+    private void loadPcRepairTable() {
+        try {
+            DefaultTableModel model = (DefaultTableModel) tableRepairPc.getModel();
+            model.setRowCount(0);
+
+            pst = db.con.prepareStatement("SELECT pc_id, pc_name, category, status, ip_address FROM pc_table");
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                Vector v3 = new Vector();
+
+                v3.add(rs.getString("pc_id"));
+                v3.add(rs.getString("pc_name"));
+                v3.add(rs.getString("pc_name"));
+                v3.add(rs.getString("status"));
+                v3.add(rs.getString("ip_address"));
+
+                model.addRow(v3);
+            }
+            pst.close();
+            rs.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "All PC table load error: " + e.getMessage());
+        }
     }
 }
