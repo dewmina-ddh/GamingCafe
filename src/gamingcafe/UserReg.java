@@ -50,7 +50,6 @@ public class UserReg extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(500, 600));
         setMinimumSize(new java.awt.Dimension(500, 600));
-        setPreferredSize(new java.awt.Dimension(500, 600));
         setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(0, 51, 102));
@@ -96,42 +95,42 @@ public class UserReg extends javax.swing.JFrame {
         lblUId.setBackground(new java.awt.Color(255, 255, 255));
         lblUId.setFont(new java.awt.Font("Leelawadee", 0, 16)); // NOI18N
         lblUId.setForeground(new java.awt.Color(0, 153, 255));
-        jPanel3.add(lblUId, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 190, 30));
+        jPanel3.add(lblUId, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 210, 30));
 
         txtFName.setFont(new java.awt.Font("Leelawadee", 0, 16)); // NOI18N
-        jPanel3.add(txtFName, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, 217, 44));
+        jPanel3.add(txtFName, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 217, 30));
 
         jLabel3.setFont(new java.awt.Font("Leelawadee", 0, 16)); // NOI18N
         jLabel3.setText("last Name");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 149, 44));
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 149, 30));
 
         txtLName.setFont(new java.awt.Font("Leelawadee", 0, 16)); // NOI18N
-        jPanel3.add(txtLName, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 217, 44));
+        jPanel3.add(txtLName, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 217, 30));
 
         txtNIC.setFont(new java.awt.Font("Leelawadee", 0, 16)); // NOI18N
-        jPanel3.add(txtNIC, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 217, 44));
+        jPanel3.add(txtNIC, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 217, 30));
 
         jLabel4.setFont(new java.awt.Font("Leelawadee", 0, 16)); // NOI18N
         jLabel4.setText("NIC");
-        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 149, 44));
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 149, 30));
 
         jLabel5.setFont(new java.awt.Font("Leelawadee", 0, 16)); // NOI18N
         jLabel5.setText("Email");
-        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 149, 44));
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 149, 30));
 
         txtEmail.setFont(new java.awt.Font("Leelawadee", 0, 16)); // NOI18N
-        jPanel3.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 217, 44));
+        jPanel3.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, 217, 30));
 
         jLabel6.setFont(new java.awt.Font("Leelawadee", 0, 16)); // NOI18N
         jLabel6.setText("Role");
-        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, 50, 44));
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, 50, 30));
 
         txtPhone.setFont(new java.awt.Font("Leelawadee", 0, 16)); // NOI18N
-        jPanel3.add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, 217, 44));
+        jPanel3.add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 217, 30));
 
         jLabel7.setFont(new java.awt.Font("Leelawadee", 0, 16)); // NOI18N
         jLabel7.setText("First Name");
-        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 149, 44));
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 149, 30));
 
         jLabel9.setFont(new java.awt.Font("Leelawadee", 0, 16)); // NOI18N
         jLabel9.setText("User_ID");
@@ -146,16 +145,16 @@ public class UserReg extends javax.swing.JFrame {
         btnAdd.setText("Add [Enter]");
         btnAdd.setBorder(null);
         btnAdd.addActionListener(this::btnAddActionPerformed);
-        jPanel3.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 320, 130, 40));
+        jPanel3.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 320, 130, 30));
 
         cmbRole.setFont(new java.awt.Font("Leelawadee", 0, 14)); // NOI18N
         cmbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "User" }));
         cmbRole.addActionListener(this::cmbRoleActionPerformed);
-        jPanel3.add(cmbRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 150, 40));
+        jPanel3.add(cmbRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 150, 30));
 
         jLabel10.setFont(new java.awt.Font("Leelawadee", 0, 16)); // NOI18N
         jLabel10.setText("Phone");
-        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 149, 44));
+        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 149, 30));
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.CENTER);
 
