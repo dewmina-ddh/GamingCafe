@@ -80,7 +80,7 @@ CREATE TABLE `pc_table` (
   `pc_id` varchar(20) NOT NULL,
   `pc_name` varchar(50) NOT NULL,
   `category` varchar(20) DEFAULT 'PC',
-  `processor` varchar(50) DEFAULT NULL,
+  `cpu` varchar(50) DEFAULT NULL,
   `motherboard` varchar(50) DEFAULT NULL,
   `ram_capacity` varchar(20) DEFAULT NULL,
   `vga` varchar(50) DEFAULT NULL,
@@ -88,6 +88,24 @@ CREATE TABLE `pc_table` (
   `hourly_rate` decimal(10,2) NOT NULL,
   `status` varchar(20) NOT NULL DEFAULT 'Available'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `pc_table`
+--
+
+INSERT INTO `pc_table` (`pc_id`, `pc_name`, `category`, `cpu`, `motherboard`, `ram_capacity`, `vga`, `ip_address`, `hourly_rate`, `status`) VALUES
+('PC-GG-1001', 'PC-01', 'PC', 'Intel Core i5-12400F', 'MSI PRO B660M-A', '16GB DDR4', 'NVIDIA RTX 3060 12GB', '192.168.1.101', 120.00, 'Available'),
+('PC-GG-1002', 'PC-02', 'PC', 'Intel Core i5-12400F', 'MSI PRO B660M-A', '16GB DDR4', 'NVIDIA RTX 3060 12GB', '192.168.1.102', 120.00, 'Available'),
+('PC-GG-1003', 'PC-03', 'PC', 'AMD Ryzen 5 5600X', 'ASUS TUF B550M-PLUS', '16GB DDR4', 'NVIDIA RTX 4060 8GB', '192.168.1.103', 150.00, 'Occupied'),
+('PC-GG-1004', 'PC-04', 'PC', 'AMD Ryzen 5 5600X', 'ASUS TUF B550M-PLUS', '16GB DDR4', 'NVIDIA RTX 4060 8GB', '192.168.1.104', 150.00, 'Available'),
+('PC-GG-1005', 'PC-05', 'PC', 'Intel Core i5-13400F', 'Gigabyte B760M DS3H', '32GB DDR5', 'NVIDIA RTX 4060 Ti 8GB', '192.168.1.105', 180.00, 'Available'),
+('PC-GG-1006', 'PC-06', 'PC', 'Intel Core i7-13700K', 'ASUS ROG Strix Z790-F', '32GB DDR5', 'NVIDIA RTX 4070 Ti 12GB', '192.168.1.106', 250.00, 'Available'),
+('PC-GG-1007', 'PC-07', 'PC', 'AMD Ryzen 7 7800X3D', 'MSI MAG X670E TOMAHAWK', '32GB DDR5', 'NVIDIA RTX 4080 Super 16GB', '192.168.1.107', 300.00, 'Available'),
+('PC-GG-1008', 'PC-08', 'PC', 'AMD Ryzen 5 3600', 'ASRock B450 Pro4', '16GB DDR4', 'NVIDIA GTX 1660 Super 6GB', '192.168.1.108', 100.00, 'Repair'),
+('PS5-GG-2001', 'PS5-01', 'PS5', 'Custom AMD Zen 2 8-core', 'Sony Custom Oberon', '16GB GDDR6', 'Custom RDNA 2 10.3 TFLOPS', '192.168.1.151', 200.00, 'Available'),
+('PS5-GG-2002', 'PS5-02', 'PS5', 'Custom AMD Zen 2 8-core', 'Sony Custom Oberon', '16GB GDDR6', 'Custom RDNA 2 10.3 TFLOPS', '192.168.1.152', 200.00, 'Available'),
+('PS5-GG-2003', 'PS5-03', 'PS5', 'Custom AMD Zen 2 8-core', 'Sony Custom Oberon', '16GB GDDR6', 'Custom RDNA 2 10.3 TFLOPS', '192.168.1.153', 200.00, 'Occupied'),
+('PS5-GG-2004', 'PS5-04', 'PS5', 'Custom AMD Zen 2 8-core', 'Sony Custom Oberon', '16GB GDDR6', 'Custom RDNA 2 10.3 TFLOPS', '192.168.1.154', 200.00, 'Available');
 
 -- --------------------------------------------------------
 

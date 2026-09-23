@@ -1,6 +1,9 @@
 package gamingcafe;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.Image;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -11,9 +14,12 @@ import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Vector;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableCellRenderer;
 
 public class Dash extends javax.swing.JFrame {
@@ -33,10 +39,16 @@ public class Dash extends javax.swing.JFrame {
         loadUserTable();
         loadPcTable();
         loadPcRepairTable();
+        loadPcGrid();
         tableStyle(tableUser, jScrollPane1);
         tableStyle(tablePc, jScrollPane2);
 
         this.user = user;
+
+        javax.swing.ButtonGroup pcStatusGroup = new javax.swing.ButtonGroup();
+        pcStatusGroup.add(radioAwailable);
+        pcStatusGroup.add(radioOccu);
+        pcStatusGroup.add(radioRepair);
 
         btnPcUpdate.setVisible(false);
         btnPcDel.setVisible(false);
@@ -83,9 +95,11 @@ public class Dash extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         holder = new javax.swing.JPanel();
         pnlDash = new javax.swing.JPanel();
-        liveGrid = new javax.swing.JPanel();
+        pcSessionsPanel = new javax.swing.JPanel();
         summery = new javax.swing.JPanel();
-        details = new javax.swing.JPanel();
+        pnlSessionEnd = new javax.swing.JPanel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
         pnlLive = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         pnlPc = new javax.swing.JPanel();
@@ -401,18 +415,18 @@ public class Dash extends javax.swing.JFrame {
 
         pnlDash.setBackground(new java.awt.Color(11, 19, 43));
 
-        liveGrid.setBackground(new java.awt.Color(11, 19, 43));
-        liveGrid.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255)));
+        pcSessionsPanel.setBackground(new java.awt.Color(11, 19, 43));
+        pcSessionsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255)), "PC_Sessions", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 153, 255))); // NOI18N
 
-        javax.swing.GroupLayout liveGridLayout = new javax.swing.GroupLayout(liveGrid);
-        liveGrid.setLayout(liveGridLayout);
-        liveGridLayout.setHorizontalGroup(
-            liveGridLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout pcSessionsPanelLayout = new javax.swing.GroupLayout(pcSessionsPanel);
+        pcSessionsPanel.setLayout(pcSessionsPanelLayout);
+        pcSessionsPanelLayout.setHorizontalGroup(
+            pcSessionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 822, Short.MAX_VALUE)
         );
-        liveGridLayout.setVerticalGroup(
-            liveGridLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 540, Short.MAX_VALUE)
+        pcSessionsPanelLayout.setVerticalGroup(
+            pcSessionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 437, Short.MAX_VALUE)
         );
 
         summery.setBackground(new java.awt.Color(11, 19, 43));
@@ -429,41 +443,58 @@ public class Dash extends javax.swing.JFrame {
             .addGap(0, 98, Short.MAX_VALUE)
         );
 
-        details.setBackground(new java.awt.Color(11, 19, 43));
-        details.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255)));
+        pnlSessionEnd.setBackground(new java.awt.Color(11, 19, 43));
+        pnlSessionEnd.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255)));
 
-        javax.swing.GroupLayout detailsLayout = new javax.swing.GroupLayout(details);
-        details.setLayout(detailsLayout);
-        detailsLayout.setHorizontalGroup(
-            detailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 296, Short.MAX_VALUE)
+        javax.swing.GroupLayout pnlSessionEndLayout = new javax.swing.GroupLayout(pnlSessionEnd);
+        pnlSessionEnd.setLayout(pnlSessionEndLayout);
+        pnlSessionEndLayout.setHorizontalGroup(
+            pnlSessionEndLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 288, Short.MAX_VALUE)
         );
-        detailsLayout.setVerticalGroup(
-            detailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        pnlSessionEndLayout.setVerticalGroup(
+            pnlSessionEndLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 540, Short.MAX_VALUE)
         );
+
+        jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(0, 153, 255));
+        jLabel21.setText("Day-OverAll");
+
+        jLabel22.setFont(new java.awt.Font("Leelawadee", 1, 24)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel22.setText("WELCOME BACK,");
+        jLabel22.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
 
         javax.swing.GroupLayout pnlDashLayout = new javax.swing.GroupLayout(pnlDash);
         pnlDash.setLayout(pnlDashLayout);
         pnlDashLayout.setHorizontalGroup(
             pnlDashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDashLayout.createSequentialGroup()
+            .addGroup(pnlDashLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlDashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(summery, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnlDashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(summery, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnlDashLayout.createSequentialGroup()
-                        .addComponent(liveGrid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(pnlDashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pcSessionsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 832, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(details, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(pnlSessionEnd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnlDashLayout.setVerticalGroup(
             pnlDashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDashLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlDashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(liveGrid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(details, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE)
+                .addGroup(pnlDashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(pnlDashLayout.createSequentialGroup()
+                        .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(pcSessionsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel21))
+                    .addComponent(pnlSessionEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(summery, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -498,7 +529,7 @@ public class Dash extends javax.swing.JFrame {
             .addGroup(pnlLiveLayout.createSequentialGroup()
                 .addGap(164, 164, 164)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(396, Short.MAX_VALUE))
+                .addContainerGap(400, Short.MAX_VALUE))
         );
 
         holder.add(pnlLive, "card6");
@@ -513,7 +544,7 @@ public class Dash extends javax.swing.JFrame {
         );
         pnlPcLayout.setVerticalGroup(
             pnlPcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 660, Short.MAX_VALUE)
+            .addGap(0, 664, Short.MAX_VALUE)
         );
 
         holder.add(pnlPc, "card5");
@@ -528,7 +559,7 @@ public class Dash extends javax.swing.JFrame {
         );
         pnlReportsLayout.setVerticalGroup(
             pnlReportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 660, Short.MAX_VALUE)
+            .addGap(0, 664, Short.MAX_VALUE)
         );
 
         holder.add(pnlReports, "card4");
@@ -1357,7 +1388,7 @@ public class Dash extends javax.swing.JFrame {
         );
         pnlAccLayout.setVerticalGroup(
             pnlAccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 660, Short.MAX_VALUE)
+            .addGap(0, 664, Short.MAX_VALUE)
         );
 
         pnlSet.add(pnlAcc, java.awt.BorderLayout.LINE_START);
@@ -1390,7 +1421,7 @@ public class Dash extends javax.swing.JFrame {
             .addGroup(setting1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jCheckBox1)
-                .addContainerGap(585, Short.MAX_VALUE))
+                .addContainerGap(589, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
@@ -1661,11 +1692,13 @@ public class Dash extends javax.swing.JFrame {
         String status = "";
 
         if (radioAwailable.isSelected()) {
-            status = "Awailable";
+            status = "Available";
         } else if (radioOccu.isSelected()) {
             status = "Occupied";
         } else if (radioRepair.isSelected()) {
-            status = "Repiar";
+            status = "Repair";
+        } else {
+            status = "Available";
         }
 
         if (pcID.isEmpty() || pcName.isEmpty() || rate.isEmpty()) {
@@ -1783,11 +1816,11 @@ public class Dash extends javax.swing.JFrame {
 
                         String status = rs.getString("status");
                         if (status != null) {
-                            if (status.equals("Available")) {
+                            if (status.equalsIgnoreCase("Available") || status.equalsIgnoreCase("Awailable")) {
                                 radioAwailable.setSelected(true);
-                            } else if (status.equals("Occupied")) {
+                            } else if (status.equalsIgnoreCase("Occupied")) {
                                 radioOccu.setSelected(true);
-                            } else if (status.equals("Repair")) {
+                            } else if (status.equalsIgnoreCase("Repair") || status.equalsIgnoreCase("Repiar")) {
                                 radioRepair.setSelected(true);
                             }
                         }
@@ -1937,7 +1970,6 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbPcCategory;
     private javax.swing.JComboBox<String> cmbRole;
     private javax.swing.JPanel contentPnl;
-    private javax.swing.JPanel details;
     private javax.swing.JPanel framePnl;
     private javax.swing.JPanel holder;
     private javax.swing.JButton jButton1;
@@ -1957,6 +1989,8 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1990,8 +2024,8 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JLabel lblImage;
-    private javax.swing.JPanel liveGrid;
     private javax.swing.JPanel main;
+    private javax.swing.JPanel pcSessionsPanel;
     private javax.swing.JPanel pnlAcc;
     private javax.swing.JPanel pnlAdmin;
     private javax.swing.JPanel pnlButton;
@@ -2002,6 +2036,7 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JPanel pnlPcM;
     private javax.swing.JPanel pnlRepair;
     private javax.swing.JPanel pnlReports;
+    private javax.swing.JPanel pnlSessionEnd;
     private javax.swing.JPanel pnlSet;
     private javax.swing.JPanel pnlUTable;
     private javax.swing.JRadioButton radioAwailable;
@@ -2159,6 +2194,7 @@ public class Dash extends javax.swing.JFrame {
     }
 
     private void clear() {
+        txtPcId.setText("");
         txtName.setText("");
         txtIP.setText("");
         txtHrate.setText("");
@@ -2175,8 +2211,13 @@ public class Dash extends javax.swing.JFrame {
         radioOccu.setSelected(false);
         radioRepair.setSelected(false);
 
+        btnPcUpdate.setVisible(false);
+        btnPcDel.setVisible(false);
+        btnPcClear.setVisible(false);
+
         loadPcTable();
         loadPcRepairTable();
+        loadPcGrid();
     }
 
     private void loadPcRepairTable() {
@@ -2203,5 +2244,134 @@ public class Dash extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "All PC table load error: " + e.getMessage());
         }
+    }
+
+    private void loadPcGrid() {
+        pcSessionsPanel.removeAll();
+        pcSessionsPanel.setPreferredSize(new java.awt.Dimension(832, 440));
+        pcSessionsPanel.setMinimumSize(new java.awt.Dimension(832, 440));
+        pcSessionsPanel.setLayout(new BorderLayout());
+
+        JPanel gridPanel = new JPanel();
+        gridPanel.setBackground(new Color(11, 19, 43));
+        gridPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        gridPanel.setLayout(new GridLayout(0, 6, 10, 10));
+
+        JPanel wrapper = new JPanel(new java.awt.BorderLayout());
+        wrapper.setBackground(new java.awt.Color(11, 19, 43));
+        wrapper.add(gridPanel, java.awt.BorderLayout.NORTH);
+
+        JScrollPane scrollPane = new JScrollPane(wrapper);
+        scrollPane.setBackground(new Color(11, 19, 43));
+        scrollPane.getViewport().setBackground(new Color(11, 19, 43));
+        scrollPane.setBorder(null);
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+
+        pcSessionsPanel.add(scrollPane, java.awt.BorderLayout.CENTER);
+
+        try {
+            pst = db.con.prepareStatement("SELECT pc_id, pc_name, category, hourly_rate, status FROM pc_table");
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                final String id = rs.getString("pc_id");
+                final String name = rs.getString("pc_name");
+                final String category = rs.getString("category");
+                final String rate = rs.getString("hourly_rate");
+                final String status = rs.getString("status");
+
+                JButton btnPc = new javax.swing.JButton();
+                btnPc.setPreferredSize(new java.awt.Dimension(122, 68));
+                btnPc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+                btnPc.setFocusPainted(false);
+                btnPc.putClientProperty("FlatLaf.style", "arc: 12");
+
+                String statusColor = "#00e676";
+                String statusLabel = "Available";
+                java.awt.Color cardBg = new java.awt.Color(16, 36, 28);
+                java.awt.Color borderColor = new java.awt.Color(0, 200, 115);
+
+                if (status != null) {
+                    if (status.equalsIgnoreCase("Occupied")) {
+                        statusColor = "#ff4757";
+                        statusLabel = "Occupied";
+                        cardBg = new java.awt.Color(38, 18, 24);
+                        borderColor = new java.awt.Color(235, 60, 75);
+                    } else if (status.equalsIgnoreCase("Repair") || status.equalsIgnoreCase("Repiar")) {
+                        statusColor = "#ffa502";
+                        statusLabel = "Repair";
+                        cardBg = new java.awt.Color(28, 32, 40);
+                        borderColor = new java.awt.Color(115, 125, 140);
+                    }
+                }
+
+                btnPc.setBackground(cardBg);
+                btnPc.setBorder(javax.swing.BorderFactory.createCompoundBorder(
+                        new javax.swing.border.LineBorder(borderColor, 1, true),
+                        javax.swing.BorderFactory.createEmptyBorder(3, 4, 3, 4)
+                ));
+
+                String rateText = "";
+                try {
+                    if (rate != null && !rate.isEmpty()) {
+                        double r = Double.parseDouble(rate);
+                        rateText = "Rs. " + (int) r + "/h";
+                    }
+                } catch (Exception ignored) {
+                    rateText = rate != null ? rate : "";
+                }
+
+                java.net.URL iconUrl = null;
+                try {
+                    if (category != null && category.equalsIgnoreCase("PS5")) {
+                        iconUrl = getClass().getResource("/icons/ps5_icon.png");
+                    }
+                    if (iconUrl == null) {
+                        iconUrl = getClass().getResource("/icons/pc.png");
+                    }
+                } catch (Exception ex) {
+                    // ignore
+                }
+
+                String iconTag = "";
+                if (iconUrl != null) {
+                    iconTag = "<img src='" + iconUrl + "' width='16' height='16'>&nbsp;";
+                }
+
+                String btnText = "<html><center><div style='padding-top:2px; font-family: Segoe UI, sans-serif;'>"
+                        + "<span style='font-size:12px; font-weight:bold; color:#FFFFFF;'>" + iconTag + name + "</span><br>"
+                        + "<span style='font-size:10px; color:" + statusColor + "; font-weight:bold;'>● " + statusLabel + "</span>"
+                        + (rateText.isEmpty() ? "" : ("<br><span style='font-size:9px; color:#8fa0c0;'>" + rateText + "</span>"))
+                        + "</div></center></html>";
+
+                btnPc.setText(btnText);
+                btnPc.setIcon(null);
+
+                final String finalRateText = rateText;
+                btnPc.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        javax.swing.JOptionPane.showMessageDialog(Dash.this,
+                                "Device: " + name + " (" + id + ")\nCategory: " + category + "\nRate: " + finalRateText + "\nStatus: " + status,
+                                "Station Details",
+                                javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                    }
+                });
+
+                gridPanel.add(btnPc);
+            }
+
+            pcSessionsPanel.revalidate();
+            pcSessionsPanel.repaint();
+
+            pst.close();
+            rs.close();
+
+        } catch (SQLException ex) {
+            System.getLogger(Dash.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            javax.swing.JOptionPane.showMessageDialog(this, "PC Grid Load Error: " + ex.getMessage());
+        }
+
     }
 }
