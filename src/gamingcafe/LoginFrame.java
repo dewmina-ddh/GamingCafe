@@ -2,6 +2,9 @@ package gamingcafe;
 
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -80,8 +83,11 @@ public class LoginFrame extends javax.swing.JFrame {
 
         String userName = txtUname.getText().trim();
         String password = new String(txtPass.getPassword()).trim();
+        
+        String hPassword = hashPassword(password);
 
-        User isUser = checkUser(userName, password);
+        User isUser = checkUser(userName, hPassword);
+        
 
         if (isUser != null) {
             System.out.println("User Role is: " + isUser.getRole());
@@ -170,6 +176,27 @@ public class LoginFrame extends javax.swing.JFrame {
         }
         return null;
 
+    }
+
+    private String hashPassword(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hashBytes = md.digest(password.getBytes(StandardCharsets.UTF_8));
+            StringBuilder hexString = new StringBuilder();
+
+            for (byte b : hashBytes) {
+                String hex = Integer.toHexString(0xff & b);
+                if (hex.length() == 1) {
+                    hexString.append('0');
+                }
+                hexString.append(hex);
+            }
+            return hexString.toString();
+
+        } catch (NoSuchAlgorithmException ex) {
+            System.getLogger(UserReg.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            return null;
+        }
     }
 
 }
