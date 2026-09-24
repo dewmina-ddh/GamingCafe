@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -15,6 +17,8 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Vector;
 import javax.swing.BorderFactory;
+import static javax.swing.BorderFactory.createCompoundBorder;
+import static javax.swing.BorderFactory.createEmptyBorder;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -103,6 +107,7 @@ public class Dash extends javax.swing.JFrame {
         pnlLive = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         pnlPc = new javax.swing.JPanel();
+        jPanel14 = new javax.swing.JPanel();
         pnlReports = new javax.swing.JPanel();
         pnlAdmin = new javax.swing.JPanel();
         adminLeft = new javax.swing.JPanel();
@@ -417,6 +422,9 @@ public class Dash extends javax.swing.JFrame {
 
         pcSessionsPanel.setBackground(new java.awt.Color(11, 19, 43));
         pcSessionsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255)), "PC_Sessions", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 153, 255))); // NOI18N
+        pcSessionsPanel.setMaximumSize(new java.awt.Dimension(832, 450));
+        pcSessionsPanel.setMinimumSize(new java.awt.Dimension(832, 450));
+        pcSessionsPanel.setPreferredSize(new java.awt.Dimension(832, 450));
 
         javax.swing.GroupLayout pcSessionsPanelLayout = new javax.swing.GroupLayout(pcSessionsPanel);
         pcSessionsPanel.setLayout(pcSessionsPanelLayout);
@@ -426,7 +434,7 @@ public class Dash extends javax.swing.JFrame {
         );
         pcSessionsPanelLayout.setVerticalGroup(
             pcSessionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 437, Short.MAX_VALUE)
+            .addGap(0, 427, Short.MAX_VALUE)
         );
 
         summery.setBackground(new java.awt.Color(11, 19, 43));
@@ -476,7 +484,7 @@ public class Dash extends javax.swing.JFrame {
                     .addComponent(summery, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnlDashLayout.createSequentialGroup()
                         .addGroup(pnlDashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pcSessionsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 832, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pcSessionsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -486,12 +494,12 @@ public class Dash extends javax.swing.JFrame {
         pnlDashLayout.setVerticalGroup(
             pnlDashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDashLayout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
-                .addGroup(pnlDashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addGroup(pnlDashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnlDashLayout.createSequentialGroup()
                         .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pcSessionsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(pcSessionsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel21))
                     .addComponent(pnlSessionEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -536,15 +544,36 @@ public class Dash extends javax.swing.JFrame {
 
         pnlPc.setBackground(new java.awt.Color(11, 19, 43));
 
+        jPanel14.setBackground(new java.awt.Color(11, 19, 43));
+        jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255)), "PC- Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 153, 255))); // NOI18N
+        jPanel14.setForeground(new java.awt.Color(11, 19, 43));
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1118, Short.MAX_VALUE)
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 633, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout pnlPcLayout = new javax.swing.GroupLayout(pnlPc);
         pnlPc.setLayout(pnlPcLayout);
         pnlPcLayout.setHorizontalGroup(
             pnlPcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1140, Short.MAX_VALUE)
+            .addGroup(pnlPcLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         pnlPcLayout.setVerticalGroup(
             pnlPcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 664, Short.MAX_VALUE)
+            .addGroup(pnlPcLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         holder.add(pnlPc, "card5");
@@ -2003,6 +2032,7 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -2248,8 +2278,8 @@ public class Dash extends javax.swing.JFrame {
 
     private void loadPcGrid() {
         pcSessionsPanel.removeAll();
-        pcSessionsPanel.setPreferredSize(new java.awt.Dimension(832, 440));
-        pcSessionsPanel.setMinimumSize(new java.awt.Dimension(832, 440));
+        pcSessionsPanel.setPreferredSize(new java.awt.Dimension(832, 450));
+        pcSessionsPanel.setMinimumSize(new java.awt.Dimension(832, 450));
         pcSessionsPanel.setLayout(new BorderLayout());
 
         JPanel gridPanel = new JPanel();
@@ -2308,10 +2338,7 @@ public class Dash extends javax.swing.JFrame {
                 }
 
                 btnPc.setBackground(cardBg);
-                btnPc.setBorder(javax.swing.BorderFactory.createCompoundBorder(
-                        new javax.swing.border.LineBorder(borderColor, 1, true),
-                        javax.swing.BorderFactory.createEmptyBorder(3, 4, 3, 4)
-                ));
+                btnPc.setBorder(createCompoundBorder(new javax.swing.border.LineBorder(borderColor, 1, true),createEmptyBorder(3, 4, 3, 4) ));
 
                 String rateText = "";
                 try {
@@ -2350,12 +2377,9 @@ public class Dash extends javax.swing.JFrame {
                 btnPc.setIcon(null);
 
                 final String finalRateText = rateText;
-                btnPc.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        javax.swing.JOptionPane.showMessageDialog(Dash.this,
-                                "Device: " + name + " (" + id + ")\nCategory: " + category + "\nRate: " + finalRateText + "\nStatus: " + status,
-                                "Station Details",
-                                javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                btnPc.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        JOptionPane.showMessageDialog(Dash.this,"Device: " + name + " (" + id + ")\nCategory: " + category + "\nRate: " + finalRateText + "\nStatus: " + status,"Station Details",javax.swing.JOptionPane.INFORMATION_MESSAGE);
                     }
                 });
 
@@ -2370,7 +2394,7 @@ public class Dash extends javax.swing.JFrame {
 
         } catch (SQLException ex) {
             System.getLogger(Dash.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-            javax.swing.JOptionPane.showMessageDialog(this, "PC Grid Load Error: " + ex.getMessage());
+            JOptionPane.showMessageDialog(this, "PC Grid Load Error: " + ex.getMessage());
         }
 
     }
