@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 21, 2026 at 03:36 AM
+-- Generation Time: Sep 24, 2026 at 12:27 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -102,10 +102,13 @@ INSERT INTO `pc_table` (`pc_id`, `pc_name`, `category`, `cpu`, `motherboard`, `r
 ('PC-GG-1006', 'PC-06', 'PC', 'Intel Core i7-13700K', 'ASUS ROG Strix Z790-F', '32GB DDR5', 'NVIDIA RTX 4070 Ti 12GB', '192.168.1.106', 250.00, 'Available'),
 ('PC-GG-1007', 'PC-07', 'PC', 'AMD Ryzen 7 7800X3D', 'MSI MAG X670E TOMAHAWK', '32GB DDR5', 'NVIDIA RTX 4080 Super 16GB', '192.168.1.107', 300.00, 'Available'),
 ('PC-GG-1008', 'PC-08', 'PC', 'AMD Ryzen 5 3600', 'ASRock B450 Pro4', '16GB DDR4', 'NVIDIA GTX 1660 Super 6GB', '192.168.1.108', 100.00, 'Repair'),
+('PC-GG-6238', 'PC-09', 'PC', 'fcsdfsd', 'fsdfsdf', '32', '16', '192.168.3.6', 520.00, 'Available'),
+('PC-GG-9156', 'PC-10', 'PC', 'rwef', 'wefew', '12', '4', '192.168.12.3', 45.00, 'Available'),
 ('PS5-GG-2001', 'PS5-01', 'PS5', 'Custom AMD Zen 2 8-core', 'Sony Custom Oberon', '16GB GDDR6', 'Custom RDNA 2 10.3 TFLOPS', '192.168.1.151', 200.00, 'Available'),
 ('PS5-GG-2002', 'PS5-02', 'PS5', 'Custom AMD Zen 2 8-core', 'Sony Custom Oberon', '16GB GDDR6', 'Custom RDNA 2 10.3 TFLOPS', '192.168.1.152', 200.00, 'Available'),
 ('PS5-GG-2003', 'PS5-03', 'PS5', 'Custom AMD Zen 2 8-core', 'Sony Custom Oberon', '16GB GDDR6', 'Custom RDNA 2 10.3 TFLOPS', '192.168.1.153', 200.00, 'Occupied'),
-('PS5-GG-2004', 'PS5-04', 'PS5', 'Custom AMD Zen 2 8-core', 'Sony Custom Oberon', '16GB GDDR6', 'Custom RDNA 2 10.3 TFLOPS', '192.168.1.154', 200.00, 'Available');
+('PS5-GG-2004', 'PS5-04', 'PS5', 'Custom AMD Zen 2 8-core', 'Sony Custom Oberon', '16GB GDDR6', 'Custom RDNA 2 10.3 TFLOPS', '192.168.1.154', 200.00, 'Available'),
+('PS5-GG-3710', 'PS5-505', 'PS5', 'rdwer', 'rwerwe', '15', '26', '192.168.5.6', 23.00, 'Available');
 
 -- --------------------------------------------------------
 
