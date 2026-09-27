@@ -247,7 +247,16 @@ public class LoginFrame extends javax.swing.JFrame {
 
             rs = pst.executeQuery();
             if (rs.next()) {
-                return new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), (Image) rs.getBlob(12));
+                byte[] imgBytes = rs.getBytes(12);
+                Image profileImage = null;
+                if (imgBytes != null && imgBytes.length > 0) {
+                    profileImage = new javax.swing.ImageIcon(imgBytes).getImage();
+                }
+                return new User(
+                    rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+                    rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),
+                    rs.getString(9), rs.getString(10), rs.getString(11), profileImage
+                );
             }
 
         } catch (SQLException ex) {

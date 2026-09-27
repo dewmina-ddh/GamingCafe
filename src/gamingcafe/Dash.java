@@ -39,6 +39,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -148,13 +149,9 @@ public class Dash extends javax.swing.JFrame {
         loadSessionHistoryTable();
         loadInvoiceHistoryTable();
 
-        // Live sessions table styling & button column
+        // Live sessions table styling
         tableStyle(tableLiveSessions, jScrollPaneLive);
         tableLiveSessions.setRowHeight(42);
-        if (tableLiveSessions.getColumnModel().getColumnCount() > 8) {
-            tableLiveSessions.getColumnModel().getColumn(8).setCellRenderer(new LiveEndButtonRenderer());
-            tableLiveSessions.getColumnModel().getColumn(8).setCellEditor(new LiveEndButtonEditor(new javax.swing.JCheckBox()));
-        }
         loadLiveSessionsTable();
         startLiveTableTimer();
 
@@ -189,6 +186,7 @@ public class Dash extends javax.swing.JFrame {
         // Setup Keyboard Shortcuts (F1-F6, Enter key) and right click PDF export popups
         setupKeyboardShortcuts();
         setupTablePdfExportPopups();
+        startHeaderClockTimer();
     }
 
     @SuppressWarnings("unchecked")
@@ -372,6 +370,7 @@ public class Dash extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
+        jLabel34 = new javax.swing.JLabel();
         adminRigh = new javax.swing.JPanel();
         adminRightCard = new javax.swing.JPanel();
         btnUserAdd = new javax.swing.JButton();
@@ -587,46 +586,44 @@ public class Dash extends javax.swing.JFrame {
         Header.add(jPanel2, java.awt.BorderLayout.LINE_START);
 
         jPanel5.setBackground(new java.awt.Color(0, 51, 102));
-        jPanel5.setMaximumSize(new java.awt.Dimension(300, 60));
-        jPanel5.setMinimumSize(new java.awt.Dimension(300, 60));
-        jPanel5.setPreferredSize(new java.awt.Dimension(300, 60));
+        jPanel5.setMaximumSize(new java.awt.Dimension(400, 60));
+        jPanel5.setMinimumSize(new java.awt.Dimension(400, 60));
+        jPanel5.setPreferredSize(new java.awt.Dimension(400, 60));
 
         DateTime.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         DateTime.setForeground(new java.awt.Color(255, 255, 255));
         DateTime.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        DateTime.setText("dsfdghtrhtr");
         DateTime.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                    .addContainerGap(60, Short.MAX_VALUE)
-                    .addComponent(DateTime, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(DateTime, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 60, Short.MAX_VALUE)
-            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(DateTime)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(DateTime, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                .addGap(7, 7, 7))
         );
 
         Header.add(jPanel5, java.awt.BorderLayout.LINE_END);
 
         jPanel6.setBackground(new java.awt.Color(0, 51, 102));
+        jPanel6.setMaximumSize(new java.awt.Dimension(750, 59));
+        jPanel6.setMinimumSize(new java.awt.Dimension(750, 59));
+        jPanel6.setPreferredSize(new java.awt.Dimension(750, 59));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 796, Short.MAX_VALUE)
+            .addGap(0, 750, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1082,11 +1079,11 @@ public class Dash extends javax.swing.JFrame {
 
             },
             new String [] {
-                "PC-ID", "PC-Name", "Category", "CPU", "RAM", "VGA", "Rate", "Status", "Action"
+                "PC-ID", "PC-Name", "Category", "CPU", "RAM", "VGA", "Rate", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1958,7 +1955,7 @@ public class Dash extends javax.swing.JFrame {
         jScrollPane6.setViewportView(jTable1);
 
         jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel24.setText("User Log");
+        jLabel24.setText("User Log History");
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1999,41 +1996,51 @@ public class Dash extends javax.swing.JFrame {
         });
         jScrollPane8.setViewportView(jTable4);
 
+        jLabel34.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel34.setText("Session-History");
+
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
         jPanel22Layout.setHorizontalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel22Layout.createSequentialGroup()
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel22Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel22Layout.createSequentialGroup()
-                                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(394, 394, 394)
-                                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel22Layout.createSequentialGroup()
-                                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(15, 15, 15)
-                                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel22Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane6)))
+                        .addComponent(jScrollPane7))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel22Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 946, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel22Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane8)
+                            .addGroup(jPanel22Layout.createSequentialGroup()
+                                .addComponent(jLabel24)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel22Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel34))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel22Layout.setVerticalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel22Layout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(73, 73, 73)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -2487,49 +2494,41 @@ public class Dash extends javax.swing.JFrame {
 
     // Interactive Report Generation Dialog for Admin / Reports
     public void showReportGenerationDialog() {
-        String[] options = {
+        String[] reports = {
             "1. User Activity Logs Report (PDF)",
             "2. PC Session History & Usage Report (PDF)",
             "3. Invoices & Revenue Billing Report (PDF)",
             "4. PC Inventory & Stations Report (PDF)",
-            "5. PC Maintenance & Repair Report (PDF)",
-            "Cancel"
+            "5. PC Maintenance & Repair Report (PDF)"
         };
 
-        int choice = JOptionPane.showOptionDialog(
+        String selected = (String) JOptionPane.showInputDialog(
             this,
             "Select the Report you would like to generate and export as PDF:",
             "Generate Cafe PDF Report",
-            JOptionPane.DEFAULT_OPTION,
             JOptionPane.QUESTION_MESSAGE,
             null,
-            options,
-            options[0]
+            reports,
+            reports[0]
         );
 
-        switch (choice) {
-            case 0:
-                loadUserLogsTable();
-                exportTableToPdf(jTable4, "User Activity Logs Report", "User_Logs_Report");
-                break;
-            case 1:
-                loadSessionHistoryTable();
-                exportTableToPdf(jTable3, "PC Session History & Usage Report", "PC_Session_History_Report");
-                break;
-            case 2:
-                loadInvoiceHistoryTable();
-                exportTableToPdf(jTable1, "Invoices & Revenue Billing Report", "Invoices_Billing_Report");
-                break;
-            case 3:
-                loadPcTable();
-                exportTableToPdf(tablePc, "PC Inventory & Stations Report", "PC_Inventory_Report");
-                break;
-            case 4:
-                loadRepairHistoryTable();
-                exportTableToPdf(tableRepairPc, "PC Maintenance & Repair Report", "PC_Repair_Report");
-                break;
-            default:
-                break;
+        if (selected == null) return;
+
+        if (selected.startsWith("1")) {
+            loadUserLogsTable();
+            exportTableToPdf(jTable4, "User Activity Logs Report", "User_Logs_Report");
+        } else if (selected.startsWith("2")) {
+            loadSessionHistoryTable();
+            exportTableToPdf(jTable3, "PC Session History & Usage Report", "PC_Session_History_Report");
+        } else if (selected.startsWith("3")) {
+            loadInvoiceHistoryTable();
+            exportTableToPdf(jTable1, "Invoices & Revenue Billing Report", "Invoices_Billing_Report");
+        } else if (selected.startsWith("4")) {
+            loadPcTable();
+            exportTableToPdf(tablePc, "PC Inventory & Stations Report", "PC_Inventory_Report");
+        } else if (selected.startsWith("5")) {
+            loadRepairHistoryTable();
+            exportTableToPdf(tableRepairPc, "PC Maintenance & Repair Report", "PC_Repair_Report");
         }
     }
 
@@ -3238,8 +3237,10 @@ public class Dash extends javax.swing.JFrame {
         if (selectedRow != -1) {
             String pcId = jTable2.getValueAt(selectedRow, 0) != null ? jTable2.getValueAt(selectedRow, 0).toString() : "";
             String reason = jTable2.getValueAt(selectedRow, 3) != null ? jTable2.getValueAt(selectedRow, 3).toString() : "";
+            String amount = (jTable2.getColumnCount() > 4 && jTable2.getValueAt(selectedRow, 4) != null) ? jTable2.getValueAt(selectedRow, 4).toString() : "";
             jTextField2.setText(pcId);
             jTextField3.setText(reason);
+            jTextField4.setText(amount);
         }
     }//GEN-LAST:event_jTable2MouseClicked
 
@@ -3459,6 +3460,46 @@ public class Dash extends javax.swing.JFrame {
         updateSettingsFieldsEditableState();
     }
 
+    private byte[] compressAndResizeImage(File imageFile, int maxDimension) {
+        try {
+            java.awt.image.BufferedImage originalImage = javax.imageio.ImageIO.read(imageFile);
+            if (originalImage == null) {
+                return java.nio.file.Files.readAllBytes(imageFile.toPath());
+            }
+
+            int origWidth = originalImage.getWidth();
+            int origHeight = originalImage.getHeight();
+            int newWidth = origWidth;
+            int newHeight = origHeight;
+
+            if (origWidth > maxDimension || origHeight > maxDimension) {
+                if (origWidth > origHeight) {
+                    newWidth = maxDimension;
+                    newHeight = (int) ((double) origHeight / origWidth * maxDimension);
+                } else {
+                    newHeight = maxDimension;
+                    newWidth = (int) ((double) origWidth / origHeight * maxDimension);
+                }
+            }
+
+            java.awt.image.BufferedImage resizedImage = new java.awt.image.BufferedImage(newWidth, newHeight, java.awt.image.BufferedImage.TYPE_INT_RGB);
+            java.awt.Graphics2D g2d = resizedImage.createGraphics();
+            g2d.setRenderingHint(java.awt.RenderingHints.KEY_INTERPOLATION, java.awt.RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+            g2d.drawImage(originalImage, 0, 0, newWidth, newHeight, null);
+            g2d.dispose();
+
+            java.io.ByteArrayOutputStream baos = new java.io.ByteArrayOutputStream();
+            javax.imageio.ImageIO.write(resizedImage, "jpg", baos);
+            return baos.toByteArray();
+        } catch (Exception e) {
+            try {
+                return java.nio.file.Files.readAllBytes(imageFile.toPath());
+            } catch (Exception ex) {
+                return null;
+            }
+        }
+    }
+
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         if (!checkAccEdite.isSelected()) {
             JOptionPane.showMessageDialog(this, "Please check 'Update Profile' to enable editing!", "Notice", JOptionPane.INFORMATION_MESSAGE);
@@ -3474,8 +3515,10 @@ public class Dash extends javax.swing.JFrame {
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = chooser.getSelectedFile();
             try {
-                java.nio.file.Path path = selectedFile.toPath();
-                byte[] bytes = java.nio.file.Files.readAllBytes(path);
+                byte[] bytes = compressAndResizeImage(selectedFile, 500);
+                if (bytes == null || bytes.length == 0) {
+                    bytes = java.nio.file.Files.readAllBytes(selectedFile.toPath());
+                }
                 this.currentProfileImageBytes = bytes;
 
                 ImageIcon icon = new ImageIcon(bytes);
@@ -3570,40 +3613,50 @@ public class Dash extends javax.swing.JFrame {
         }
 
         try {
-            // Check username collision with other accounts
-            pst = db.con.prepareStatement("SELECT emp_no FROM user WHERE username = ? AND emp_no != ?");
-            pst.setString(1, uName);
-            pst.setString(2, empNo);
-            rs = pst.executeQuery();
-            if (rs.next()) {
-                JOptionPane.showMessageDialog(this, "This username is already taken by another user! Please choose a different one.", "Warning", JOptionPane.WARNING_MESSAGE);
+            String currentEmpNo = (user != null && user.getEmpNo() != null) ? user.getEmpNo().trim() : empNo;
+            String currentUserName = (user != null && user.getUserName() != null) ? user.getUserName().trim() : uName;
+            String currentNic = (user != null && user.getNic() != null) ? user.getNic().trim() : nic;
+            String currentId = (user != null && user.getId() != null) ? user.getId().trim() : "";
+
+            // 1. Check username collision with OTHER accounts
+            if (!uName.equalsIgnoreCase(currentUserName)) {
+                pst = db.con.prepareStatement("SELECT emp_no FROM user WHERE username = ? AND emp_no != ?");
+                pst.setString(1, uName);
+                pst.setString(2, currentEmpNo.isEmpty() ? "-" : currentEmpNo);
+                rs = pst.executeQuery();
+                if (rs.next()) {
+                    JOptionPane.showMessageDialog(this, "This username is already taken by another user! Please choose a different one.", "Warning", JOptionPane.WARNING_MESSAGE);
+                    pst.close();
+                    rs.close();
+                    txtUName.requestFocus();
+                    return;
+                }
                 pst.close();
                 rs.close();
-                txtUName.requestFocus();
-                return;
             }
-            pst.close();
-            rs.close();
 
-            // Check NIC collision with other accounts
-            pst = db.con.prepareStatement("SELECT emp_no FROM user WHERE nic = ? AND emp_no != ?");
-            pst.setString(1, nic);
-            pst.setString(2, empNo);
-            rs = pst.executeQuery();
-            if (rs.next()) {
-                JOptionPane.showMessageDialog(this, "This NIC is already associated with another account!", "Warning", JOptionPane.WARNING_MESSAGE);
+            // 2. Check NIC collision with OTHER accounts
+            if (!nic.equalsIgnoreCase(currentNic)) {
+                pst = db.con.prepareStatement("SELECT emp_no FROM user WHERE nic = ? AND emp_no != ?");
+                pst.setString(1, nic);
+                pst.setString(2, currentEmpNo.isEmpty() ? "-" : currentEmpNo);
+                rs = pst.executeQuery();
+                if (rs.next()) {
+                    JOptionPane.showMessageDialog(this, "This NIC is already associated with another account!", "Warning", JOptionPane.WARNING_MESSAGE);
+                    pst.close();
+                    rs.close();
+                    txtNIC.requestFocus();
+                    return;
+                }
                 pst.close();
                 rs.close();
-                txtNIC.requestFocus();
-                return;
             }
-            pst.close();
-            rs.close();
 
-            // Check Email collision with other accounts
-            pst = db.con.prepareStatement("SELECT emp_no FROM user WHERE email = ? AND emp_no != ?");
+            // 3. Check Email collision with OTHER accounts
+            pst = db.con.prepareStatement("SELECT emp_no FROM user WHERE email = ? AND emp_no != ? AND username != ?");
             pst.setString(1, email);
-            pst.setString(2, empNo);
+            pst.setString(2, currentEmpNo.isEmpty() ? "-" : currentEmpNo);
+            pst.setString(3, currentUserName);
             rs = pst.executeQuery();
             if (rs.next()) {
                 JOptionPane.showMessageDialog(this, "This Email is already associated with another account!", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -3615,10 +3668,11 @@ public class Dash extends javax.swing.JFrame {
             pst.close();
             rs.close();
 
-            // Check Phone collision with other accounts
-            pst = db.con.prepareStatement("SELECT emp_no FROM user WHERE phone = ? AND emp_no != ?");
+            // 4. Check Phone collision with OTHER accounts
+            pst = db.con.prepareStatement("SELECT emp_no FROM user WHERE phone = ? AND emp_no != ? AND username != ?");
             pst.setString(1, phone);
-            pst.setString(2, empNo);
+            pst.setString(2, currentEmpNo.isEmpty() ? "-" : currentEmpNo);
+            pst.setString(3, currentUserName);
             rs = pst.executeQuery();
             if (rs.next()) {
                 JOptionPane.showMessageDialog(this, "This Phone number is already associated with another account!", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -3630,10 +3684,20 @@ public class Dash extends javax.swing.JFrame {
             pst.close();
             rs.close();
 
-            // Update user table without touching password
+            // 5. Update user table for the current user
+            try {
+                java.sql.Statement alterStmt = db.con.createStatement();
+                try {
+                    alterStmt.executeUpdate("ALTER TABLE user MODIFY COLUMN image LONGBLOB NULL");
+                } catch (Exception e0) {
+                    try { alterStmt.executeUpdate("ALTER TABLE user MODIFY COLUMN image MEDIUMBLOB NULL"); } catch (Exception ignored) {}
+                }
+                alterStmt.close();
+            } catch (Exception ignored) {}
+
             if (currentProfileImageBytes != null) {
                 pst = db.con.prepareStatement(
-                    "UPDATE user SET f_name = ?, l_name = ?, username = ?, email = ?, phone = ?, nic = ?, image = ? WHERE emp_no = ?"
+                    "UPDATE user SET f_name = ?, l_name = ?, username = ?, email = ?, phone = ?, nic = ?, image = ? WHERE emp_no = ? OR username = ?"
                 );
                 pst.setString(1, fName);
                 pst.setString(2, lName);
@@ -3642,10 +3706,11 @@ public class Dash extends javax.swing.JFrame {
                 pst.setString(5, phone);
                 pst.setString(6, nic);
                 pst.setBytes(7, currentProfileImageBytes);
-                pst.setString(8, empNo);
+                pst.setString(8, currentEmpNo.isEmpty() ? "-" : currentEmpNo);
+                pst.setString(9, currentUserName);
             } else {
                 pst = db.con.prepareStatement(
-                    "UPDATE user SET f_name = ?, l_name = ?, username = ?, email = ?, phone = ?, nic = ? WHERE emp_no = ?"
+                    "UPDATE user SET f_name = ?, l_name = ?, username = ?, email = ?, phone = ?, nic = ? WHERE emp_no = ? OR username = ?"
                 );
                 pst.setString(1, fName);
                 pst.setString(2, lName);
@@ -3653,7 +3718,8 @@ public class Dash extends javax.swing.JFrame {
                 pst.setString(4, email);
                 pst.setString(5, phone);
                 pst.setString(6, nic);
-                pst.setString(7, empNo);
+                pst.setString(7, currentEmpNo.isEmpty() ? "-" : currentEmpNo);
+                pst.setString(8, currentUserName);
             }
 
             int rowsUpdated = pst.executeUpdate();
@@ -3820,6 +3886,7 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -4194,6 +4261,8 @@ public class Dash extends javax.swing.JFrame {
                 v.add(rs.getString("pc_name"));
                 v.add(rs.getString("repair_id"));
                 v.add(rs.getString("issue_description"));
+                double cost = rs.getDouble("cost");
+                v.add(String.format("%.2f", cost));
                 model.addRow(v);
             }
             pst.close();
@@ -5146,6 +5215,13 @@ public class Dash extends javax.swing.JFrame {
             if (db != null && db.con != null) {
                 java.sql.Statement stmt = db.con.createStatement();
                 try {
+                    stmt.executeUpdate("ALTER TABLE user MODIFY COLUMN image LONGBLOB NULL");
+                } catch (Exception e0) {
+                    try {
+                        stmt.executeUpdate("ALTER TABLE user MODIFY COLUMN image MEDIUMBLOB NULL");
+                    } catch (Exception ignored) {}
+                }
+                try {
                     stmt.executeUpdate("ALTER TABLE gaming_sessions ADD COLUMN cus_name VARCHAR(100) NULL DEFAULT 'Walk-in Customer'");
                 } catch (Exception e1) {
                     try {
@@ -5178,9 +5254,88 @@ public class Dash extends javax.swing.JFrame {
                     stmt.executeUpdate("ALTER TABLE gaming_sessions MODIFY COLUMN status VARCHAR(20) NULL DEFAULT 'Ongoing'");
                 } catch (Exception ignored) {}
                 stmt.close();
+
+                seedInitialStations();
             }
         } catch (Exception ex) {
             System.out.println("ensureDatabaseColumns note: " + ex.getMessage());
+        }
+    }
+
+    private void seedInitialStations() {
+        try {
+            if (db == null || db.con == null) return;
+            java.sql.Statement stmt = db.con.createStatement();
+            
+            stmt.executeUpdate(
+                "CREATE TABLE IF NOT EXISTS pc_table ("
+                + "pc_id VARCHAR(50) PRIMARY KEY, "
+                + "pc_name VARCHAR(100), "
+                + "category VARCHAR(50), "
+                + "cpu VARCHAR(100), "
+                + "motherboard VARCHAR(100), "
+                + "ram_capacity INT, "
+                + "vga VARCHAR(100), "
+                + "ip_address VARCHAR(50), "
+                + "hourly_rate DECIMAL(10,2), "
+                + "status VARCHAR(50) DEFAULT 'Available'"
+                + ")"
+            );
+            stmt.close();
+
+            Object[][] initialPcs = {
+                {"PC-GG-1001", "PC-01", "PC", "Intel Core i7-13700K", "ASUS ROG Z790", 32, "NVIDIA RTX 4070 12GB", "192.168.1.101", 200.00, "Available"},
+                {"PC-GG-1002", "PC-02", "PC", "Intel Core i7-13700K", "ASUS ROG Z790", 32, "NVIDIA RTX 4070 12GB", "192.168.1.102", 200.00, "Available"},
+                {"PC-GG-1003", "PC-03", "PC", "Intel Core i7-13700K", "ASUS ROG Z790", 32, "NVIDIA RTX 4070 12GB", "192.168.1.103", 200.00, "Available"},
+                {"PC-GG-1004", "PC-04", "PC", "Intel Core i7-13700K", "ASUS ROG Z790", 32, "NVIDIA RTX 4070 12GB", "192.168.1.104", 200.00, "Available"},
+                {"PC-GG-1005", "PC-05", "PC", "Intel Core i7-13700K", "ASUS ROG Z790", 32, "NVIDIA RTX 4070 12GB", "192.168.1.105", 200.00, "Available"},
+                {"PC-GG-1006", "PC-06", "PC", "Intel Core i7-13700K", "ASUS ROG Z790", 32, "NVIDIA RTX 4070 12GB", "192.168.1.106", 200.00, "Available"},
+
+                {"PS5-GG-2001", "PS5-01", "PS5", "AMD Zen 2 8-Core 3.5GHz", "Sony PS5 Custom Board", 16, "AMD RDNA 2 (10.3 TFLOPS)", "192.168.1.201", 400.00, "Available"},
+                {"PS5-GG-2002", "PS5-02", "PS5", "AMD Zen 2 8-Core 3.5GHz", "Sony PS5 Custom Board", 16, "AMD RDNA 2 (10.3 TFLOPS)", "192.168.1.202", 400.00, "Available"},
+                {"PS5-GG-2003", "PS5-03", "PS5", "AMD Zen 2 8-Core 3.5GHz", "Sony PS5 Custom Board", 16, "AMD RDNA 2 (10.3 TFLOPS)", "192.168.1.203", 400.00, "Available"},
+                {"PS5-GG-2004", "PS5-04", "PS5", "AMD Zen 2 8-Core 3.5GHz", "Sony PS5 Custom Board", 16, "AMD RDNA 2 (10.3 TFLOPS)", "192.168.1.204", 400.00, "Available"}
+            };
+
+            PreparedStatement checkPst = db.con.prepareStatement("SELECT pc_id FROM pc_table WHERE pc_id = ?");
+            PreparedStatement insertPst = db.con.prepareStatement(
+                "INSERT INTO pc_table (pc_id, pc_name, category, cpu, motherboard, ram_capacity, vga, ip_address, hourly_rate, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            );
+
+            for (Object[] row : initialPcs) {
+                String pId = (String) row[0];
+                checkPst.setString(1, pId);
+                ResultSet checkRs = checkPst.executeQuery();
+                if (!checkRs.next()) {
+                    insertPst.setString(1, (String) row[0]);
+                    insertPst.setString(2, (String) row[1]);
+                    insertPst.setString(3, (String) row[2]);
+                    insertPst.setString(4, (String) row[3]);
+                    insertPst.setString(5, (String) row[4]);
+                    insertPst.setInt(6, (Integer) row[5]);
+                    insertPst.setString(7, (String) row[6]);
+                    insertPst.setString(8, (String) row[7]);
+                    insertPst.setDouble(9, (Double) row[8]);
+                    insertPst.setString(10, (String) row[9]);
+                    insertPst.executeUpdate();
+
+                    try {
+                        QRCodeGenerator.saveQRCodeAsFile((String) row[0], (String) row[1]);
+                    } catch (Exception ignored) {}
+                }
+                checkRs.close();
+            }
+            checkPst.close();
+            insertPst.close();
+
+            java.sql.Statement updateStmt = db.con.createStatement();
+            updateStmt.executeUpdate(
+                "UPDATE pc_table SET status = 'Available' WHERE pc_id NOT IN (SELECT DISTINCT pc_id FROM gaming_sessions WHERE status = 'Ongoing' OR status = 'ACTIVE')"
+            );
+            updateStmt.close();
+
+        } catch (Exception ex) {
+            System.out.println("seedInitialStations note: " + ex.getMessage());
         }
     }
 
@@ -5276,7 +5431,6 @@ public class Dash extends javax.swing.JFrame {
                 v4.add(rs.getString("vga"));
                 v4.add(rs.getString("hourly_rate"));
                 v4.add(rs.getString("status"));
-                v4.add("Update ⚙️");
 
                 model.addRow(v4);
             }
@@ -5398,11 +5552,6 @@ public class Dash extends javax.swing.JFrame {
     private void tablestyle2(JTable tableUserPcManage, JScrollPane jScrollPane) {
         tableStyle(tableUserPcManage, jScrollPane);
         tableUserPcManage.setRowHeight(42);
-
-        if (tableUserPcManage.getColumnModel().getColumnCount() > 8) {
-            tableUserPcManage.getColumnModel().getColumn(8).setCellRenderer(new ButtonRenderer());
-            tableUserPcManage.getColumnModel().getColumn(8).setCellEditor(new ButtonEditor(new javax.swing.JCheckBox()));
-        }
     }
 
     private void loadPcDetails(String empNo) {
@@ -5563,7 +5712,6 @@ public class Dash extends javax.swing.JFrame {
                 row.add(stStr);
                 row.add(durStr);
                 row.add(amountStr);
-                row.add("End Session ⏹");
 
                 model.addRow(row);
             }
@@ -5576,6 +5724,23 @@ public class Dash extends javax.swing.JFrame {
 
         } catch (SQLException ex) {
             System.out.println("Live session table error: " + ex.getMessage());
+        }
+    }
+
+    private void startHeaderClockTimer() {
+        if (DateTime != null) {
+            DateTime.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 18));
+            DateTime.setForeground(new java.awt.Color(255, 255, 255));
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd  hh:mm:ss a");
+            DateTime.setText(sdf.format(new Date()));
+
+            javax.swing.Timer clockTimer = new javax.swing.Timer(1000, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    DateTime.setText(sdf.format(new Date()));
+                }
+            });
+            clockTimer.start();
         }
     }
 
@@ -6153,6 +6318,7 @@ public class Dash extends javax.swing.JFrame {
         addPdfPopupToTable(tablePc, "PC Inventory & Stations Report", "PC_Inventory_Report");
         addPdfPopupToTable(tableUser, "System User Accounts Report", "User_Accounts_Report");
         addPdfPopupToTable(tableRepairPc, "PC Maintenance & Repair Report", "PC_Repair_Report");
+        addPdfPopupToTable(jTable2, "PC Repair & Maintenance History Report", "PC_Repair_History_Report");
         addPdfPopupToTable(tableLiveSessions, "Live Active Gaming Sessions Report", "Live_Sessions_Report");
         addPdfPopupToTable(tableUserPcManage, "Station Management Report", "Station_Manage_Report");
     }
