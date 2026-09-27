@@ -173,31 +173,103 @@ public class UserReg extends javax.swing.JFrame {
         String role = cmbRole.getSelectedItem().toString();
 
         try {
-
-            if (fName.isEmpty() || lName.isEmpty() || nic.isEmpty() || phone.isEmpty() || email.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Please fill all required fields!", "Error", JOptionPane.ERROR_MESSAGE);
+            // 1. Required fields validation
+            if (fName.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please enter First Name!", "Validation Error", JOptionPane.WARNING_MESSAGE);
+                txtFName.requestFocus();
                 return;
             }
+            if (lName.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please enter Last Name!", "Validation Error", JOptionPane.WARNING_MESSAGE);
+                txtLName.requestFocus();
+                return;
+            }
+            if (!fName.matches("^[a-zA-Z\\s]+$")) {
+                JOptionPane.showMessageDialog(this, "First Name can only contain letters!", "Validation Error", JOptionPane.WARNING_MESSAGE);
+                txtFName.requestFocus();
+                return;
+            }
+            if (!lName.matches("^[a-zA-Z\\s]+$")) {
+                JOptionPane.showMessageDialog(this, "Last Name can only contain letters!", "Validation Error", JOptionPane.WARNING_MESSAGE);
+                txtLName.requestFocus();
+                return;
+            }
+            if (nic.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please enter NIC number!", "Validation Error", JOptionPane.WARNING_MESSAGE);
+                txtNIC.requestFocus();
+                return;
+            }
+            // 2. NIC format validation (Old: 9 digits + V/X, New: 12 digits)
+            if (!nic.matches("^([0-9]{9}[VvXx]|[0-9]{12})$")) {
+                JOptionPane.showMessageDialog(this, "Please enter a valid NIC (e.g. 200012345678 or 991234567V)!", "Validation Error", JOptionPane.WARNING_MESSAGE);
+                txtNIC.requestFocus();
+                return;
+            }
+            nic = nic.toUpperCase();
 
-            if (!email.contains("@") || !email.contains(".com") || email.matches("^[A-Z]#$%&*+-")) {
-                JOptionPane.showMessageDialog(this, "Please Enter a valied Email!", "Error", JOptionPane.ERROR_MESSAGE);
+            // 3. Email format validation
+            if (email.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please enter Email address!", "Validation Error", JOptionPane.WARNING_MESSAGE);
+                txtEmail.requestFocus();
+                return;
+            }
+            if (!email.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")) {
+                JOptionPane.showMessageDialog(this, "Please enter a valid Email address (e.g. user@gmail.com)!", "Validation Error", JOptionPane.WARNING_MESSAGE);
                 txtEmail.requestFocus();
                 return;
             }
 
-            if (!phone.matches("^[0-9]{10}$")) {
-                JOptionPane.showMessageDialog(this, "Please Enter a valied Phone Number!", "Error", JOptionPane.ERROR_MESSAGE);
+            // 4. Phone format validation (10 digits starting with 0)
+            if (phone.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please enter Phone number!", "Validation Error", JOptionPane.WARNING_MESSAGE);
+                txtPhone.requestFocus();
+                return;
+            }
+            if (!phone.matches("^(0[0-9]{9})$")) {
+                JOptionPane.showMessageDialog(this, "Please enter a valid 10-digit Phone number (e.g. 0771234567)!", "Validation Error", JOptionPane.WARNING_MESSAGE);
                 txtPhone.requestFocus();
                 return;
             }
 
-            if (!nic.matches("^([0-9]{9}[Vv]|[0-9]{12})$")) {
-                JOptionPane.showMessageDialog(this, "Please Enter a valied NIC!", "Error", JOptionPane.ERROR_MESSAGE);
+            // 5. Duplicate checks in database (NIC, Phone, Email)
+            pst = db.con.prepareStatement("SELECT emp_no FROM user WHERE nic = ?");
+            pst.setString(1, nic);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(this, "A user with this NIC (" + nic + ") is already registered!", "Duplicate Error", JOptionPane.ERROR_MESSAGE);
+                pst.close();
+                rs.close();
                 txtNIC.requestFocus();
                 return;
             }
+            pst.close();
+            rs.close();
 
-            nic = nic.toUpperCase();
+            pst = db.con.prepareStatement("SELECT emp_no FROM user WHERE phone = ?");
+            pst.setString(1, phone);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(this, "A user with this Phone number (" + phone + ") already exists!", "Duplicate Error", JOptionPane.ERROR_MESSAGE);
+                pst.close();
+                rs.close();
+                txtPhone.requestFocus();
+                return;
+            }
+            pst.close();
+            rs.close();
+
+            pst = db.con.prepareStatement("SELECT emp_no FROM user WHERE email = ?");
+            pst.setString(1, email);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(this, "A user with this Email (" + email + ") already exists!", "Duplicate Error", JOptionPane.ERROR_MESSAGE);
+                pst.close();
+                rs.close();
+                txtEmail.requestFocus();
+                return;
+            }
+            pst.close();
+            rs.close();
 
             String userName = nic;
             String hPassword = hashPassword(nic);
@@ -215,9 +287,10 @@ public class UserReg extends javax.swing.JFrame {
             pst.setString(9, role);
 
             int count = pst.executeUpdate();
+            pst.close();
 
             if (count > 0) {
-                JOptionPane.showMessageDialog(this, "User Registered Successfully! Role: " + role + " User Name & Password: " + nic);
+                JOptionPane.showMessageDialog(this, "User Registered Successfully!\nRole: " + role + "\nDefault Username & Password: " + nic, "Success", JOptionPane.INFORMATION_MESSAGE);
                 txtFName.setText("");
                 txtLName.setText("");
                 txtNIC.setText("");
@@ -225,10 +298,9 @@ public class UserReg extends javax.swing.JFrame {
                 txtPhone.setText("");
                 cmbRole.setSelectedIndex(0);
                 generateUserId();
-
             }
         } catch (SQLException ex) {
-            System.getLogger(UserReg.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            JOptionPane.showMessageDialog(this, "Database Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAddActionPerformed
 

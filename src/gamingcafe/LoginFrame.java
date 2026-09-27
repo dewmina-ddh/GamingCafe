@@ -21,8 +21,48 @@ public class LoginFrame extends javax.swing.JFrame {
 
     public LoginFrame() {
         initComponents();
+        createUserLogsTable();
         txtUname.requestFocus();
+    }
 
+    // user_logs table eka create kirima saha database columns ensure kirima
+    private void createUserLogsTable() {
+        try {
+            PreparedStatement createPst = db.con.prepareStatement(
+                "CREATE TABLE IF NOT EXISTS user_logs ("
+                + "log_id INT AUTO_INCREMENT PRIMARY KEY, "
+                + "emp_no VARCHAR(50), "
+                + "username VARCHAR(100), "
+                + "role VARCHAR(50), "
+                + "login_time DATETIME DEFAULT CURRENT_TIMESTAMP, "
+                + "logout_time DATETIME NULL, "
+                + "duration VARCHAR(50) DEFAULT 'Active', "
+                + "status VARCHAR(50) DEFAULT 'Logged In'"
+                + ")"
+            );
+            createPst.executeUpdate();
+            createPst.close();
+
+            // Ensure cus_name in gaming_sessions with default value
+            java.sql.Statement stmt = db.con.createStatement();
+            try {
+                stmt.executeUpdate("ALTER TABLE gaming_sessions ADD COLUMN cus_name VARCHAR(100) NOT NULL DEFAULT 'Walk-in Customer'");
+            } catch (Exception e1) {
+                try {
+                    stmt.executeUpdate("ALTER TABLE gaming_sessions MODIFY COLUMN cus_name VARCHAR(100) NOT NULL DEFAULT 'Walk-in Customer'");
+                } catch (Exception ignored) {}
+            }
+            try {
+                stmt.executeUpdate("ALTER TABLE gaming_sessions ADD COLUMN add_minutes INT NOT NULL DEFAULT 0");
+            } catch (Exception ignored) {}
+            try {
+                stmt.executeUpdate("ALTER TABLE gaming_sessions ADD COLUMN price_per_adding DECIMAL(10,2) NOT NULL DEFAULT 0.00");
+            } catch (Exception ignored) {}
+            stmt.close();
+
+        } catch (Exception ex) {
+            System.out.println("database check note: " + ex.getMessage());
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -87,21 +127,60 @@ public class LoginFrame extends javax.swing.JFrame {
         String hPassword = hashPassword(password);
 
         User isUser = checkUser(userName, hPassword);
-        
 
         if (isUser != null) {
+            // Check inactive user
+            String role = isUser.getRole();
+            if (role != null && (role.equalsIgnoreCase("Inactive") || role.equalsIgnoreCase("Deactivated"))) {
+                JOptionPane.showMessageDialog(this, "This account is currently deactivated. Please contact an Administrator!", "Account Inactive", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
             System.out.println("User Role is: " + isUser.getRole());
 
-            Dash dashboard = new Dash(isUser);
-            dashboard.setVisible(true);
-            this.dispose();
+            // 1. User Login eka user_logs table ekata record kirima
+            int currentLogId = 0;
+            try {
+                pst = db.con.prepareStatement(
+                    "INSERT INTO user_logs (emp_no, username, role, login_time, logout_time, duration, status) VALUES (?, ?, ?, NOW(), NULL, 'Active', 'Logged In')",
+                    java.sql.Statement.RETURN_GENERATED_KEYS
+                );
+                pst.setString(1, isUser.getEmpNo() != null ? isUser.getEmpNo() : "-");
+                pst.setString(2, isUser.getUserName() != null ? isUser.getUserName() : userName);
+                pst.setString(3, isUser.getRole() != null ? isUser.getRole() : "Staff");
+                pst.executeUpdate();
+                rs = pst.getGeneratedKeys();
+                if (rs.next()) {
+                    currentLogId = rs.getInt(1);
+                }
+                pst.close();
+                if (rs != null) rs.close();
+            } catch (Exception ex) {
+                System.out.println("User log record note: " + ex.getMessage());
+            }
+
+            // 2. First time login eka check kirima (Username eka NIC ekata samana nam ho default password eka thiyenam)
+            String defaultHash = hashPassword(isUser.getNic());
+            boolean isFirstTime = (isUser.getUserName() != null && isUser.getNic() != null && isUser.getUserName().equalsIgnoreCase(isUser.getNic()))
+                    || (isUser.getPassword() != null && defaultHash != null && isUser.getPassword().equalsIgnoreCase(defaultHash));
+
+            if (isFirstTime) {
+                // First time login setup frame eka open kirima
+                ChangeUserDetails changeFrame = new ChangeUserDetails(isUser, currentLogId);
+                changeFrame.setVisible(true);
+                this.dispose();
+            } else {
+                // Already updated nam direct Dashboard ekata yama
+                Dash dashboard = new Dash(isUser, currentLogId);
+                dashboard.setVisible(true);
+                this.dispose();
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Logging Failed.. Please Enter correct one and try again");
             txtUname.setText("");
             txtPass.setText("");
             txtUname.requestFocus();
         }
-
 
     }//GEN-LAST:event_btnLoginActionPerformed
 
